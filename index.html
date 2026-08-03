@@ -357,6 +357,8 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:56px 0 4
   .grid-price{grid-template-columns:repeat(4,1fr)}
   .steps{grid-template-columns:repeat(4,1fr)}
   .foot-grid{grid-template-columns:1.4fr 1fr 1fr}
+  /* reserva: navegadores novos mostram o menu no desktop mesmo sem JS */
+  .menu-wrap::details-content{content-visibility:visible;display:contents}
 }
 @media (max-width:899px){
   .menu-wrap summary{display:flex}
@@ -862,11 +864,19 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:56px 0 4
   /* ---- menu mobile: fecha ao clicar num link ---- */
   var menu = document.getElementById("menu-mobile");
   if (menu) {
+    /* no desktop o <details> precisa ficar aberto: fechado, o Chrome nao pinta o
+       conteudo mesmo com display:flex, e o menu inteiro some do cabecalho */
+    var desktop = window.matchMedia("(min-width:900px)");
+    var sincronizar = function(){ menu.open = desktop.matches; };
+    sincronizar();
+    desktop.addEventListener ? desktop.addEventListener("change", sincronizar)
+                             : desktop.addListener(sincronizar);
+
     menu.addEventListener("click", function(e){
-      if (e.target.closest("a")) menu.open = false;
+      if (e.target.closest("a") && !desktop.matches) menu.open = false;
     });
     document.addEventListener("keydown", function(e){
-      if (e.key === "Escape") menu.open = false;
+      if (e.key === "Escape" && !desktop.matches) menu.open = false;
     });
   }
 
