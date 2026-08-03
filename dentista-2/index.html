@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier do Sorriso — Odontologia Estética de Alto Padrão em Feira de Santana</title>
+<meta name="description" content="Lentes de contato dental, facetas, clareamento a laser e planejamento digital do sorriso. Atendimento particular, exclusivo e sob agendamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111111;
+  --ink-2:#161514;
+  --ink-3:#1c1a17;
+  --champagne:#E7D3A1;
+  --warm:#a89f92;
+  --warm-2:#d8d1c6;
+  --line:rgba(231,211,161,.28);
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--warm-2);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:16px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:1.06;letter-spacing:-.01em;color:#f4efe6}
+em{font-style:italic;color:var(--champagne)}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--champagne);outline-offset:3px}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.eyebrow{
+  font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--champagne);font-weight:400;
+}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line) 15%,var(--line) 85%,transparent);border:0}
+section{padding:88px 0}
+
+/* ---------- NAV ---------- */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:rgba(17,17,17,.72);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:background .4s ease,border-color .4s ease;
+}
+header.nav.solid{background:rgba(17,17,17,.94);border-bottom-color:var(--line)}
+.navbar{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:'Cormorant Garamond',serif;font-size:1.42rem;letter-spacing:.06em;color:#f4efe6}
+.brand span{color:var(--champagne);font-style:italic}
+.navlinks{display:none;gap:34px;align-items:center}
+.navlinks a{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warm);position:relative;padding:6px 0;transition:color .3s}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--champagne);transition:width .35s ease}
+.navlinks a:hover{color:var(--champagne)}
+.navlinks a:hover::after{width:100%}
+.burger{
+  width:44px;height:44px;display:grid;place-content:center;gap:5px;
+  background:none;border:1px solid var(--line);border-radius:2px;cursor:pointer;
+}
+.burger i{display:block;width:20px;height:1px;background:var(--champagne);transition:transform .35s,opacity .25s}
+.burger.open i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.open i:nth-child(2){opacity:0}
+.burger.open i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobilemenu{
+  display:grid;overflow:hidden;max-height:0;transition:max-height .5s cubic-bezier(.6,0,.2,1);
+  border-top:0 solid var(--line);
+}
+.mobilemenu.open{max-height:420px;border-top-width:1px}
+.mobilemenu a{
+  padding:15px 22px;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--warm-2);border-bottom:1px solid rgba(231,211,161,.12);
+}
+.mobilemenu a:last-child{border-bottom:0}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:center;
+  padding:120px 0 70px;overflow:hidden;
+}
+.hero-glow{
+  position:absolute;inset:auto -30% -50% auto;width:min(900px,120vw);aspect-ratio:1;
+  background:radial-gradient(circle at 50% 50%,rgba(231,211,161,.13),transparent 62%);
+  pointer-events:none;
+}
+.hero-grid{display:grid;gap:52px}
+.hero h1{font-size:clamp(3.1rem,12vw,7.3rem)}
+.hero h1 .l{display:block;overflow:hidden}
+.hero h1 .l>span{display:block;transform:translateY(102%);animation:rise 1.05s cubic-bezier(.19,1,.22,1) forwards}
+.hero h1 .l:nth-child(2)>span{animation-delay:.12s}
+.hero h1 .l:nth-child(3)>span{animation-delay:.24s}
+@keyframes rise{to{transform:translateY(0)}}
+.fade-up{opacity:0;transform:translateY(18px);animation:fadeup .9s cubic-bezier(.19,1,.22,1) forwards}
+@keyframes fadeup{to{opacity:1;transform:none}}
+.d1{animation-delay:.45s}.d2{animation-delay:.6s}.d3{animation-delay:.75s}.d4{animation-delay:.9s}
+.hero p.lead{font-size:1.06rem;color:var(--warm);max-width:46ch;margin-top:26px}
+.hero .eyebrow{margin-bottom:26px}
+.cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:38px}
+.btn{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:16px 30px;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;
+  border:1px solid var(--champagne);color:var(--champagne);
+  background:transparent;cursor:pointer;position:relative;overflow:hidden;
+  transition:color .4s ease;
+}
+.btn::before{
+  content:"";position:absolute;inset:0;background:var(--champagne);
+  transform:translateY(101%);transition:transform .45s cubic-bezier(.6,0,.2,1);z-index:-1;
+}
+.btn:hover{color:var(--ink)}
+.btn:hover::before{transform:translateY(0)}
+.btn>*{position:relative}
+.btn.ghost{border-color:rgba(231,211,161,.35);color:var(--warm-2)}
+.btn.ghost::before{background:rgba(231,211,161,.14)}
+.btn.ghost:hover{color:var(--champagne)}
+.hero-art{max-width:440px;width:100%;margin-inline:auto;opacity:.95}
+.hero-stats{display:flex;flex-wrap:wrap;gap:34px;margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
+.hero-stats div strong{display:block;font-family:'Cormorant Garamond',serif;font-size:2.3rem;color:var(--champagne);line-height:1}
+.hero-stats div small{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--warm)}
+
+/* ---------- REVEAL ---------- */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.19,1,.22,1),transform .9s cubic-bezier(.19,1,.22,1)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.1s}
+.rv[data-d="2"]{transition-delay:.2s}
+.rv[data-d="3"]{transition-delay:.3s}
+.rv[data-d="4"]{transition-delay:.4s}
+
+/* ---------- SECTION HEAD ---------- */
+.shead{max-width:640px;margin-bottom:54px}
+.shead h2{font-size:clamp(2.3rem,7vw,3.9rem);margin:18px 0 18px}
+.shead p{color:var(--warm)}
+
+/* ---------- SOBRE ---------- */
+.about{display:grid;gap:46px;align-items:center}
+.portrait{
+  position:relative;border:1px solid var(--line);padding:26px;background:var(--ink-2);
+}
+.portrait::after{content:"";position:absolute;inset:10px;border:1px solid rgba(231,211,161,.13);pointer-events:none}
+.portrait figcaption{margin-top:22px;text-align:center}
+.portrait figcaption b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:#f4efe6}
+.portrait figcaption small{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--champagne)}
+.about-body h2{font-size:clamp(2.2rem,6.5vw,3.5rem);margin:16px 0 24px}
+.about-body p{color:var(--warm);margin-bottom:18px}
+.sign{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--champagne);margin-top:8px}
+
+/* ---------- SERVIÇOS ---------- */
+.cards{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.card{
+  background:var(--ink);padding:40px 30px 44px;position:relative;
+  transition:background .5s ease;
+}
+.card:hover{background:var(--ink-3)}
+.card .num{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--champagne);letter-spacing:.2em}
+.card h3{font-size:1.85rem;margin:16px 0 14px}
+.card p{color:var(--warm);font-size:.95rem}
+.card .ico{margin-top:26px;color:var(--champagne);opacity:.55;transition:opacity .5s,transform .5s}
+.card:hover .ico{opacity:1;transform:translateY(-3px)}
+
+/* ---------- COMPARADOR ---------- */
+.compare-shell{border:1px solid var(--line);padding:16px;background:var(--ink-2)}
+.compare{position:relative;aspect-ratio:16/11;overflow:hidden;user-select:none}
+.compare .layer{position:absolute;inset:0}
+.compare .after{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+.compare .tag{
+  position:absolute;bottom:14px;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+  padding:7px 13px;background:rgba(17,17,17,.78);border:1px solid var(--line);color:var(--champagne);
+}
+.compare .tag.l{left:14px}
+.compare .tag.r{right:14px;color:var(--warm-2);border-color:rgba(255,255,255,.16)}
+.compare .handle{
+  position:absolute;top:0;bottom:0;left:var(--pos,50%);width:1px;background:var(--champagne);
+  transform:translateX(-.5px);pointer-events:none;
+}
+.compare .handle::after{
+  content:"";position:absolute;top:50%;left:50%;width:46px;height:46px;
+  transform:translate(-50%,-50%) rotate(45deg);
+  border:1px solid var(--champagne);background:rgba(17,17,17,.7);
+}
+.compare input[type=range]{
+  position:absolute;inset:0;width:100%;height:100%;margin:0;
+  -webkit-appearance:none;appearance:none;background:transparent;cursor:ew-resize;
+}
+.compare input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:56px;height:100%;background:transparent;cursor:ew-resize}
+.compare input[type=range]::-moz-range-thumb{width:56px;height:260px;border:0;background:transparent;cursor:ew-resize}
+.compare input[type=range]:focus-visible{outline:2px solid var(--champagne);outline-offset:2px}
+.compare-note{margin-top:18px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--warm);text-align:center}
+
+/* ---------- DIFERENCIAIS ---------- */
+.diffs{display:grid;gap:0;border-top:1px solid var(--line)}
+.diff{
+  display:grid;gap:10px;padding:32px 0;border-bottom:1px solid var(--line);
+  transition:padding-left .45s ease;
+}
+.diff:hover{padding-left:14px}
+.diff .k{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#f4efe6}
+.diff .k em{font-style:italic}
+.diff p{color:var(--warm);font-size:.95rem}
+
+/* ---------- DEPOIMENTOS ---------- */
+.quotes{display:grid;gap:30px}
+.quote{border:1px solid var(--line);padding:36px 30px;background:var(--ink-2);position:relative}
+.quote .mark{font-family:'Cormorant Garamond',serif;font-size:4.6rem;line-height:.6;color:var(--champagne);opacity:.35}
+.quote blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;line-height:1.45;color:#efe9de;margin:14px 0 26px}
+.who{display:flex;align-items:center;gap:14px}
+.avatar{width:46px;height:46px;flex:0 0 46px;border-radius:50%;border:1px solid var(--champagne);display:grid;place-content:center;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--champagne);letter-spacing:.05em}
+.who b{font-weight:400;font-size:.92rem;color:var(--warm-2);display:block}
+.who small{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--warm)}
+
+/* ---------- INFO ---------- */
+.info{display:grid;gap:40px}
+.info dl{display:grid;gap:22px}
+.info dt{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--champagne);margin-bottom:4px}
+.info dd{color:var(--warm-2)}
+.info dd span{color:var(--warm)}
+.mapart{border:1px solid var(--line);background:var(--ink-2);padding:14px}
+
+/* ---------- CTA FINAL ---------- */
+.finale{text-align:center;padding:110px 0}
+.finale h2{font-size:clamp(2.6rem,9vw,5.4rem);margin-bottom:24px}
+.finale p{color:var(--warm);max-width:52ch;margin:0 auto 38px}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);padding:44px 0 120px}
+.foot{display:grid;gap:18px;font-size:.78rem;color:var(--warm)}
+.foot a:hover{color:var(--champagne)}
+
+/* ---------- WHATSAPP ---------- */
+.wa{
+  position:fixed;right:18px;bottom:18px;z-index:70;
+  width:56px;height:56px;border-radius:50%;
+  display:grid;place-content:center;
+  background:var(--champagne);color:var(--ink);
+  box-shadow:0 10px 32px rgba(0,0,0,.55);
+  transition:transform .35s cubic-bezier(.19,1,.22,1),box-shadow .35s;
+}
+.wa:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 16px 40px rgba(231,211,161,.25)}
+
+@media (min-width:760px){
+  section{padding:112px 0}
+  .wrap{padding:0 40px}
+  .hero-grid{grid-template-columns:1.15fr .85fr;align-items:center;gap:60px}
+  .about{grid-template-columns:.85fr 1.15fr;gap:64px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .quotes{grid-template-columns:repeat(3,1fr)}
+  .info{grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .diff{grid-template-columns:.9fr 1.1fr;gap:40px;align-items:baseline}
+  .wa{right:28px;bottom:28px;width:62px;height:62px}
+}
+@media (min-width:1024px){
+  .navlinks{display:flex}
+  .burger,.mobilemenu{display:none}
+  .cards{grid-template-columns:repeat(3,1fr)}
+  section{padding:130px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}
+  .hero h1 .l>span{transform:none}
+  .fade-up{opacity:1;transform:none}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="topo">
+  <div class="wrap navbar">
+    <a class="brand" href="#topo">Atelier <span>do Sorriso</span></a>
+    <nav class="navlinks" aria-label="Navegação principal">
+      <a href="#sobre">A Dentista</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#visita">Visite-nos</a>
+      <a href="#agendar">Agendar</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobilemenu">
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+  <nav class="mobilemenu" id="mobilemenu" aria-label="Navegação móvel">
+    <a href="#sobre">A Dentista</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#visita">Visite-nos</a>
+    <a href="#agendar">Agendar</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="h-hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow fade-up d1">Odontologia estética · Atendimento particular</p>
+      <h1 id="h-hero">
+        <span class="l"><span>O sorriso</span></span>
+        <span class="l"><span>como <em>obra</em></span></span>
+        <span class="l"><span>de autor.</span></span>
+      </h1>
+      <p class="lead fade-up d2">Desenho cada sorriso a partir do rosto, da voz e do jeito de quem o carrega. Poucos pacientes por dia, tempo integral dedicado a você — do planejamento digital ao último detalhe do polimento.</p>
+      <div class="cta-row fade-up d3">
+        <a class="btn" href="#agendar"><span>Agendar avaliação</span></a>
+        <a class="btn ghost" href="#resultados"><span>Ver resultados</span></a>
+      </div>
+      <div class="hero-stats fade-up d4">
+        <div><strong>12</strong><small>anos de clínica</small></div>
+        <div><strong>900+</strong><small>sorrisos desenhados</small></div>
+        <div><strong>1</strong><small>paciente por horário</small></div>
+      </div>
+    </div>
+    <div class="hero-art fade-up d3" aria-hidden="true">
+      <svg viewBox="0 0 400 460" role="presentation">
+        <defs>
+          <linearGradient id="gArc" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E7D3A1" stop-opacity=".85"/>
+            <stop offset="1" stop-color="#E7D3A1" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="gGlow" cx="50%" cy="45%" r="55%">
+            <stop offset="0" stop-color="#E7D3A1" stop-opacity=".14"/>
+            <stop offset="1" stop-color="#E7D3A1" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="215" r="185" fill="url(#gGlow)"/>
+        <circle cx="200" cy="215" r="168" fill="none" stroke="#E7D3A1" stroke-opacity=".22"/>
+        <circle cx="200" cy="215" r="140" fill="none" stroke="url(#gArc)" stroke-width="1.2"/>
+        <g transform="translate(200 230)">
+          <!-- arco superior de dentes estilizado -->
+          <g fill="none" stroke="#E7D3A1" stroke-opacity=".55">
+            <path d="M-118 -6 Q0 -104 118 -6"/>
+            <path d="M-96 6 Q0 -78 96 6"/>
+          </g>
+          <g fill="#F4EFE6" fill-opacity=".92">
+            <rect x="-19" y="-64" width="38" height="52" rx="9"/>
+            <rect x="-58" y="-60" width="34" height="46" rx="9" fill-opacity=".8"/>
+            <rect x="24" y="-60" width="34" height="46" rx="9" fill-opacity=".8"/>
+            <rect x="-88" y="-50" width="26" height="38" rx="9" fill-opacity=".62"/>
+            <rect x="62" y="-50" width="26" height="38" rx="9" fill-opacity=".62"/>
+            <rect x="-112" y="-36" width="22" height="30" rx="8" fill-opacity=".42"/>
+            <rect x="90" y="-36" width="22" height="30" rx="8" fill-opacity=".42"/>
+          </g>
+          <path d="M-124 4 Q0 96 124 4" fill="none" stroke="#E7D3A1" stroke-width="1.4"/>
+          <line x1="0" y1="-72" x2="0" y2="120" stroke="#E7D3A1" stroke-opacity=".3" stroke-dasharray="3 7"/>
+        </g>
+        <text x="200" y="432" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="15" letter-spacing="6" fill="#E7D3A1" fill-opacity=".7">PROPORÇÃO ÁUREA</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SOBRE -->
+<section id="sobre" aria-labelledby="h-sobre">
+  <div class="wrap about">
+    <figure class="portrait rv">
+      <svg viewBox="0 0 320 380" role="img" aria-label="Retrato ilustrado da Dra. Helena Vasconcelos">
+        <defs>
+          <linearGradient id="pBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#241f19"/><stop offset="1" stop-color="#141210"/>
+          </linearGradient>
+        </defs>
+        <rect width="320" height="380" fill="url(#pBg)"/>
+        <circle cx="160" cy="150" r="96" fill="none" stroke="#E7D3A1" stroke-opacity=".25"/>
+        <g fill="none" stroke="#E7D3A1" stroke-width="1.3" stroke-opacity=".8" stroke-linecap="round">
+          <path d="M112 108 q-14 42 4 78 q14 30 44 30 q30 0 44-30 q18-36 4-78"/>
+          <path d="M108 106 q52-34 104 0"/>
+          <path d="M104 104 q4-58 56-58 q52 0 56 58 q2 26-8 40"/>
+          <path d="M100 150 q-14 6-6 22 q6 12 16 8"/>
+          <path d="M220 150 q14 6 6 22 q-6 12-16 8"/>
+          <path d="M136 148 q10-8 20 0M164 148 q10-8 20 0"/>
+          <path d="M140 190 q20 12 40 0"/>
+        </g>
+        <path d="M60 380 q0-88 100-88 q100 0 100 88" fill="none" stroke="#E7D3A1" stroke-opacity=".35" stroke-width="1.3"/>
+        <text x="160" y="352" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="46" font-style="italic" fill="#E7D3A1" fill-opacity=".16">HV</text>
+      </svg>
+      <figcaption>
+        <b>Dra. Helena Vasconcelos</b>
+        <small>CRO-BA 0000 · Especialista em Dentística</small>
+      </figcaption>
+    </figure>
+    <div class="about-body rv" data-d="1">
+      <p class="eyebrow">A dentista responsável</p>
+      <h2>Precisão de <em>ourives</em>, olhar de retratista.</h2>
+      <p>Formada há doze anos e dedicada exclusivamente à estética desde 2016, a Dra. Helena conduz pessoalmente todas as etapas do seu tratamento: a análise facial, o desenho digital, a prova em resina e a instalação definitiva. Nada é delegado.</p>
+      <p>Seu método nasce de uma convicção simples — um sorriso bonito é aquele que ninguém percebe ter sido feito. Por isso trabalha com espessuras mínimas, cerâmicas estratificadas e um número reduzido de casos por semana, para que cada um receba o tempo que merece.</p>
+      <p>Especialização em Dentística Restauradora, formação em Reabilitação Estética Anterior e atualização anual em fotografia odontológica e planejamento digital.</p>
+      <p class="sign">“Devolver o sorriso é devolver o gesto.”</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SERVIÇOS -->
+<section id="servicos" aria-labelledby="h-serv">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Procedimentos</p>
+      <h2 id="h-serv">Cinco caminhos para o <em>mesmo</em> resultado: naturalidade.</h2>
+      <p>Cada plano é montado sob medida. A indicação vem depois da avaliação — nunca antes.</p>
+    </div>
+    <div class="cards">
+      <article class="card rv">
+        <span class="num">01</span>
+        <h3>Lentes de contato dental</h3>
+        <p>Lâminas ultrafinas de cerâmica, a partir de 0,3 mm, com desgaste mínimo ou nulo do dente. Corrigem forma, cor e pequenos desalinhamentos preservando sua estrutura original.</p>
+        <svg class="ico" width="42" height="42" viewBox="0 0 42 42" fill="none" stroke="currentColor" aria-hidden="true"><path d="M8 14q13-11 26 0v10q0 12-13 12T8 24z"/><path d="M13 16q8-6 16 0"/></svg>
+      </article>
+      <article class="card rv" data-d="1">
+        <span class="num">02</span>
+        <h3>Facetas em cerâmica</h3>
+        <p>Indicadas quando há mudanças mais amplas de forma, volume ou posição. Estratificadas por ceramista parceiro, com caracterização individual de translucidez e brilho.</p>
+        <svg class="ico" width="42" height="42" viewBox="0 0 42 42" fill="none" stroke="currentColor" aria-hidden="true"><rect x="9" y="9" width="24" height="24" transform="rotate(45 21 21)"/><path d="M21 9v24M9 21h24" stroke-opacity=".5"/></svg>
+      </article>
+      <article class="card rv" data-d="2">
+        <span class="num">03</span>
+        <h3>Clareamento a laser</h3>
+        <p>Sessão única de consultório com protocolo dessensibilizante, ganho médio de quatro a seis tons. Acompanha moldeiras personalizadas para manutenção domiciliar.</p>
+        <svg class="ico" width="42" height="42" viewBox="0 0 42 42" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="21" cy="21" r="8"/><path d="M21 4v6M21 32v6M4 21h6M32 21h6M9 9l4 4M29 29l4 4M33 9l-4 4M13 29l-4 4"/></svg>
+      </article>
+      <article class="card rv">
+        <span class="num">04</span>
+        <h3>Harmonização do sorriso</h3>
+        <p>Ajuste do contorno gengival, proporção entre dentes e enquadramento labial. É o que faz o sorriso “encaixar” no rosto — muitas vezes o passo que faltava.</p>
+        <svg class="ico" width="42" height="42" viewBox="0 0 42 42" fill="none" stroke="currentColor" aria-hidden="true"><path d="M6 21q15-14 30 0"/><path d="M6 21q15 14 30 0"/><circle cx="21" cy="21" r="3.5"/></svg>
+      </article>
+      <article class="card rv" data-d="1">
+        <span class="num">05</span>
+        <h3>Planejamento digital do sorriso</h3>
+        <p>Fotografia profissional, escaneamento intraoral e simulação em software. Você aprova o resultado na tela e experimenta em boca, em resina, antes de qualquer procedimento definitivo.</p>
+        <svg class="ico" width="42" height="42" viewBox="0 0 42 42" fill="none" stroke="currentColor" aria-hidden="true"><rect x="5" y="8" width="32" height="22" rx="2"/><path d="M16 34h10M21 30v4M12 19q9-8 18 0"/></svg>
+      </article>
+      <article class="card rv" data-d="2" style="display:grid;align-content:center">
+        <h3 style="font-style:italic;color:var(--champagne)">Não sabe por onde começar?</h3>
+        <p>A avaliação inicial dura 60 minutos e termina com um plano escrito, com etapas, prazos e valores. Sem compromisso de fechar no mesmo dia.</p>
+        <p style="margin-top:22px"><a class="btn ghost" href="#agendar"><span>Marcar avaliação</span></a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- COMPARADOR -->
+<section id="resultados" aria-labelledby="h-res">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Antes e depois</p>
+      <h2 id="h-res">Arraste e veja a <em>diferença</em> de um milímetro.</h2>
+      <p>Ilustração de um caso típico de lentes de contato dental com harmonização gengival. Representação estilizada, sem uso de imagens de pacientes.</p>
+    </div>
+    <div class="compare-shell rv" data-d="1">
+      <div class="compare" id="compare" style="--pos:50%">
+        <div class="layer" aria-hidden="true">
+          <svg viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+            <defs><linearGradient id="bgB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22201c"/><stop offset="1" stop-color="#131211"/></linearGradient></defs>
+            <rect width="800" height="550" fill="url(#bgB)"/>
+            <path d="M150 300 Q400 130 650 300 Q400 470 150 300Z" fill="#0b0a09"/>
+            <g fill="#cfc2a4">
+              <path d="M368 236h64v96q0 14-32 14t-32-14z" fill="#c9bb9b"/>
+              <path d="M300 244h60v88q0 13-30 13t-30-13z" fill="#c2b494"/>
+              <path d="M440 244h60v88q0 13-30 13t-30-13z" fill="#c2b494"/>
+              <path d="M248 254h46v74q0 11-23 11t-23-11z" fill="#b9ab8c"/>
+              <path d="M506 254h46v74q0 11-23 11t-23-11z" fill="#b9ab8c"/>
+              <path d="M208 266h36v58q0 9-18 9t-18-9z" fill="#ada086"/>
+              <path d="M556 266h36v58q0 9-18 9t-18-9z" fill="#ada086"/>
+            </g>
+            <g stroke="#0b0a09" stroke-width="4" fill="none" opacity=".8">
+              <path d="M366 238v104M434 238v104M298 246v98M502 246v98"/>
+            </g>
+            <path d="M150 300 Q400 130 650 300" fill="none" stroke="#5a4b3c" stroke-width="16" opacity=".55"/>
+            <path d="M150 300 Q400 470 650 300" fill="none" stroke="#3a2f26" stroke-width="14" opacity=".6"/>
+          </svg>
+        </div>
+        <div class="layer after" aria-hidden="true">
+          <svg viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+            <defs>
+              <linearGradient id="bgA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2620"/><stop offset="1" stop-color="#161412"/></linearGradient>
+              <linearGradient id="enamel" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/><stop offset=".68" stop-color="#f6f2ea"/><stop offset="1" stop-color="#e5ddcd"/>
+              </linearGradient>
+            </defs>
+            <rect width="800" height="550" fill="url(#bgA)"/>
+            <path d="M150 300 Q400 128 650 300 Q400 472 150 300Z" fill="#080706"/>
+            <g fill="url(#enamel)">
+              <rect x="366" y="232" width="68" height="106" rx="15"/>
+              <rect x="298" y="238" width="62" height="96" rx="14"/>
+              <rect x="440" y="238" width="62" height="96" rx="14"/>
+              <rect x="246" y="248" width="48" height="80" rx="13"/>
+              <rect x="506" y="248" width="48" height="80" rx="13"/>
+              <rect x="206" y="260" width="38" height="64" rx="12" opacity=".92"/>
+              <rect x="556" y="260" width="38" height="64" rx="12" opacity=".92"/>
+            </g>
+            <g fill="#ffffff" opacity=".55">
+              <rect x="380" y="246" width="12" height="52" rx="6"/>
+              <rect x="312" y="250" width="10" height="44" rx="5"/>
+              <rect x="454" y="250" width="10" height="44" rx="5"/>
+            </g>
+            <path d="M150 300 Q400 128 650 300" fill="none" stroke="#7d5f56" stroke-width="12" opacity=".5"/>
+            <path d="M150 300 Q400 472 650 300" fill="none" stroke="#4a3830" stroke-width="12" opacity=".55"/>
+            <circle cx="640" cy="176" r="70" fill="#E7D3A1" opacity=".07"/>
+          </svg>
+        </div>
+        <span class="tag l">Depois</span>
+        <span class="tag r">Antes</span>
+        <span class="handle" aria-hidden="true"></span>
+        <input type="range" id="slider" min="0" max="100" value="50" step="1"
+               aria-label="Controlar a comparação entre antes e depois do tratamento">
+      </div>
+      <p class="compare-note">Arraste o controle · use as setas do teclado</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais" aria-labelledby="h-dif">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Por que aqui</p>
+      <h2 id="h-dif">O que nos torna um <em>atelier</em>, e não uma clínica.</h2>
+    </div>
+    <div class="diffs">
+      <div class="diff rv"><p class="k">Agenda <em>curta</em>, por escolha</p><p>Atendemos até seis pacientes por dia. Sem sala de espera cheia, sem tratamento em série, sem pressa entre uma etapa e outra.</p></div>
+      <div class="diff rv"><p class="k">Você <em>vê</em> antes de decidir</p><p>Simulação digital e prova física em resina. Nenhum dente é preparado antes de você aprovar o desenho final, na sua boca e no espelho.</p></div>
+      <div class="diff rv"><p class="k">Ceramista <em>presente</em></p><p>Nosso técnico acompanha a prova de cor pessoalmente no consultório. É por isso que a cerâmica conversa com o seu esmalte natural.</p></div>
+      <div class="diff rv"><p class="k">Preservação em <em>primeiro</em> lugar</p><p>Priorizamos sempre a opção de menor desgaste possível. Quando o caso não pede lente, dizemos isso com clareza.</p></div>
+      <div class="diff rv"><p class="k">Acompanhamento por <em>dois</em> anos</p><p>Revisões semestrais, polimento profissional e ajustes finos incluídos no plano, sem custo adicional.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" aria-labelledby="h-dep">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">Depoimentos</p>
+      <h2 id="h-dep">Quem já <em>sorriu</em> por aqui.</h2>
+    </div>
+    <div class="quotes">
+      <figure class="quote rv">
+        <span class="mark" aria-hidden="true">“</span>
+        <blockquote>Passei anos escondendo os dentes nas fotos. O que mais me surpreendeu foi ninguém perceber que eu fiz algo — só diziam que eu estava diferente, bem.</blockquote>
+        <figcaption class="who">
+          <span class="avatar" aria-hidden="true">MC</span>
+          <span><b>Marina Coutinho</b><small>Arquiteta · Salvador</small></span>
+        </figcaption>
+      </figure>
+      <figure class="quote rv" data-d="1">
+        <span class="mark" aria-hidden="true">“</span>
+        <blockquote>A prova em resina mudou tudo pra mim. Cheguei em casa, olhei no espelho por dois dias e voltei pedindo só um ajuste. A Dra. Helena refez sem pestanejar.</blockquote>
+        <figcaption class="who">
+          <span class="avatar" aria-hidden="true">RA</span>
+          <span><b>Rodrigo Almeida</b><small>Advogado · Feira de Santana</small></span>
+        </figcaption>
+      </figure>
+      <figure class="quote rv" data-d="2">
+        <span class="mark" aria-hidden="true">“</span>
+        <blockquote>Fui com a certeza de que precisava de dez lentes. Saí com um clareamento e dois ajustes de contorno. Custou um terço e ficou exatamente como eu queria.</blockquote>
+        <figcaption class="who">
+          <span class="avatar" aria-hidden="true">JB</span>
+          <span><b>Juliana Barreto</b><small>Médica · Feira de Santana</small></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- INFORMAÇÕES PRÁTICAS -->
+<section id="visita" aria-labelledby="h-vis">
+  <div class="wrap info">
+    <div class="rv">
+      <p class="eyebrow">Informações práticas</p>
+      <h2 id="h-vis" style="font-size:clamp(2.2rem,6.5vw,3.5rem);margin:16px 0 30px">Onde nos <em>encontrar</em>.</h2>
+      <dl>
+        <div><dt>Endereço</dt><dd>Rua das Acácias, 218 — sala 1104<br><span>Edifício Vitrine Corporate · Ponto Central<br>Feira de Santana — BA · CEP 44000-000</span></dd></div>
+        <div><dt>Horários</dt><dd>Segunda a quinta · 09h às 19h<br>Sexta · 09h às 15h<br><span>Sábado somente para retornos agendados</span></dd></div>
+        <div><dt>Atendimento</dt><dd>Exclusivamente particular, sob agendamento.<br><span>Não trabalhamos com convênios. Parcelamento em até 12x e reembolso mediante nota fiscal, quando seu plano permitir.</span></dd></div>
+        <div><dt>Contato</dt><dd><a href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Atelier%20do%20Sorriso." target="_blank" rel="noopener">WhatsApp (75) 99999-9999</a><br><span>contato@atelierdosorriso.com.br</span></dd></div>
+      </dl>
+    </div>
+    <div class="mapart rv" data-d="1" aria-hidden="true">
+      <svg viewBox="0 0 480 400" width="100%">
+        <rect width="480" height="400" fill="#141210"/>
+        <g stroke="#E7D3A1" stroke-opacity=".14">
+          <path d="M0 90h480M0 200h480M0 300h480M90 0v400M210 0v400M340 0v400"/>
+        </g>
+        <path d="M0 200h480" stroke="#E7D3A1" stroke-opacity=".3" stroke-width="2"/>
+        <path d="M210 0v400" stroke="#E7D3A1" stroke-opacity=".22" stroke-width="2"/>
+        <g fill="#E7D3A1" fill-opacity=".06">
+          <rect x="20" y="110" width="55" height="75"/><rect x="106" y="215" width="88" height="70"/>
+          <rect x="230" y="105" width="94" height="82"/><rect x="360" y="215" width="100" height="72"/>
+        </g>
+        <g transform="translate(210 200)">
+          <circle r="30" fill="none" stroke="#E7D3A1" stroke-opacity=".35"/>
+          <circle r="46" fill="none" stroke="#E7D3A1" stroke-opacity=".16"/>
+          <path d="M0 -16a12 12 0 0 1 12 12c0 9-12 22-12 22S-12 5-12 -4a12 12 0 0 1 12-12z" fill="#E7D3A1"/>
+        </g>
+        <text x="240" y="356" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" letter-spacing="4" fill="#E7D3A1" fill-opacity=".65">PONTO CENTRAL · FEIRA DE SANTANA</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CTA FINAL -->
+<section id="agendar" class="finale" aria-labelledby="h-cta">
+  <div class="wrap rv">
+    <p class="eyebrow">Próximo passo</p>
+    <h2 id="h-cta">Sua avaliação começa<br>com uma <em>conversa</em>.</h2>
+    <p>Sessenta minutos, análise facial completa, fotografias e um plano escrito na sua mão ao final. As vagas do mês costumam fechar nas duas primeiras semanas — escreva agora e reserve a sua.</p>
+    <a class="btn" href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Atelier%20do%20Sorriso." target="_blank" rel="noopener"><span>Falar no WhatsApp</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p><span class="brand" style="font-size:1.2rem">Atelier <span>do Sorriso</span></span></p>
+    <p>Dra. Helena Vasconcelos · CRO-BA 0000 · Responsável técnica<br>Rua das Acácias, 218 — sala 1104 · Feira de Santana/BA</p>
+    <p>Modelo demonstrativo — Desenvolvido por Ray — <a href="mailto:raimundojmdsn@gmail.com">raimundojmdsn@gmail.com</a></p>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Atelier%20do%20Sorriso."
+   target="_blank" rel="noopener" aria-label="Falar com o Atelier do Sorriso pelo WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.36-.51.04-1.16.06-1.87-.12-.43-.11-.98-.32-1.7-.62-2.98-1.29-4.93-4.29-5.08-4.49-.15-.2-1.22-1.62-1.22-3.09s.77-2.2 1.04-2.5c.27-.3.59-.37.79-.37.2 0 .39 0 .57.01.18.01.42-.07.66.5.25.6.84 2.07.91 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.44.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.39-.25.66-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.71-.18 1.4Z"/>
+  </svg>
+</a>
+
+<script>
+(function(){
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobilemenu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+  });
+  menu.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') { menu.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  });
+
+  var nav = document.querySelector('header.nav');
+  var onScroll = function(){ nav.classList.toggle('solid', window.scrollY > 40); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // comparador antes/depois
+  var cmp = document.getElementById('compare');
+  var slider = document.getElementById('slider');
+  slider.addEventListener('input', function(){ cmp.style.setProperty('--pos', slider.value + '%'); });
+
+  // reveal on scroll
+  var items = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  items.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

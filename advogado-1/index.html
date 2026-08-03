@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Almeida &amp; Rocha Advocacia — Direito Civil, Trabalhista e de Família</title>
+<meta name="description" content="Almeida &amp; Rocha Advocacia. Atuação em direito civil, trabalhista, família e sucessões, contratos e consultivo empresarial em Feira de Santana — BA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4EFE4;
+  --paper-2:#EDE5D6;
+  --ink:#20241F;
+  --ink-soft:#4A5147;
+  --green:#1B3A2A;
+  --green-2:#12281D;
+  --brass:#A8813C;
+  --brass-lt:#C9A467;
+  --rule:rgba(27,58,42,.22);
+  --serif:"Libre Caslon Text", Georgia, serif;
+  --sans:"Alegreya Sans", "Segoe UI", sans-serif;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:18px;line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(168,129,60,.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(27,58,42,.07), transparent 60%);
+}
+h1,h2,h3,h4,blockquote,.rom{font-family:var(--serif);font-weight:400}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:1}
+.eyebrow{
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--brass);font-weight:700;margin:0 0 18px;display:flex;align-items:center;gap:12px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+section{padding:78px 0;position:relative}
+.rule{height:1px;background:var(--rule);border:0;margin:0}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(244,239,228,.90);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);transition:box-shadow .3s, background .3s;
+}
+.nav.scrolled{box-shadow:0 6px 26px rgba(27,58,42,.12)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:38px;height:38px;flex:none}
+.brand-txt{display:flex;flex-direction:column;line-height:1.05}
+.brand-txt b{font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--green);letter-spacing:.01em}
+.brand-txt span{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);font-weight:700}
+.menu{display:flex;align-items:center;gap:26px;list-style:none;margin:0;padding:0}
+.menu a{
+  text-decoration:none;font-size:.83rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--green);font-weight:500;padding:6px 0;position:relative;
+}
+.menu a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--brass);
+  transition:right .32s cubic-bezier(.22,.7,.3,1);
+}
+.menu a:hover::after,.menu a:focus-visible::after{right:0}
+.nav-cta{
+  display:inline-block;text-decoration:none;background:var(--green);color:var(--paper);
+  padding:11px 20px;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  border:1px solid var(--green);transition:background .25s,color .25s;
+}
+.nav-cta:hover{background:transparent;color:var(--green)}
+.burger{
+  display:none;background:none;border:1px solid var(--rule);width:44px;height:44px;
+  align-items:center;justify-content:center;cursor:pointer;color:var(--green);
+}
+.burger span{display:block;width:20px;height:1.5px;background:currentColor;position:relative;transition:transform .3s,background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:1.5px;background:currentColor;transition:transform .3s,top .3s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.nav.open .burger span{background:transparent}
+.nav.open .burger span::before{top:0;transform:rotate(45deg)}
+.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+
+/* ---------- hero ---------- */
+.hero{padding:150px 0 80px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:52px;align-items:center}
+.hero h1{
+  font-size:clamp(2.5rem,6.4vw,4.6rem);line-height:1.03;margin:0 0 26px;color:var(--green);
+  letter-spacing:-.015em;
+}
+.hero h1 em{font-style:italic;color:var(--brass)}
+.hero p.lede{
+  font-size:1.16rem;max-width:52ch;color:var(--ink-soft);margin:0 0 34px;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:0 34px;margin:0 0 34px;padding:18px 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+}
+.hero-meta span{padding:4px 0}
+.btn{
+  display:inline-block;text-decoration:none;padding:16px 32px;font-family:var(--sans);
+  font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  border:1px solid var(--green);transition:background .28s,color .28s,transform .28s;
+}
+.btn-solid{background:var(--green);color:var(--paper)}
+.btn-solid:hover{background:var(--green-2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--green);margin-left:14px}
+.btn-ghost:hover{background:var(--green);color:var(--paper)}
+.crest{width:100%;max-width:300px;margin-left:auto;display:block}
+
+/* ---------- sobre / colunar ---------- */
+.cols{column-count:2;column-gap:44px;column-rule:1px solid var(--rule)}
+.cols p{margin:0 0 1.15em;text-align:justify;hyphens:auto}
+.cols p:first-of-type::first-letter{
+  font-family:var(--serif);float:left;font-size:4.6rem;line-height:.82;
+  padding:6px 12px 0 0;color:var(--green);font-weight:700;
+}
+.sec-head{display:grid;grid-template-columns:1fr 1.6fr;gap:44px;align-items:end;margin-bottom:44px}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:0;color:var(--green)}
+.sec-head p{margin:0;color:var(--ink-soft);font-size:1.02rem}
+
+/* ---------- áreas ---------- */
+.areas{background:var(--green);color:var(--paper-2)}
+.areas .eyebrow{color:var(--brass-lt)}
+.areas .eyebrow::after{background:rgba(244,239,228,.25)}
+.areas h2{color:var(--paper)}
+.areas .sec-head p{color:rgba(244,239,228,.72)}
+.area-list{list-style:none;margin:0;padding:0;border-top:1px solid rgba(244,239,228,.2)}
+.area{
+  display:grid;grid-template-columns:110px 1fr 1.25fr;gap:26px;align-items:baseline;
+  padding:30px 0;border-bottom:1px solid rgba(244,239,228,.2);transition:padding-left .35s,background .35s;
+}
+.area:hover{padding-left:14px;background:rgba(244,239,228,.045)}
+.area .rom{font-size:1.5rem;color:var(--brass-lt);letter-spacing:.08em}
+.area h3{font-size:1.5rem;margin:0;color:var(--paper)}
+.area p{margin:0;color:rgba(244,239,228,.74);font-size:.98rem}
+
+/* ---------- equipe ---------- */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.member{border-top:2px solid var(--green);padding-top:26px}
+.avatar{width:96px;height:96px;margin-bottom:22px}
+.member h3{font-size:1.32rem;margin:0 0 4px;color:var(--green)}
+.member .role{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);font-weight:700;margin:0 0 14px}
+.member p{margin:0 0 14px;font-size:.96rem;color:var(--ink-soft)}
+.oab{font-family:var(--serif);font-size:.9rem;color:var(--green);border-top:1px solid var(--rule);padding-top:12px;display:block}
+
+/* ---------- citação ---------- */
+.quote{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);text-align:center}
+.quote blockquote{
+  margin:0 auto;max-width:20ch;font-size:clamp(2rem,5.4vw,3.5rem);line-height:1.16;
+  color:var(--green);font-style:italic;position:relative;
+}
+.quote blockquote::before{
+  content:"“";position:absolute;top:-.35em;left:-.35em;font-size:2.4em;color:var(--brass);opacity:.28;line-height:1;
+}
+.quote cite{
+  display:block;margin-top:30px;font-style:normal;font-family:var(--sans);
+  font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);font-weight:700;
+}
+
+/* ---------- prático ---------- */
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule)}
+.info div{padding:34px 30px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule)}
+.info div:last-child{border-right:0}
+.info h3{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);margin:0 0 14px;font-family:var(--sans);font-weight:700}
+.info p{margin:0;font-size:1.02rem;color:var(--ink-soft)}
+.info a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--brass)}
+
+/* ---------- CTA final ---------- */
+.final{background:var(--green);color:var(--paper);text-align:center}
+.final h2{font-size:clamp(2rem,4.6vw,3.2rem);margin:0 0 20px;color:var(--paper);line-height:1.12}
+.final p{max-width:56ch;margin:0 auto 34px;color:rgba(244,239,228,.76)}
+.final .btn{border-color:var(--brass-lt);background:var(--brass);color:#17170F}
+.final .btn:hover{background:var(--brass-lt)}
+
+/* ---------- footer ---------- */
+footer{padding:46px 0;font-size:.86rem;color:var(--ink-soft)}
+.foot-in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+.foot-in p{margin:0}
+.foot-oab{font-family:var(--serif);color:var(--green)}
+
+/* ---------- whatsapp ---------- */
+.wa{
+  position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;
+  background:var(--green);color:var(--paper);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 26px rgba(27,58,42,.35);transition:transform .25s,background .25s;
+}
+.wa:hover{transform:translateY(-3px) scale(1.05);background:var(--green-2)}
+.wa svg{width:29px;height:29px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,.7,.3,1),transform .8s cubic-bezier(.22,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:38px}
+  .crest{margin:0 auto;max-width:210px}
+  .cols{column-count:1}
+  .sec-head{grid-template-columns:1fr;gap:16px;align-items:start}
+  .area{grid-template-columns:64px 1fr;row-gap:8px}
+  .area p{grid-column:2}
+  .team{grid-template-columns:1fr;gap:44px}
+  .info{grid-template-columns:1fr}
+  .info div{border-right:0}
+  .menu{
+    position:fixed;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--paper);border-bottom:1px solid var(--rule);padding:8px 22px 22px;
+    transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
+  }
+  .nav.open .menu{opacity:1;transform:none;pointer-events:auto}
+  .menu li{border-bottom:1px solid var(--rule)}
+  .menu a{display:block;padding:16px 0;font-size:.9rem}
+  .nav-cta{display:none}
+  .burger{display:flex}
+  section{padding:60px 0}
+  .hero{padding:120px 0 60px}
+  .btn-ghost{margin-left:0;margin-top:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a class="brand" href="#topo" aria-label="Almeida e Rocha Advocacia — início">
+      <svg viewBox="0 0 64 64" role="img" aria-label="Monograma A e R">
+        <path d="M32 2 L60 12 v26c0 14-12 21-28 24C16 59 4 52 4 38V12Z" fill="none" stroke="#1B3A2A" stroke-width="2.6"/>
+        <path d="M32 7.5 L55 15.7v22c0 11.5-10 17.6-23 20.3C19 55.3 9 49.2 9 37.7v-22Z" fill="none" stroke="#A8813C" stroke-width="1.2"/>
+        <text x="32" y="40" text-anchor="middle" font-family="Libre Caslon Text, Georgia, serif" font-size="21" fill="#1B3A2A">A</text>
+        <text x="32" y="40" text-anchor="middle" font-family="Libre Caslon Text, Georgia, serif" font-size="21" fill="#A8813C" opacity=".9" dx="11">R</text>
+        <text x="32" y="40" text-anchor="middle" font-family="Libre Caslon Text, Georgia, serif" font-size="14" fill="#A8813C" dx="-1" dy="-1">&amp;</text>
+      </svg>
+      <span class="brand-txt"><b>Almeida &amp; Rocha</b><span>Advocacia</span></span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <ul class="menu" id="menu">
+        <li><a href="#sobre">O Escritório</a></li>
+        <li><a href="#areas">Áreas</a></li>
+        <li><a href="#equipe">Equipe</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="#agendar">Agendar consulta</a>
+    <button class="burger" id="burger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="menu"><span></span></button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow rv">Feira de Santana — Bahia · desde 1998</p>
+      <h1 class="rv">Advocacia de<br>tradição, feita<br><em>com rigor.</em></h1>
+      <p class="lede rv">Almeida &amp; Rocha reúne advogados dedicados ao acompanhamento próximo de cada causa, em direito civil, trabalhista, de família e sucessões, contratual e consultivo empresarial.</p>
+      <div class="hero-meta rv">
+        <span>Atendimento por agendamento</span>
+        <span>Sociedade inscrita na OAB/BA</span>
+      </div>
+      <p class="rv">
+        <a class="btn btn-solid" href="#agendar">Agendar consulta</a>
+        <a class="btn btn-ghost" href="#areas">Áreas de atuação</a>
+      </p>
+    </div>
+    <div class="rv">
+      <svg class="crest" viewBox="0 0 220 260" role="img" aria-label="Brasão do escritório Almeida &amp; Rocha">
+        <path d="M110 6 L212 42v112c0 56-46 82-102 100C54 236 8 210 8 154V42Z" fill="none" stroke="#1B3A2A" stroke-width="2.4"/>
+        <path d="M110 20 L198 51v103c0 48-40 71-88 87-48-16-88-39-88-87V51Z" fill="none" stroke="#A8813C" stroke-width="1"/>
+        <line x1="110" y1="70" x2="110" y2="176" stroke="#1B3A2A" stroke-width="2"/>
+        <line x1="56" y1="92" x2="164" y2="92" stroke="#1B3A2A" stroke-width="2"/>
+        <circle cx="110" cy="64" r="7" fill="none" stroke="#A8813C" stroke-width="2"/>
+        <path d="M56 92 L38 128h36Z" fill="none" stroke="#1B3A2A" stroke-width="1.6"/>
+        <path d="M164 92 L146 128h36Z" fill="none" stroke="#1B3A2A" stroke-width="1.6"/>
+        <line x1="86" y1="176" x2="134" y2="176" stroke="#1B3A2A" stroke-width="2"/>
+        <text x="110" y="216" text-anchor="middle" font-family="Libre Caslon Text, Georgia, serif" font-size="26" fill="#1B3A2A">A &amp; R</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">O escritório</p>
+        <h2 class="rv">Vinte e sete anos<br>de exercício contínuo</h2>
+      </div>
+      <p class="rv">Um escritório de porte médio que escolheu crescer devagar, mantendo o número de causas compatível com a atenção que cada uma exige.</p>
+    </div>
+    <div class="cols rv">
+      <p>Fundado em 1998 por Helena Almeida e Rui Rocha, o escritório nasceu de uma convicção simples: o cliente precisa entender o próprio processo. Desde então, a banca organiza sua rotina em torno da explicação clara — o que está em discussão, quais caminhos existem e quais são os prazos previstos em lei.</p>
+      <p>A atuação se divide entre o contencioso judicial e o trabalho consultivo. No contencioso, acompanhamos demandas cíveis, trabalhistas e de família nas comarcas do interior baiano e nos tribunais superiores, sempre com advogado responsável nominalmente designado. No consultivo, elaboramos e revisamos contratos, prestamos pareceres e assessoramos empresas em suas rotinas societárias e de pessoal.</p>
+      <p>Trabalhamos com registro integral de andamentos e reuniões periódicas de acompanhamento. Cada cliente recebe, ao início da relação, um esclarecimento por escrito sobre a natureza da demanda, as etapas processuais previstas e os riscos envolvidos — inclusive a possibilidade de resultado desfavorável, que nenhum advogado pode afastar.</p>
+      <p>A sede fica no centro de Feira de Santana, em imóvel próprio, com salas reservadas para atendimento. Também realizamos reuniões por videoconferência, mediante agendamento prévio.</p>
+    </div>
+  </div>
+</section>
+
+<section class="areas" id="areas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">Áreas de atuação</p>
+        <h2 class="rv">Cinco frentes<br>de trabalho</h2>
+      </div>
+      <p class="rv">A relação de áreas abaixo tem finalidade meramente informativa, nos termos do Código de Ética e Disciplina da OAB.</p>
+    </div>
+    <ul class="area-list">
+      <li class="area rv"><span class="rom">I</span><h3>Direito Civil</h3><p>Responsabilidade civil, obrigações, direito das coisas, usucapião, locações, cobranças e ações indenizatórias.</p></li>
+      <li class="area rv"><span class="rom">II</span><h3>Direito Trabalhista</h3><p>Reclamações trabalhistas, verbas rescisórias, reconhecimento de vínculo, adicionais e acompanhamento de acordos, na representação de empregados e de empregadores.</p></li>
+      <li class="area rv"><span class="rom">III</span><h3>Família e Sucessões</h3><p>Divórcio, guarda e convivência, alimentos, união estável, inventário judicial e extrajudicial, testamento e planejamento sucessório.</p></li>
+      <li class="area rv"><span class="rom">IV</span><h3>Contratos</h3><p>Elaboração, revisão e negociação de instrumentos contratuais, distratos, garantias e resolução de controvérsias contratuais.</p></li>
+      <li class="area rv"><span class="rom">V</span><h3>Consultivo Empresarial</h3><p>Constituição e alteração societária, pareceres jurídicos, adequação de rotinas internas e acompanhamento preventivo de passivos.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="equipe">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">Equipe</p>
+        <h2 class="rv">Quem responde<br>pelas causas</h2>
+      </div>
+      <p class="rv">Todo processo é conduzido por advogado nominalmente responsável, com apoio da equipe de apoio processual do escritório.</p>
+    </div>
+    <div class="team">
+      <article class="member rv">
+        <svg class="avatar" viewBox="0 0 96 96" role="img" aria-label="Retrato estilizado de Helena Almeida">
+          <circle cx="48" cy="48" r="46" fill="#1B3A2A"/>
+          <circle cx="48" cy="48" r="41" fill="none" stroke="#A8813C" stroke-width="1"/>
+          <text x="48" y="59" text-anchor="middle" font-family="Libre Caslon Text, Georgia, serif" font-size="30" fill="#F4EFE4">HA</text>
+        </svg>
+        <h3>Helena Almeida</h3>
+        <p class="role">Sócia fundadora · Cível e Sucessões</p>
+        <p>Graduada em Direito pela Universidade Estadual de Feira de Santana, com especialização em Direito Civil. Atua há mais de duas décadas em inventários, planejamento sucessório e responsabilidade civil.</p>
+        <span class="oab">OAB/BA 00.000</span>
+      </article>
+      <article class="member rv">
+        <svg class="avatar" viewBox="0 0 96 96" role="img" aria-label="Retrato estilizado de Rui Rocha">
+          <circle cx="48" cy="48" r="46" fill="#1B3A2A"/>
+          <circle cx="48" cy="48" r="41" fill="none" stroke="#A8813C" stroke-width="1"/>
+          <text x="48" y="59" text-anchor="middle" font-family="Libre Caslon Text, Georgia, serif" font-size="30" fill="#F4EFE4">RR</text>
+        </svg>
+        <h3>Rui Rocha</h3>
+        <p class="role">Sócio fundador · Trabalhista</p>
+        <p>Especialista em Direito e Processo do Trabalho. Responsável pelo contencioso trabalhista do escritório e pela orientação preventiva a empresas em rotinas de admissão e desligamento.</p>
+        <span class="oab">OAB/BA 00.001</span>
+      </article>
+      <article class="member rv">
+        <svg class="avatar" viewBox="0 0 96 96" role="img" aria-label="Retrato estilizado de Beatriz Nogueira">
+          <circle cx="48" cy="48" r="46" fill="#1B3A2A"/>
+          <circle cx="48" cy="48" r="41" fill="none" stroke="#A8813C" stroke-width="1"/>
+          <text x="48" y="59" text-anchor="middle" font-family="Libre Caslon Text, Georgia, serif" font-size="30" fill="#F4EFE4">BN</text>
+        </svg>
+        <h3>Beatriz Nogueira</h3>
+        <p class="role">Advogada associada · Família</p>
+        <p>Mestra em Direito de Família e formação complementar em mediação de conflitos. Conduz demandas de divórcio, guarda e alimentos, com preferência pela solução consensual quando possível.</p>
+        <span class="oab">OAB/BA 00.002</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="wrap">
+    <blockquote class="rv">A justiça tarda, mas o zelo não pode tardar.</blockquote>
+    <cite class="rv">Máxima adotada pela banca desde a fundação</cite>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">Informações práticas</p>
+        <h2 class="rv">Onde e quando<br>nos encontrar</h2>
+      </div>
+      <p class="rv">O atendimento é feito exclusivamente mediante agendamento prévio, presencial ou por videoconferência.</p>
+    </div>
+    <div class="info rv">
+      <div>
+        <h3>Endereço</h3>
+        <p>Rua Barão do Rio Branco, 480 — sala 302<br>Centro, Feira de Santana — BA<br>CEP 44002-000</p>
+      </div>
+      <div>
+        <h3>Horários</h3>
+        <p>Segunda a sexta, das 8h30 às 12h<br>e das 14h às 18h.<br>Sábados apenas por agendamento.</p>
+      </div>
+      <div>
+        <h3>Contato</h3>
+        <p><a href="tel:+5575999999999">(75) 99999-9999</a><br><a href="mailto:contato@almeidaerocha.adv.br">contato@almeidaerocha.adv.br</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="agendar">
+  <div class="wrap">
+    <p class="eyebrow rv" style="justify-content:center">Consulta</p>
+    <h2 class="rv">Apresente seu caso<br>a um advogado</h2>
+    <p class="rv">A primeira consulta serve para compreender os fatos, verificar a documentação disponível e esclarecer quais caminhos jurídicos existem. Nenhum resultado é prometido: informamos apenas as possibilidades previstas em lei e os riscos de cada via.</p>
+    <p class="rv"><a class="btn" href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20o%20escrit%C3%B3rio%20Almeida%20%26%20Rocha%20Advocacia." target="_blank" rel="noopener">Agendar pelo WhatsApp</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <p class="foot-oab">Almeida &amp; Rocha Sociedade de Advogados — OAB/BA 0.000</p>
+    <p>Modelo demonstrativo — Desenvolvido por Ray — raimundojmdsn@gmail.com</p>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20o%20escrit%C3%B3rio%20Almeida%20%26%20Rocha%20Advocacia." target="_blank" rel="noopener" aria-label="Falar com o escritório pelo WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.9.5 3.7 1.44 5.3L2 22l4.98-1.6a9.8 9.8 0 0 0 5.06 1.4h.01c5.43 0 9.84-4.4 9.84-9.84C21.89 6.4 17.47 2 12.04 2Zm0 17.96h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.1 1 1.03-3.02-.2-.31a8.1 8.1 0 0 1-1.25-4.33c0-4.52 3.68-8.2 8.2-8.2 2.2 0 4.26.86 5.8 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.2 8.2Zm4.5-6.14c-.25-.13-1.46-.72-1.68-.8-.23-.08-.39-.12-.55.13-.16.24-.64.8-.78.96-.15.16-.29.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.55-1.34-.76-1.83-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.85.83-.85 2.03s.87 2.35 1 2.51c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
+</a>
+
+<script>
+(function(){
+  var nav = document.getElementById('nav') || document.querySelector('.nav');
+  var burger = document.getElementById('burger');
+
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+  });
+
+  document.querySelectorAll('#menu a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+  }, {passive:true});
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.rv');
+  if (reduced || !('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  // ponytail: stagger via inline delay, sem lib de animação
+  var io = new IntersectionObserver(function(entries){
+    var i = 0;
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      e.target.style.transitionDelay = (i++ * 90) + 'ms';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  items.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

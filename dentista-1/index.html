@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OdontoVita — Clínica Odontológica em Feira de Santana | Agende sua avaliação</title>
+<meta name="description" content="Clínica odontológica OdontoVita: clínica geral, limpeza, clareamento, ortodontia, implantes e odontopediatria. Equipe completa, preços claros e convênios. Agende pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#0EA5E9; --azul-esc:#0369A1; --menta:#9EE7D8; --menta-esc:#3FBFA6;
+  --tinta:#0B1B26; --tinta-mid:#3C5563; --linha:#E3EAEF; --branco:#fff; --nevoa:#F5F9FB;
+  --disp:'Outfit',sans-serif; --corpo:'Karla',sans-serif;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--branco);color:var(--tinta);font-family:var(--corpo);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.disp{font-family:var(--disp);font-weight:600;line-height:1.05;letter-spacing:-.02em;margin:0}
+p{margin:0}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--azul);outline-offset:3px;border-radius:4px}
+
+/* grid geométrico de fundo */
+.grid-bg{position:relative}
+.grid-bg::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--linha) 1px,transparent 1px),linear-gradient(90deg,var(--linha) 1px,transparent 1px);
+  background-size:72px 72px;opacity:.55;
+  -webkit-mask-image:radial-gradient(120% 80% at 50% 0%,#000 30%,transparent 78%);
+          mask-image:radial-gradient(120% 80% at 50% 0%,#000 30%,transparent 78%)}
+
+/* nav */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--linha)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;font-size:1.22rem;letter-spacing:-.03em;text-decoration:none}
+.logo small{font-weight:300;color:var(--azul)}
+.nav-links{display:none}
+.nav-links a{text-decoration:none;font-size:.95rem;color:var(--tinta-mid);padding:6px 0;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--azul);transition:right .28s ease}
+.nav-links a:hover{color:var(--tinta)}
+.nav-links a:hover::after{right:0}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:600;font-size:1rem;text-decoration:none;
+  padding:14px 26px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,color .2s}
+.btn-p{background:var(--azul);color:#fff;box-shadow:0 8px 22px -10px rgba(14,165,233,.9)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(14,165,233,1)}
+.btn-g{border-color:var(--linha);color:var(--tinta);background:#fff}
+.btn-g:hover{border-color:var(--azul);color:var(--azul-esc)}
+.btn-sm{padding:10px 20px;font-size:.92rem}
+.burger{background:none;border:1px solid var(--linha);border-radius:12px;width:44px;height:44px;display:grid;place-items:center;cursor:pointer}
+.burger span{display:block;width:20px;height:2px;background:var(--tinta);position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--tinta);transition:.25s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.drawer{display:none;border-top:1px solid var(--linha);background:#fff;padding:12px 20px 22px}
+.drawer.open{display:block}
+.drawer a{display:block;text-decoration:none;font-family:var(--disp);font-size:1.15rem;padding:12px 0;border-bottom:1px solid var(--linha);color:var(--tinta)}
+.drawer .btn{margin-top:16px;width:100%;justify-content:center}
+
+/* hero */
+main{padding-top:68px}
+.hero{position:relative;padding:64px 0 40px;overflow:hidden}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--azul-esc);background:#EAF7FE;border:1px solid #CDEBFB;padding:7px 15px;border-radius:999px}
+.hero h1{font-size:clamp(2.6rem,10vw,5.6rem);font-weight:700;margin:22px 0 0}
+.hero h1 em{font-style:normal;font-weight:300;color:var(--azul)}
+.hero p.lead{font-size:1.12rem;color:var(--tinta-mid);max-width:52ch;margin-top:22px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px;background:var(--linha);border:1px solid var(--linha);border-radius:18px;overflow:hidden}
+.hero-facts div{background:#fff;padding:20px 16px}
+.hero-facts b{display:block;font-family:var(--disp);font-size:1.9rem;font-weight:700;letter-spacing:-.03em}
+.hero-facts span{font-size:.83rem;color:var(--tinta-mid);line-height:1.35;display:block}
+.hero-art{margin-top:44px}
+
+/* arco de sorriso divisor */
+.divisor{width:100%;height:60px;color:var(--menta);margin:0}
+.divisor svg{width:100%;height:100%}
+
+section{padding:82px 0;position:relative}
+.sec-alt{background:var(--nevoa);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--menta-esc);margin-bottom:14px}
+h2.tit{font-size:clamp(2rem,6.5vw,3.4rem);font-weight:600;max-width:16ch}
+h2.tit em{font-style:normal;color:var(--azul)}
+.sub{color:var(--tinta-mid);margin-top:18px;max-width:58ch}
+
+/* sobre */
+.sobre-grid{display:grid;gap:34px;margin-top:40px}
+.pilar{border-top:2px solid var(--tinta);padding-top:16px}
+.pilar h3{font-size:1.2rem;margin-bottom:8px}
+.pilar p{color:var(--tinta-mid);font-size:.98rem}
+
+/* servicos */
+.cards{display:grid;gap:16px;margin-top:44px}
+.card{background:#fff;border:1px solid var(--linha);border-radius:20px;padding:28px 24px 26px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-5px);border-color:#CDEBFB;box-shadow:0 22px 44px -28px rgba(11,27,38,.45)}
+.card .ico{width:52px;height:52px;border-radius:14px;background:#EAF7FE;display:grid;place-items:center;color:var(--azul-esc);margin-bottom:18px}
+.card h3{font-size:1.28rem;margin-bottom:8px}
+.card p{color:var(--tinta-mid);font-size:.97rem}
+
+/* planos */
+.planos{display:grid;gap:16px;margin-top:44px}
+.plano{background:#fff;border:1px solid var(--linha);border-radius:20px;padding:28px 24px;display:flex;flex-direction:column}
+.plano.destaque{border-color:var(--azul);box-shadow:0 24px 50px -30px rgba(14,165,233,.75);position:relative}
+.plano.destaque::after{content:"Mais procurado";position:absolute;top:-12px;left:24px;background:var(--azul);color:#fff;
+  font-family:var(--disp);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:5px 12px;border-radius:999px}
+.plano h3{font-size:1.3rem}
+.preco{font-family:var(--disp);font-size:2.6rem;font-weight:700;letter-spacing:-.04em;margin:14px 0 4px}
+.preco small{font-size:.95rem;font-weight:400;color:var(--tinta-mid);letter-spacing:0}
+.plano ul{list-style:none;margin:18px 0 24px;padding:0;font-size:.95rem;color:var(--tinta-mid);flex:1}
+.plano li{padding-left:26px;position:relative;margin-bottom:9px}
+.plano li::before{content:"";position:absolute;left:0;top:9px;width:14px;height:7px;border-left:2px solid var(--menta-esc);border-bottom:2px solid var(--menta-esc);transform:rotate(-45deg)}
+.nota{font-size:.86rem;color:var(--tinta-mid);margin-top:22px}
+
+/* equipe */
+.equipe{display:grid;gap:18px;margin-top:44px}
+.dent{background:#fff;border:1px solid var(--linha);border-radius:20px;padding:28px 24px;text-align:left}
+.avatar{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:1.7rem;color:#fff;margin-bottom:18px;letter-spacing:-.02em}
+.dent h3{font-size:1.22rem}
+.cro{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--menta-esc);font-weight:700;margin:6px 0 12px}
+.dent p{color:var(--tinta-mid);font-size:.96rem}
+
+/* depoimentos */
+.depos{display:grid;gap:18px;margin-top:44px}
+.depo{background:#fff;border:1px solid var(--linha);border-radius:20px;padding:30px 26px;position:relative}
+.depo .aspas{font-family:var(--disp);font-size:3.4rem;line-height:.7;color:var(--menta);display:block;margin-bottom:10px}
+.depo p{font-size:1.03rem}
+.depo footer{margin-top:18px;font-size:.88rem;color:var(--tinta-mid);font-weight:700;letter-spacing:.04em}
+.estrelas{color:var(--azul);letter-spacing:3px;font-size:.9rem;margin-top:14px}
+
+/* info */
+.info-grid{display:grid;gap:30px;margin-top:44px}
+.info-bloco h3{font-size:1.1rem;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--tinta)}
+.info-bloco p,.info-bloco li{color:var(--tinta-mid);font-size:.97rem}
+.info-bloco ul{list-style:none;padding:0;margin:0}
+.info-bloco li{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px dashed var(--linha)}
+.conv{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.conv span{border:1px solid var(--linha);background:#fff;border-radius:999px;padding:8px 16px;font-size:.9rem;font-family:var(--disp);font-weight:600}
+
+/* cta final */
+.cta-final{background:var(--tinta);color:#fff;border-radius:28px;padding:56px 28px;text-align:center;position:relative;overflow:hidden}
+.cta-final h2{font-size:clamp(2rem,7vw,3.2rem);max-width:18ch;margin:0 auto}
+.cta-final h2 em{font-style:normal;color:var(--menta)}
+.cta-final p{color:#A9C2D0;margin:20px auto 0;max-width:48ch}
+.cta-final .btn-g{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}
+.cta-final .btn-g:hover{border-color:var(--menta);color:var(--menta)}
+.cta-final .arco{position:absolute;left:50%;transform:translateX(-50%);bottom:-30px;width:140%;color:rgba(158,231,216,.16)}
+
+footer.pe{padding:44px 0 118px;border-top:1px solid var(--linha);font-size:.9rem;color:var(--tinta-mid)}
+.pe-in{display:flex;flex-direction:column;gap:10px}
+.pe a{color:var(--azul-esc)}
+
+/* whatsapp flutuante */
+.zap{position:fixed;right:18px;bottom:18px;z-index:80;display:flex;align-items:center;gap:10px;
+  background:#1FAF54;color:#fff;text-decoration:none;font-family:var(--disp);font-weight:600;
+  padding:14px 18px;border-radius:999px;box-shadow:0 14px 30px -10px rgba(31,175,84,.75);transition:transform .2s}
+.zap:hover{transform:translateY(-3px) scale(1.03)}
+.zap .lbl{display:none}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+@keyframes tracar{to{stroke-dashoffset:0}}
+.arco-anim path{stroke-dasharray:1200;stroke-dashoffset:1200;animation:tracar 2.2s cubic-bezier(.2,.7,.3,1) forwards}
+
+@media (min-width:760px){
+  .hero{padding:96px 0 56px}
+  .sobre-grid{grid-template-columns:repeat(3,1fr)}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .planos{grid-template-columns:repeat(2,1fr)}
+  .equipe{grid-template-columns:repeat(3,1fr)}
+  .depos{grid-template-columns:repeat(3,1fr)}
+  .info-grid{grid-template-columns:repeat(3,1fr)}
+  .pe-in{flex-direction:row;justify-content:space-between;align-items:center}
+  .zap .lbl{display:inline}
+  .cta-final{padding:82px 40px}
+}
+@media (min-width:1000px){
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .burger{display:none}
+  .drawer{display:none!important}
+  .cards{grid-template-columns:repeat(3,1fr)}
+  .planos{grid-template-columns:repeat(4,1fr)}
+  .hero h1{max-width:14ch}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  .arco-anim path{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#topo" class="logo">
+      <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 24c0-9 7.2-16 16-16s16 7 16 16" fill="none" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/><path d="M11 30c2.8 3.4 6.6 5 9 5s6.2-1.6 9-5" fill="none" stroke="#9EE7D8" stroke-width="4" stroke-linecap="round"/></svg>
+      Odonto<small>Vita</small>
+    </a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#sobre">A clínica</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#planos">Preços</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#info">Onde estamos</a>
+      <a class="btn btn-p btn-sm" href="#agendar">Agendar avaliação</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="drawer"><span></span></button>
+  </div>
+  <div class="drawer" id="drawer">
+    <a href="#sobre">A clínica</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#planos">Preços</a>
+    <a href="#equipe">Equipe</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#info">Onde estamos</a>
+    <a class="btn btn-p" href="#agendar">Agendar avaliação</a>
+  </div>
+</header>
+
+<main id="topo">
+
+  <section class="hero grid-bg">
+    <div class="wrap">
+      <span class="tag rv">Clínica odontológica completa</span>
+      <h1 class="rv">Sorrir bem<br><em>começa com</em> confiança.</h1>
+      <p class="lead rv">Uma equipe de especialistas no mesmo lugar, tratamento explicado do começo ao fim e preço combinado antes de qualquer procedimento. Sem surpresa na cadeira, nem no orçamento.</p>
+      <div class="hero-cta rv">
+        <a class="btn btn-p" href="#agendar">Agendar minha avaliação</a>
+        <a class="btn btn-g" href="#planos">Ver preços</a>
+      </div>
+      <div class="hero-facts rv">
+        <div><b>12</b><span>anos cuidando de sorrisos</span></div>
+        <div><b>6</b><span>especialidades na mesma clínica</span></div>
+        <div><b>4.9</b><span>média de satisfação dos pacientes</span></div>
+      </div>
+      <div class="hero-art rv" aria-hidden="true">
+        <svg class="arco-anim" viewBox="0 0 900 170" fill="none" role="presentation">
+          <path d="M20 150C20 78 168 20 450 20s430 58 430 130" stroke="#0EA5E9" stroke-width="3"/>
+          <path d="M90 152C90 96 216 56 450 56s360 40 360 96" stroke="#9EE7D8" stroke-width="3" style="animation-delay:.25s"/>
+          <path d="M170 154C170 116 274 92 450 92s280 24 280 62" stroke="#0EA5E9" stroke-width="3" opacity=".35" style="animation-delay:.5s"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 58C0 26 268 4 600 4s600 22 600 54" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+  </div>
+
+  <section id="sobre">
+    <div class="wrap">
+      <p class="eyebrow rv">A clínica</p>
+      <h2 class="tit rv">Odontologia <em>sem pressa</em> e sem letra miúda.</h2>
+      <p class="sub rv">A OdontoVita nasceu de uma ideia simples: o paciente merece entender o que está sendo feito na própria boca. Aqui cada plano de tratamento é apresentado em imagens, etapas e valores fechados antes de começar — e você decide o ritmo.</p>
+      <div class="sobre-grid">
+        <div class="pilar rv"><h3>Diagnóstico primeiro</h3><p>Avaliação clínica com radiografia digital e fotos intraorais. Você sai da primeira consulta sabendo exatamente o que precisa e o que pode esperar.</p></div>
+        <div class="pilar rv"><h3>Equipe, não improviso</h3><p>Ortodontista, implantodontista e odontopediatra atendendo no mesmo endereço. Casos que exigem mais de uma especialidade são resolvidos internamente.</p></div>
+        <div class="pilar rv"><h3>Ambiente tranquilo</h3><p>Protocolo de biossegurança à vista, atendimento no horário marcado e uma equipe acostumada a receber quem tem medo de dentista.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos" class="sec-alt">
+    <div class="wrap">
+      <p class="eyebrow rv">Serviços</p>
+      <h2 class="tit rv">Tudo o que o seu sorriso precisa, <em>num só lugar</em>.</h2>
+      <div class="cards">
+        <article class="card rv">
+          <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21c-2 0-2.5-7-5-7-2 0-3-2-3-5s2-5 4.5-5c1.6 0 2.4.8 3.5.8s1.9-.8 3.5-.8C18 4 20 6 20 9s-1 5-3 5c-2.5 0-3 7-5 7Z"/></svg></div>
+          <h3>Clínica geral</h3><p>Consultas de rotina, restaurações estéticas, tratamento de canal e urgências com encaixe no mesmo dia sempre que possível.</p>
+        </article>
+        <article class="card rv">
+          <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 21V9l4-6 4 6v12"/><path d="M8 14h8"/></svg></div>
+          <h3>Limpeza e prevenção</h3><p>Profilaxia, raspagem e aplicação de flúor. A cada seis meses é o que separa uma limpeza simples de um tratamento caro.</p>
+        </article>
+        <article class="card rv">
+          <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.4"/></svg></div>
+          <h3>Clareamento dental</h3><p>Protocolo combinado de consultório e moldeira caseira, com controle de sensibilidade e resultado registrado em escala de cor.</p>
+        </article>
+        <article class="card rv">
+          <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18"/><circle cx="7" cy="12" r="2.4"/><circle cx="12" cy="12" r="2.4"/><circle cx="17" cy="12" r="2.4"/></svg></div>
+          <h3>Ortodontia</h3><p>Aparelho fixo metálico, estético ou alinhadores transparentes. Planejamento digital e manutenção mensal sem custo escondido.</p>
+        </article>
+        <article class="card rv">
+          <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v8"/><path d="M9 11h6l-1 10h-4z"/><path d="M9.5 6h5M9.5 8.5h5"/></svg></div>
+          <h3>Implantes</h3><p>Reposição de dentes com implante unitário, protocolo ou prótese sobre implante, guiada por tomografia e planejamento 3D.</p>
+        </article>
+        <article class="card rv">
+          <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="9" r="5"/><path d="M9.5 8.5h.01M14.5 8.5h.01M9.8 11.4c1.3 1.2 3.1 1.2 4.4 0"/><path d="M5 21c1.4-3.2 4-4.8 7-4.8s5.6 1.6 7 4.8"/></svg></div>
+          <h3>Odontopediatria</h3><p>Primeira consulta lúdica, controle de cárie e orientação para os pais. Criança que se diverte na cadeira volta sem chorar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="planos">
+    <div class="wrap">
+      <p class="eyebrow rv">Preços</p>
+      <h2 class="tit rv">Valores <em>na mesa</em>, antes de abrir a boca.</h2>
+      <p class="sub rv">Tabela particular vigente. Parcelamos em até 12x no cartão e oferecemos desconto à vista. Quem tem convênio paga apenas a diferença dos procedimentos não cobertos.</p>
+      <div class="planos">
+        <div class="plano rv">
+          <h3>Limpeza</h3>
+          <p class="preco">R$ 150<small> /sessão</small></p>
+          <ul><li>Profilaxia completa</li><li>Remoção de tártaro</li><li>Aplicação de flúor</li><li>Orientação de higiene</li></ul>
+          <a class="btn btn-g" href="#agendar">Agendar</a>
+        </div>
+        <div class="plano destaque rv">
+          <h3>Clareamento</h3>
+          <p class="preco">R$ 690<small> /tratamento</small></p>
+          <ul><li>3 sessões de consultório</li><li>Moldeira personalizada</li><li>Gel para uso em casa</li><li>Retorno de controle</li></ul>
+          <a class="btn btn-p" href="#agendar">Agendar</a>
+        </div>
+        <div class="plano rv">
+          <h3>Aparelho</h3>
+          <p class="preco">R$ 180<small> /mês</small></p>
+          <ul><li>A partir de, no metálico</li><li>Documentação à parte</li><li>Manutenção mensal inclusa</li><li>Contenção ao final</li></ul>
+          <a class="btn btn-g" href="#agendar">Simular</a>
+        </div>
+        <div class="plano rv">
+          <h3>Implante</h3>
+          <p class="preco">Sob consulta<small></small></p>
+          <ul><li>Avaliação com tomografia</li><li>Planejamento 3D</li><li>Implante + prótese</li><li>Orçamento fechado</li></ul>
+          <a class="btn btn-g" href="#agendar">Avaliar</a>
+        </div>
+      </div>
+      <p class="nota rv">Avaliação inicial com radiografia: <strong>R$ 90</strong>, abatidos do tratamento caso você feche conosco. Restaurações a partir de R$ 190 e tratamento de canal a partir de R$ 550, conforme o dente.</p>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 58C0 26 268 4 600 4s600 22 600 54" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+  </div>
+
+  <section id="equipe" class="sec-alt">
+    <div class="wrap">
+      <p class="eyebrow rv">Equipe</p>
+      <h2 class="tit rv">Quem vai <em>cuidar de você</em>.</h2>
+      <div class="equipe">
+        <article class="dent rv">
+          <div class="avatar" style="background:linear-gradient(140deg,#0EA5E9,#0369A1)" aria-hidden="true">MA</div>
+          <h3>Dra. Mariana Alcântara</h3>
+          <p class="cro">CRO-BA 0000 · Ortodontia</p>
+          <p>Responsável técnica da clínica. Cuida do planejamento ortodôntico de adultos e adolescentes, com foco em alinhadores e casos de mordida cruzada.</p>
+        </article>
+        <article class="dent rv">
+          <div class="avatar" style="background:linear-gradient(140deg,#3FBFA6,#9EE7D8)" aria-hidden="true">RN</div>
+          <h3>Dr. Rafael Nogueira</h3>
+          <p class="cro">CRO-BA 0000 · Implantodontia</p>
+          <p>Cirurgias guiadas, enxertos e próteses sobre implante. É quem explica o passo a passo até o paciente perder o medo da palavra cirurgia.</p>
+        </article>
+        <article class="dent rv">
+          <div class="avatar" style="background:linear-gradient(140deg,#0B1B26,#3C5563)" aria-hidden="true">CB</div>
+          <h3>Dra. Camila Bittencourt</h3>
+          <p class="cro">CRO-BA 0000 · Odontopediatria</p>
+          <p>Atende crianças a partir do primeiro dentinho. Trabalha com abordagem lúdica e orientação de rotina de escovação junto com a família.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="depoimentos">
+    <div class="wrap">
+      <p class="eyebrow rv">Depoimentos</p>
+      <h2 class="tit rv">Pacientes que <em>voltaram a sorrir</em>.</h2>
+      <div class="depos">
+        <article class="depo rv">
+          <span class="aspas" aria-hidden="true">“</span>
+          <p>Passei anos evitando dentista por medo. Na OdontoVita me explicaram cada etapa antes e nada doeu como eu imaginava. Terminei o canal e já fiz a limpeza.</p>
+          <p class="estrelas" aria-label="Cinco de cinco estrelas">★★★★★</p>
+          <footer>Juliana Peixoto · paciente desde 2023</footer>
+        </article>
+        <article class="depo rv">
+          <span class="aspas" aria-hidden="true">“</span>
+          <p>Coloquei aparelho aos 38 anos achando que era tarde. Dezoito meses depois o resultado é outro rosto. O valor da manutenção nunca mudou do combinado.</p>
+          <p class="estrelas" aria-label="Cinco de cinco estrelas">★★★★★</p>
+          <footer>Anderson Vilela · ortodontia</footer>
+        </article>
+        <article class="depo rv">
+          <span class="aspas" aria-hidden="true">“</span>
+          <p>Levei meu filho de 4 anos com o maior receio. A Dra. Camila fez virar brincadeira e ele pergunta quando vai voltar. Isso não tem preço.</p>
+          <p class="estrelas" aria-label="Cinco de cinco estrelas">★★★★★</p>
+          <footer>Tatiane Moura · mãe do Bento</footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="info" class="sec-alt">
+    <div class="wrap">
+      <p class="eyebrow rv">Informações práticas</p>
+      <h2 class="tit rv">Onde, quando e <em>como pagar</em>.</h2>
+      <div class="info-grid">
+        <div class="info-bloco rv">
+          <h3>Endereço</h3>
+          <p>Av. das Palmeiras, 480 — sala 12<br>Bairro Santa Clara<br>Feira de Santana — BA<br>CEP 44000-000</p>
+          <p style="margin-top:14px">Telefone: (75) 99999-9999<br>contato@odontovita.demo</p>
+        </div>
+        <div class="info-bloco rv">
+          <h3>Horários</h3>
+          <ul>
+            <li><span>Segunda a sexta</span><span>08h — 19h</span></li>
+            <li><span>Sábado</span><span>08h — 13h</span></li>
+            <li><span>Domingo</span><span>Fechado</span></li>
+            <li><span>Urgências</span><span>Encaixe diário</span></li>
+          </ul>
+        </div>
+        <div class="info-bloco rv">
+          <h3>Convênios e pagamento</h3>
+          <div class="conv"><span>OdontoPrev</span><span>Amil Dental</span><span>Particular</span></div>
+          <p style="margin-top:16px">Pix, dinheiro e cartão em até 12x. Emitimos recibo para reembolso e nota fiscal para imposto de renda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agendar">
+    <div class="wrap">
+      <div class="cta-final rv">
+        <h2>Sua avaliação <em>cabe nesta semana</em>.</h2>
+        <p>Chame no WhatsApp e escolha o melhor horário. Respondemos em minutos no horário comercial — e você já sai da conversa com dia, hora e valor da avaliação combinados.</p>
+        <div class="hero-cta" style="justify-content:center;position:relative;z-index:2">
+          <a class="btn btn-p" href="https://wa.me/5575999999999?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20na%20OdontoVita." target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="btn btn-g" href="tel:+5575999999999">Ligar para a clínica</a>
+        </div>
+        <svg class="arco" viewBox="0 0 1200 200" fill="none" aria-hidden="true"><path d="M0 190C0 100 268 40 600 40s600 60 600 150" stroke="currentColor" stroke-width="6"/><path d="M120 195C120 125 340 85 600 85s480 40 480 110" stroke="currentColor" stroke-width="6"/></svg>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pe">
+  <div class="wrap pe-in">
+    <p>OdontoVita · Clínica odontológica · CRO-BA 0000 (fictício)</p>
+    <p>Modelo demonstrativo — Desenvolvido por Ray — <a href="mailto:raimundojmdsn@gmail.com">raimundojmdsn@gmail.com</a></p>
+  </div>
+</footer>
+
+<a class="zap" href="https://wa.me/5575999999999?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20na%20OdontoVita." target="_blank" rel="noopener" aria-label="Agendar avaliação pelo WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5v-.4l-.8-1.8c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.1 5 5 0 0 0 1 2.7 11.4 11.4 0 0 0 4.4 3.9c1.6.6 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg>
+  <span class="lbl">Agendar no WhatsApp</span>
+</a>
+
+<script>
+(function(){
+  var b=document.getElementById('burger'),d=document.getElementById('drawer');
+  b.addEventListener('click',function(){
+    var open=d.classList.toggle('open');
+    b.setAttribute('aria-expanded',open?'true':'false');
+    b.setAttribute('aria-label',open?'Fechar menu de navegação':'Abrir menu de navegação');
+  });
+  d.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){d.classList.remove('open');b.setAttribute('aria-expanded','false');}
+  });
+
+  var els=document.querySelectorAll('.rv');
+  if(!window.IntersectionObserver||matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(el){el.classList.add('in');});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      var sibs=Array.prototype.filter.call(en.target.parentNode.children,function(c){return c.classList.contains('rv');});
+      en.target.style.transitionDelay=(Math.min(sibs.indexOf(en.target),7)*90)+'ms';
+      en.target.classList.add('in');
+      io.unobserve(en.target);
+    });
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>

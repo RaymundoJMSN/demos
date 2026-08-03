@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aura Semijoias — Catálogo Digital</title>
+<meta name="description" content="Catálogo digital da Aura Semijoias. Escolha sua peça e peça pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf8f5;
+    --blush:#f4e9e6;
+    --blush-deep:#e8d5d0;
+    --ink:#2e2b29;
+    --ink-soft:#6d6763;
+    --gold:#b3903f;
+    --gold-soft:#d9c185;
+    --line:#e3dcd4;
+    --white:#fffdfb;
+    --radius:2px;
+    --shadow:0 1px 2px rgba(46,43,41,.04), 0 8px 24px -16px rgba(46,43,41,.18);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Figtree",sans-serif;
+    font-weight:300;
+    font-size:16px;
+    line-height:1.65;
+    letter-spacing:.005em;
+  }
+  h1,h2,h3,.display{font-family:"Marcellus",serif;font-weight:400;letter-spacing:.01em;line-height:1.2}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 20px}
+
+  /* ---------- topo ---------- */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    background:var(--white);
+    position:sticky;top:0;z-index:40;
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand-mark{width:26px;height:26px;flex:none}
+  .brand-name{font-family:"Marcellus",serif;font-size:1.12rem;letter-spacing:.16em;text-transform:uppercase}
+  .topbar nav{display:none;gap:26px;font-size:.83rem;letter-spacing:.14em;text-transform:uppercase}
+  .topbar nav a{text-decoration:none;color:var(--ink-soft);padding:4px 0;border-bottom:1px solid transparent}
+  .topbar nav a:hover{color:var(--ink);border-bottom-color:var(--gold)}
+  @media (min-width:820px){ .topbar nav{display:flex} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:linear-gradient(170deg,var(--white) 0%,var(--blush) 100%);
+    border-bottom:1px solid var(--line);
+    text-align:center;
+    padding:56px 0 60px;
+    position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:14px;border:1px solid rgba(179,144,63,.22);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+    margin:0 0 18px;font-weight:500;
+  }
+  .hero h1{font-size:clamp(2.1rem,7.5vw,3.6rem);margin:0 0 6px}
+  .hero .sub{
+    font-family:"Marcellus",serif;font-size:clamp(.95rem,3.4vw,1.15rem);
+    color:var(--ink-soft);margin:0 auto;max-width:34ch;
+  }
+  .rule{width:52px;height:1px;background:var(--gold);margin:24px auto;border:0}
+  .hero p.lead{max-width:46ch;margin:0 auto;color:var(--ink-soft);font-size:.97rem}
+
+  /* ---------- filtros ---------- */
+  .filters{padding:34px 0 8px}
+  .filters-head{
+    display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;
+    margin-bottom:18px;
+  }
+  .filters-head h2{font-size:1.45rem;margin:0}
+  .count{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none}
+  .chip{
+    font-family:"Figtree",sans-serif;font-size:.8rem;font-weight:400;
+    letter-spacing:.14em;text-transform:uppercase;
+    background:transparent;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:999px;
+    padding:9px 17px;cursor:pointer;
+    transition:background .25s ease,color .25s ease,border-color .25s ease;
+  }
+  .chip:hover{border-color:var(--gold-soft);color:var(--ink)}
+  .chip[aria-pressed="true"]{
+    background:var(--ink);color:var(--white);border-color:var(--ink);
+  }
+
+  /* ---------- grid ---------- */
+  .grid{
+    display:grid;gap:22px;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    padding-bottom:12px;
+  }
+  @media (max-width:520px){ .grid{grid-template-columns:repeat(2,1fr);gap:14px} }
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    display:flex;flex-direction:column;
+    transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease;
+  }
+  .card:hover{border-color:var(--gold-soft);transform:translateY(-3px);box-shadow:var(--shadow)}
+  .card.is-hidden{display:none}
+  .thumb{aspect-ratio:4/5;background:var(--blush);border-bottom:1px solid var(--line)}
+  .thumb svg{width:100%;height:100%;display:block}
+  .card-body{padding:16px 15px 18px;display:flex;flex-direction:column;flex:1;gap:6px}
+  .cat{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500}
+  .card h3{font-size:1.05rem;margin:0}
+  .mat{font-size:.82rem;color:var(--ink-soft);margin:0}
+  .price{font-family:"Marcellus",serif;font-size:1.18rem;margin:6px 0 12px}
+  .buy{
+    margin-top:auto;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:"Figtree",sans-serif;font-size:.76rem;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;
+    padding:11px 12px;text-decoration:none;
+    color:var(--ink);background:transparent;
+    border:1px solid var(--gold-soft);
+    transition:background .25s ease,color .25s ease;
+  }
+  .buy:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
+  .buy svg{width:14px;height:14px;flex:none}
+  .empty{padding:40px 0;text-align:center;color:var(--ink-soft);font-family:"Marcellus",serif}
+
+  /* ---------- QR ---------- */
+  .qr-section{margin:70px 0 0;background:linear-gradient(180deg,var(--white),var(--blush));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .qr-inner{
+    display:grid;gap:30px;padding:52px 0;align-items:center;
+    grid-template-columns:1fr;text-align:center;
+  }
+  @media (min-width:760px){
+    .qr-inner{grid-template-columns:220px 1fr;text-align:left;gap:46px}
+  }
+  .qr-frame{
+    background:var(--white);border:1px solid var(--gold-soft);padding:14px;
+    justify-self:center;line-height:0;
+  }
+  .qr-section h2{font-size:1.7rem;margin:0 0 12px}
+  .qr-section p{color:var(--ink-soft);margin:0 0 14px;max-width:48ch}
+  .pay{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1px solid var(--line);background:var(--white);
+    padding:9px 16px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .pay .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none}
+
+  /* ---------- footer ---------- */
+  footer{padding:52px 0 110px;text-align:center}
+  .foot-brand{font-family:"Marcellus",serif;font-size:1.3rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px}
+  .foot-info{color:var(--ink-soft);font-size:.9rem;margin:0 0 6px}
+  .foot-info a{text-decoration:none;border-bottom:1px solid var(--gold-soft)}
+  .foot-info a:hover{border-bottom-color:var(--gold)}
+  .credit{
+    margin-top:28px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:.76rem;color:var(--ink-soft);letter-spacing:.04em;
+  }
+  .credit a{text-decoration:none;border-bottom:1px solid var(--line)}
+
+  /* ---------- whatsapp flutuante ---------- */
+  .float-wa{
+    position:fixed;right:16px;bottom:16px;z-index:60;
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--ink);color:var(--white);text-decoration:none;
+    padding:13px 18px;border-radius:999px;
+    font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+    box-shadow:0 10px 26px -10px rgba(46,43,41,.55);
+    border:1px solid var(--gold);
+    transition:transform .25s ease;
+  }
+  .float-wa:hover{transform:translateY(-2px)}
+  .float-wa svg{width:17px;height:17px;flex:none}
+  @media (max-width:420px){ .float-wa span{display:none} .float-wa{padding:15px;border-radius:50%} }
+
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:12px;top:12px;position:fixed;z-index:99;background:var(--white);padding:10px 14px;border:1px solid var(--gold)}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+    .card:hover,.float-wa:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#catalogo">Pular para o catálogo</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#topo" id="topo" aria-label="Aura Semijoias — início">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <circle cx="20" cy="20" r="13" fill="none" stroke="#b3903f" stroke-width="1.2"/>
+        <circle cx="20" cy="20" r="7" fill="none" stroke="#2e2b29" stroke-width="1"/>
+        <circle cx="20" cy="7" r="2.2" fill="#b3903f"/>
+      </svg>
+      <span class="brand-name">Aura</span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#compartilhar">Compartilhar</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Coleção 2026 · Feira de Santana</p>
+    <h1>Aura Semijoias</h1>
+    <p class="sub">Peças de banho nobre para quem gosta de brilhar no dia a dia.</p>
+    <hr class="rule">
+    <p class="lead">Escolha sua peça favorita, toque em <em>Pedir no WhatsApp</em> e a gente combina entrega ou envio. Simples assim.</p>
+  </div>
+</section>
+
+<main>
+<section class="filters wrap" id="catalogo">
+  <div class="filters-head">
+    <h2>Nossas peças</h2>
+    <p class="count" id="contador" role="status" aria-live="polite">16 peças</p>
+  </div>
+
+  <ul class="chips" role="group" aria-label="Filtrar por categoria">
+    <li><button type="button" class="chip" data-filtro="todos" aria-pressed="true">Todos</button></li>
+    <li><button type="button" class="chip" data-filtro="colares" aria-pressed="false">Colares</button></li>
+    <li><button type="button" class="chip" data-filtro="brincos" aria-pressed="false">Brincos</button></li>
+    <li><button type="button" class="chip" data-filtro="aneis" aria-pressed="false">Anéis</button></li>
+    <li><button type="button" class="chip" data-filtro="pulseiras" aria-pressed="false">Pulseiras</button></li>
+  </ul>
+
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="vazio" hidden>Nenhuma peça nesta categoria por enquanto.</p>
+</section>
+
+<section class="qr-section" id="compartilhar">
+  <div class="wrap qr-inner">
+    <div class="qr-frame">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://raymundojmsn.github.io/demos/catalogo/" alt="QR Code do catálogo" width="220" height="220">
+    </div>
+    <div>
+      <p class="eyebrow">Leve o catálogo com você</p>
+      <h2>Aponte a câmera e compartilhe</h2>
+      <p>Este mesmo catálogo cabe num QR: imprima na vitrine, cole na sacolinha ou mande o código para as amigas. Ele abre direto no celular, sem instalar nada.</p>
+      <p class="pay"><span class="dot" aria-hidden="true"></span> Aceitamos Pix e cartão em até 3x</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contato">
+  <div class="wrap">
+    <p class="foot-brand">Aura Semijoias</p>
+    <p class="foot-info">Rua das Acácias, 218 — Centro, Feira de Santana / BA</p>
+    <p class="foot-info">Segunda a sábado, 9h às 18h · <a href="https://wa.me/5575999999999">(75) 99999-9999</a></p>
+    <p class="foot-info"><a href="#topo">@aura.semijoias</a> no Instagram</p>
+    <p class="credit">Modelo demonstrativo — Desenvolvido por Ray — <a href="mailto:raimundojmdsn@gmail.com">raimundojmdsn@gmail.com</a></p>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/5575999999999?text=Ol%C3%A1!%20Vi%20o%20cat%C3%A1logo%20da%20Aura%20e%20quero%20tirar%20uma%20d%C3%BAvida." aria-label="Falar com a Aura Semijoias no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.6 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+(function () {
+  var TEL = "5575999999999";
+
+  // ponytail: 4 desenhos SVG parametrizados por categoria em vez de 16 ilustrações à mão
+  var arte = {
+    colares: function (a, b) {
+      return '<path d="M40 26 Q100 8 160 26" fill="none" stroke="' + a + '" stroke-width="1.4"/>' +
+             '<path d="M46 30 Q100 120 154 30" fill="none" stroke="' + a + '" stroke-width="1.4"/>' +
+             '<circle cx="100" cy="150" r="22" fill="none" stroke="' + a + '" stroke-width="1.4"/>' +
+             '<circle cx="100" cy="150" r="11" fill="' + b + '" opacity=".55"/>' +
+             '<circle cx="100" cy="124" r="4" fill="' + a + '"/>';
+    },
+    brincos: function (a, b) {
+      return '<circle cx="70" cy="60" r="4" fill="' + a + '"/><circle cx="130" cy="60" r="4" fill="' + a + '"/>' +
+             '<path d="M70 64 L58 118 H82 Z" fill="' + b + '" opacity=".5" stroke="' + a + '" stroke-width="1.3"/>' +
+             '<path d="M130 64 L118 118 H142 Z" fill="' + b + '" opacity=".5" stroke="' + a + '" stroke-width="1.3"/>' +
+             '<circle cx="70" cy="140" r="14" fill="none" stroke="' + a + '" stroke-width="1.3"/>' +
+             '<circle cx="130" cy="140" r="14" fill="none" stroke="' + a + '" stroke-width="1.3"/>';
+    },
+    aneis: function (a, b) {
+      return '<circle cx="100" cy="120" r="46" fill="none" stroke="' + a + '" stroke-width="2"/>' +
+             '<circle cx="100" cy="120" r="38" fill="none" stroke="' + a + '" stroke-width=".7" opacity=".6"/>' +
+             '<path d="M100 46 L118 66 L100 90 L82 66 Z" fill="' + b + '" opacity=".65" stroke="' + a + '" stroke-width="1.4"/>' +
+             '<path d="M82 66 H118" stroke="' + a + '" stroke-width=".8"/>';
+    },
+    pulseiras: function (a, b) {
+      return '<ellipse cx="100" cy="100" rx="62" ry="44" fill="none" stroke="' + a + '" stroke-width="1.6"/>' +
+             '<ellipse cx="100" cy="100" rx="50" ry="34" fill="none" stroke="' + a + '" stroke-width=".7" opacity=".55"/>' +
+             '<circle cx="100" cy="56" r="7" fill="' + b + '" stroke="' + a + '" stroke-width="1.2"/>' +
+             '<circle cx="162" cy="100" r="5" fill="' + a + '" opacity=".8"/>' +
+             '<circle cx="38" cy="100" r="5" fill="' + a + '" opacity=".8"/>';
+    }
+  };
+
+  var tons = [
+    ["#b3903f", "#f0e2c8", "#fdf7f2", "#f2e4e0"],
+    ["#a8843a", "#efe0d6", "#fdf9f6", "#eee2dd"],
+    ["#b8964a", "#f3e7d3", "#fcf6f4", "#f1e6e6"],
+    ["#a07c33", "#ecdfd2", "#fbf7f4", "#f3e8e2"]
+  ];
+
+  var rotulo = { colares: "Colar", brincos: "Brincos", aneis: "Anel", pulseiras: "Pulseira" };
+
+  var produtos = [
+    { nome: "Colar Maré Dourada", cat: "colares", mat: "Banho de ouro 18k · corrente veneziana", preco: 129 },
+    { nome: "Colar Primeira Luz", cat: "colares", mat: "Banho de ouro 18k · pingente zircônia", preco: 149 },
+    { nome: "Colar Sopro de Verão", cat: "colares", mat: "Banho de ouro 18k · madrepérola", preco: 98 },
+    { nome: "Colar Nó do Destino", cat: "colares", mat: "Ródio branco · elo trabalhado", preco: 112 },
+    { nome: "Brinco Gota de Orvalho", cat: "brincos", mat: "Banho de ouro 18k · cristal lapidado", preco: 79 },
+    { nome: "Brinco Vento Leste", cat: "brincos", mat: "Banho de ouro 18k · argola texturizada", preco: 69 },
+    { nome: "Brinco Pequena Aurora", cat: "brincos", mat: "Banho de ouro rosé · zircônias", preco: 89 },
+    { nome: "Brinco Flor de Sal", cat: "brincos", mat: "Ródio branco · pérola shell", preco: 74 },
+    { nome: "Anel Segredo de Prata", cat: "aneis", mat: "Ródio branco · aro liso", preco: 59 },
+    { nome: "Anel Vigília", cat: "aneis", mat: "Banho de ouro 18k · solitário zircônia", preco: 119 },
+    { nome: "Anel Constelação", cat: "aneis", mat: "Banho de ouro 18k · cravejado", preco: 139 },
+    { nome: "Anel Raiz Antiga", cat: "aneis", mat: "Banho de ouro velho · aro martelado", preco: 39 },
+    { nome: "Pulseira Fio de Manhã", cat: "pulseiras", mat: "Banho de ouro 18k · corrente cartier", preco: 109 },
+    { nome: "Pulseira Bracelete Névoa", cat: "pulseiras", mat: "Ródio branco · rígida ajustável", preco: 159 },
+    { nome: "Pulseira Berloques da Sorte", cat: "pulseiras", mat: "Banho de ouro 18k · 5 berloques", preco: 189 },
+    { nome: "Pulseira Areia Fina", cat: "pulseiras", mat: "Banho de ouro rosé · elo miçanga", preco: 49 }
+  ];
+
+  var grid = document.getElementById("grid");
+  var contador = document.getElementById("contador");
+  var vazio = document.getElementById("vazio");
+
+  produtos.forEach(function (p, i) {
+    var t = tons[i % tons.length];
+    var gid = "g" + i;
+    var preco = "R$ " + p.preco.toLocaleString("pt-BR");
+    var texto = "Olá! Tenho interesse na peça “" + p.nome + "” (" + preco + "). Ainda tem disponível?";
+    var href = "https://wa.me/" + TEL + "?text=" + encodeURIComponent(texto);
+
+    var art = document.createElement("article");
+    art.className = "card";
+    art.setAttribute("data-categoria", p.cat);
+    art.innerHTML =
+      '<div class="thumb">' +
+        '<svg viewBox="0 0 200 200" role="img" aria-label="Ilustração de ' + rotulo[p.cat].toLowerCase() + ': ' + p.nome + '">' +
+          '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1">' +
+            '<stop offset="0%" stop-color="' + t[2] + '"/><stop offset="100%" stop-color="' + t[3] + '"/>' +
+          '</linearGradient></defs>' +
+          '<rect width="200" height="200" fill="url(#' + gid + ')"/>' +
+          '<circle cx="100" cy="100" r="78" fill="none" stroke="' + t[0] + '" stroke-width=".6" opacity=".35"/>' +
+          arte[p.cat](t[0], t[1]) +
+        '</svg>' +
+      '</div>' +
+      '<div class="card-body">' +
+        '<p class="cat">' + rotulo[p.cat] + '</p>' +
+        '<h3>' + p.nome + '</h3>' +
+        '<p class="mat">' + p.mat + '</p>' +
+        '<p class="price">' + preco + '</p>' +
+        '<a class="buy" href="' + href + '" target="_blank" rel="noopener">' +
+          '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>' +
+          'Pedir no WhatsApp' +
+        '</a>' +
+      '</div>';
+    grid.appendChild(art);
+  });
+
+  var cards = Array.prototype.slice.call(grid.children);
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+
+  function filtrar(alvo) {
+    var n = 0;
+    cards.forEach(function (c) {
+      var ok = alvo === "todos" || c.getAttribute("data-categoria") === alvo;
+      c.classList.toggle("is-hidden", !ok);
+      if (ok) n++;
+    });
+    contador.textContent = n + (n === 1 ? " peça" : " peças");
+    vazio.hidden = n > 0;
+  }
+
+  chips.forEach(function (b) {
+    b.addEventListener("click", function () {
+      chips.forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+      filtrar(b.getAttribute("data-filtro"));
+    });
+  });
+
+  filtrar("todos");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brasa Burger — Cardápio Digital | Hamburgueria Artesanal</title>
+<meta name="description" content="Cardápio digital da Brasa Burger. Hambúrgueres artesanais na brasa, porções, bebidas e sobremesas.">
+<meta name="theme-color" content="#141210">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --carvao:#141210;
+  --carvao-2:#1c1917;
+  --carvao-3:#231f1c;
+  --fogo:#FF5A1F;
+  --amarelo:#FFC940;
+  --creme:#F5EDE4;
+  --creme-mute:#b9ada1;
+  --borda:rgba(255,90,31,.22);
+  --fab-h:64px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--carvao);
+  color:var(--creme);
+  font-family:'Barlow',sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+/* textura de ruído / brasa */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  opacity:.06; mix-blend-mode:overlay;
+}
+body::after{
+  content:"";
+  position:fixed; left:50%; top:-10vh; width:140vw; height:70vh;
+  transform:translateX(-50%); z-index:0; pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(255,90,31,.20), rgba(255,90,31,0) 62%);
+  filter:blur(10px);
+}
+main,header,footer{position:relative;z-index:1}
+h1,h2,h3,.display{
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  line-height:.86;
+  margin:0;
+}
+a{color:var(--amarelo)}
+:focus-visible{outline:3px solid var(--amarelo);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1080px,100%);margin-inline:auto;padding-inline:18px}
+
+/* ---------- HEADER ---------- */
+.hero{
+  padding:34px 0 26px;
+  border-bottom:2px solid var(--borda);
+  background:
+    repeating-linear-gradient(115deg, rgba(255,90,31,.05) 0 2px, transparent 2px 9px),
+    linear-gradient(180deg,#191512,#141210);
+}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brandmark{display:flex;align-items:center;gap:10px}
+.brandmark svg{width:38px;height:38px;flex:none}
+.kicker{
+  font-family:'Barlow',sans-serif;font-weight:700;font-size:.68rem;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--fogo);
+}
+.status{
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:7px 13px;border-radius:999px;border:1px solid currentColor;
+  white-space:nowrap;
+}
+.status .dot{width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;animation:pulse 2.2s infinite}
+.status.aberto{color:var(--amarelo)}
+.status.fechado{color:#e0796a}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,201,64,.55)}70%{box-shadow:0 0 0 11px rgba(255,201,64,0)}100%{box-shadow:0 0 0 0 rgba(255,201,64,0)}}
+
+h1{
+  margin:22px 0 0;
+  font-size:clamp(4.2rem,20vw,11rem);
+  transform:scaleX(.9);transform-origin:left;
+  color:var(--creme);
+}
+h1 .fogo{
+  display:block;
+  color:transparent;
+  background:linear-gradient(178deg,var(--amarelo) 0%,var(--fogo) 58%,#c03a10 100%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.tagline{
+  margin:20px 0 0;max-width:46ch;color:var(--creme-mute);font-size:1.05rem;
+}
+.tagline strong{color:var(--creme);font-weight:600}
+.horario-hero{margin-top:14px;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fogo);font-weight:700}
+
+/* ---------- TABS ---------- */
+.tabs{
+  position:sticky;top:0;z-index:30;
+  background:rgba(20,18,16,.93);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:2px solid var(--borda);
+}
+.tabs-inner{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 18px}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{
+  flex:none;appearance:none;cursor:pointer;
+  font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.06em;
+  font-size:1.05rem;padding:9px 16px 8px;border-radius:999px;
+  background:transparent;color:var(--creme-mute);
+  border:1.5px solid rgba(245,237,228,.16);
+  text-decoration:none;transition:color .2s,background .2s,border-color .2s;
+}
+.tab:hover{color:var(--creme);border-color:var(--fogo)}
+.tab[aria-current="true"]{background:var(--fogo);border-color:var(--fogo);color:#150d07}
+
+/* ---------- SEÇÕES ---------- */
+section[id]{scroll-margin-top:78px}
+.cat{padding:52px 0 8px}
+.cat-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:26px}
+.cat-head h2{font-size:clamp(2.6rem,11vw,5.2rem);transform:scaleX(.92);transform-origin:left}
+.cat-head h2 em{font-style:normal;color:var(--fogo)}
+.cat-head .num{
+  font-family:'Anton',sans-serif;color:rgba(245,237,228,.16);
+  font-size:clamp(2rem,7vw,3.4rem);margin-left:auto;line-height:1;
+}
+.cat-head .icone{width:46px;height:46px;flex:none;margin-bottom:4px}
+
+.grid{display:grid;gap:14px}
+@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+
+.item{
+  position:relative;
+  background:linear-gradient(160deg,var(--carvao-3),var(--carvao-2));
+  border:1px solid rgba(245,237,228,.09);
+  border-left:4px solid var(--fogo);
+  border-radius:4px;
+  padding:18px 18px 16px;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.item:hover{transform:translateY(-3px);border-color:rgba(255,201,64,.4);box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.item-top{display:flex;align-items:baseline;gap:12px}
+.item h3{font-size:1.55rem;flex:1;color:var(--creme)}
+.preco{
+  font-family:'Anton',sans-serif;font-size:1.45rem;color:var(--amarelo);
+  white-space:nowrap;letter-spacing:.01em;
+}
+.preco span{font-size:.72em;color:var(--fogo)}
+.item p{margin:8px 0 0;color:var(--creme-mute);font-size:.97rem}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding:0;list-style:none}
+.badge{
+  font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  padding:4px 9px;border-radius:2px;
+  background:var(--amarelo);color:#241a05;
+}
+.badge.picante{background:transparent;color:var(--amarelo);border:1px solid var(--amarelo)}
+
+/* ---------- QR ---------- */
+.qr{
+  margin:64px 0 0;padding:40px 22px;text-align:center;
+  border:2px dashed var(--borda);border-radius:6px;
+  background:linear-gradient(180deg,rgba(255,90,31,.07),transparent);
+}
+.qr h2{font-size:clamp(2rem,9vw,3.6rem)}
+.qr p{color:var(--creme-mute);max-width:38ch;margin:12px auto 24px}
+.qr img{
+  width:220px;height:220px;max-width:100%;
+  border:8px solid var(--creme);border-radius:4px;background:#fff;display:block;margin:0 auto;
+}
+.qr .url{margin-top:16px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fogo);font-weight:700}
+
+/* ---------- FAB ---------- */
+.fab{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);
+  z-index:40;width:min(560px,calc(100% - 32px));height:var(--fab-h);
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  font-family:'Anton',sans-serif;font-size:1.2rem;text-transform:uppercase;letter-spacing:.05em;
+  color:#160d06;text-decoration:none;border-radius:999px;
+  background:linear-gradient(100deg,var(--amarelo),var(--fogo));
+  box-shadow:0 10px 30px rgba(255,90,31,.4),0 0 0 1px rgba(255,201,64,.5) inset;
+  transition:transform .18s ease;
+}
+.fab:hover{transform:translateX(-50%) translateY(-3px)}
+.fab svg{width:26px;height:26px;flex:none}
+
+/* ---------- FOOTER ---------- */
+footer{
+  margin-top:70px;padding:44px 0 calc(var(--fab-h) + 46px);
+  border-top:2px solid var(--borda);background:#100e0c;
+}
+.finfo{display:grid;gap:26px}
+@media(min-width:720px){.finfo{grid-template-columns:repeat(3,1fr)}}
+.finfo h3{font-size:1.1rem;color:var(--fogo);letter-spacing:.14em;margin-bottom:8px}
+.finfo p{margin:0;color:var(--creme-mute);font-size:.95rem}
+.credito{
+  margin-top:34px;padding-top:18px;border-top:1px solid rgba(245,237,228,.09);
+  font-size:.78rem;color:rgba(185,173,161,.65);text-align:center;
+}
+.credito a{color:rgba(255,201,64,.8)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brandmark">
+        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M24 3c4 7-2 9 1 14 2.6 4.3 8 3 8 9 0 7.2-6 12-9 12S9 33.2 9 26c0-9 9-11 9-16 0-3 3-5 6-7Z" fill="#FF5A1F"/>
+          <path d="M24 16c2 4-1 5 .6 7.6 1.4 2.3 4.4 1.6 4.4 4.9 0 3.9-3.3 6.5-5 6.5s-5-2.6-5-6.5c0-4.9 5-6 5-12.5Z" fill="#FFC940"/>
+        </svg>
+        <span class="kicker">Hamburgueria Artesanal</span>
+      </div>
+      <p class="status aberto" id="status" role="status">
+        <span class="dot" aria-hidden="true"></span><span id="status-texto">Verificando…</span>
+      </p>
+    </div>
+
+    <h1>Brasa<span class="fogo">Burger</span></h1>
+
+    <p class="tagline">Carne moída na hora, selada no <strong>carvão em brasa viva</strong>, pão brioche tostado na manteiga. Sem atalho, sem congelado, sem frescura.</p>
+    <p class="horario-hero">Todo dia · 18h às 23h59 · Feira de Santana/BA</p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Categorias do cardápio">
+  <div class="tabs-inner wrap">
+    <a class="tab" href="#burgers">Burgers</a>
+    <a class="tab" href="#acompanhamentos">Acompanhamentos</a>
+    <a class="tab" href="#bebidas">Bebidas</a>
+    <a class="tab" href="#sobremesas">Sobremesas</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- BURGERS -->
+  <section class="cat" id="burgers" aria-labelledby="t-burgers">
+    <div class="cat-head">
+      <svg class="icone" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <path d="M6 18c0-7 8-12 18-12s18 5 18 12H6Z" fill="#FFC940"/>
+        <rect x="5" y="20" width="38" height="5" rx="2.5" fill="#7CB342"/>
+        <rect x="5" y="25" width="38" height="7" rx="2" fill="#8B3A18"/>
+        <path d="M6 33h36c0 6-8 9-18 9S6 39 6 33Z" fill="#FF5A1F"/>
+      </svg>
+      <h2 id="t-burgers">Bur<em>gers</em></h2>
+      <span class="num" aria-hidden="true">01</span>
+    </div>
+    <div class="grid">
+
+      <article class="item">
+        <div class="item-top"><h3>Brasa Clássico</h3><p class="preco"><span>R$</span> 32</p></div>
+        <p>180g de blend costela e acém selado na brasa, cheddar inglês derretido na chapa, cebola caramelizada no melado e maionese defumada da casa no brioche tostado.</p>
+        <ul class="badges"><li class="badge">Mais pedido</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Duplo Carvão</h3><p class="preco"><span>R$</span> 44</p></div>
+        <p>Dois discos de 160g empilhados com dupla camada de queijo prato, bacon crocante quebrado em lascas e molho barbecue de café — o pedido de quem chegou com fome de verdade.</p>
+        <ul class="badges"><li class="badge">Mais pedido</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Fogo Cruzado</h3><p class="preco"><span>R$</span> 38</p></div>
+        <p>Blend 180g, pimenta biquinho em conserva, geleia de pimenta dedo-de-moça, cream cheese gelado pra segurar o ardor e rúcula fresca. Arde na medida certa.</p>
+        <ul class="badges"><li class="badge picante">Picante</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Costela Defumada 8h</h3><p class="preco"><span>R$</span> 46</p></div>
+        <p>Costela desfiada após oito horas de defumação lenta, queijo coalho grelhado, vinagrete de tomate seco e farofa crocante de bacon. O carro-chefe da casa.</p>
+        <ul class="badges"><li class="badge">Novo</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Verde Brasa</h3><p class="preco"><span>R$</span> 28</p></div>
+        <p>Hambúrguer de grão-de-bico e beterraba grelhado na brasa, queijo mussarela, tomate assado no alecrim e maionese de limão siciliano. Vegetariano e sem culpa.</p>
+        <ul class="badges"><li class="badge">Vegetariano</li></ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ACOMPANHAMENTOS -->
+  <section class="cat" id="acompanhamentos" aria-labelledby="t-acomp">
+    <div class="cat-head">
+      <svg class="icone" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <path d="M11 20h26l-3 22H14L11 20Z" fill="#FF5A1F"/>
+        <g fill="#FFC940">
+          <rect x="14" y="5" width="4" height="17" rx="2" transform="rotate(-9 16 13)"/>
+          <rect x="22" y="3" width="4" height="19" rx="2"/>
+          <rect x="30" y="5" width="4" height="17" rx="2" transform="rotate(9 32 13)"/>
+        </g>
+      </svg>
+      <h2 id="t-acomp">Acom<em>panha</em></h2>
+      <span class="num" aria-hidden="true">02</span>
+    </div>
+    <div class="grid">
+
+      <article class="item">
+        <div class="item-top"><h3>Fritas na Brasa</h3><p class="preco"><span>R$</span> 22</p></div>
+        <p>Batata rústica com casca, dourada por fora e macia por dentro, finalizada com sal de ervas e alecrim tostado direto na grelha.</p>
+        <ul class="badges"><li class="badge">Mais pedido</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Onion Rings Ardidos</h3><p class="preco"><span>R$</span> 24</p></div>
+        <p>Anéis de cebola em massa de cerveja preta com páprica defumada, servidos com maionese de chipotle bem picante.</p>
+        <ul class="badges"><li class="badge picante">Picante</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Bolinho de Costela</h3><p class="preco"><span>R$</span> 32</p></div>
+        <p>Oito bolinhos recheados com a mesma costela defumada 8h, empanados na hora e servidos com geleia de pimenta.</p>
+        <ul class="badges"><li class="badge">Novo</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Queijo Coalho na Grelha</h3><p class="preco"><span>R$</span> 18</p></div>
+        <p>Espetinhos de coalho marcados na brasa até criar crosta, regados com melado de cana e orégano fresco.</p>
+        <ul class="badges"></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Mandioca Frita com Aioli</h3><p class="preco"><span>R$</span> 20</p></div>
+        <p>Mandioca cozida no ponto e frita em imersão até ficar crocante, acompanhada de aioli de alho tostado.</p>
+        <ul class="badges"></ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- BEBIDAS -->
+  <section class="cat" id="bebidas" aria-labelledby="t-bebidas">
+    <div class="cat-head">
+      <svg class="icone" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <path d="M12 10h24l-3 30a4 4 0 0 1-4 3.5H19a4 4 0 0 1-4-3.5L12 10Z" fill="#FF5A1F"/>
+        <path d="M13.5 20h21l-2 20a3 3 0 0 1-3 2.5H18.5a3 3 0 0 1-3-2.5l-2-20Z" fill="#FFC940"/>
+        <rect x="27" y="2" width="4" height="12" rx="2" transform="rotate(14 29 8)" fill="#F5EDE4"/>
+      </svg>
+      <h2 id="t-bebidas">Be<em>bidas</em></h2>
+      <span class="num" aria-hidden="true">03</span>
+    </div>
+    <div class="grid">
+
+      <article class="item">
+        <div class="item-top"><h3>Milk-shake de Doce de Leite</h3><p class="preco"><span>R$</span> 16</p></div>
+        <p>Sorvete artesanal batido com doce de leite argentino e uma pitada de flor de sal. Grosso a ponto de o canudo entortar.</p>
+        <ul class="badges"><li class="badge">Mais pedido</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Limonada Suíça de Brasa</h3><p class="preco"><span>R$</span> 14</p></div>
+        <p>Limão grelhado na chapa antes de bater, leite condensado e gelo triturado. O toque tostado muda tudo.</p>
+        <ul class="badges"><li class="badge">Novo</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Chopp Artesanal IPA</h3><p class="preco"><span>R$</span> 15</p></div>
+        <p>300ml de IPA local, amargor firme e aroma cítrico — corta a gordura do burger sem apagar o defumado.</p>
+        <ul class="badges"></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Refrigerante Lata</h3><p class="preco"><span>R$</span> 8</p></div>
+        <p>Cola, guaraná, laranja ou limão. Servido gelado direto da câmara, com copo e gelo à parte.</p>
+        <ul class="badges"></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Suco de Caju Gelado</h3><p class="preco"><span>R$</span> 12</p></div>
+        <p>Polpa fresca batida na hora com água gelada e pouco açúcar. Simples, honesto e absurdamente refrescante.</p>
+        <ul class="badges"></ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SOBREMESAS -->
+  <section class="cat" id="sobremesas" aria-labelledby="t-sobremesas">
+    <div class="cat-head">
+      <svg class="icone" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <path d="M24 5c1.6 3.5 5 5 5 8a5 5 0 0 1-10 0c0-3 3.4-4.5 5-8Z" fill="#FFC940"/>
+        <path d="M10 22h28c0 4-2 6-2 9v9a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4v-9c0-3-2-5-2-9Z" fill="#FF5A1F"/>
+        <path d="M10 22c3 3 6-2 9 1s5-2 8 0 6 1 11-1c-1 3-3 4-4 6H13c-1-2-2-3-3-6Z" fill="#F5EDE4"/>
+      </svg>
+      <h2 id="t-sobremesas">Sobre<em>mesas</em></h2>
+      <span class="num" aria-hidden="true">04</span>
+    </div>
+    <div class="grid">
+
+      <article class="item">
+        <div class="item-top"><h3>Petit Gâteau de Brasa</h3><p class="preco"><span>R$</span> 22</p></div>
+        <p>Bolo quente de chocolate 70% com centro escorrendo, sorvete de creme e raspas de laranja queimada no maçarico.</p>
+        <ul class="badges"><li class="badge">Mais pedido</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Abacaxi Grelhado</h3><p class="preco"><span>R$</span> 14</p></div>
+        <p>Fatias marcadas na brasa com açúcar mascavo e canela, servidas com bola de sorvete de coco.</p>
+        <ul class="badges"></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Cheesecake de Goiabada</h3><p class="preco"><span>R$</span> 19</p></div>
+        <p>Base crocante de biscoito amanteigado, creme de queijo aerado e calda de goiabada cascão levemente ácida.</p>
+        <ul class="badges"><li class="badge">Novo</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Brownie com Pimenta</h3><p class="preco"><span>R$</span> 18</p></div>
+        <p>Brownie denso com nozes e um sopro de pimenta-rosa no final, servido morno com ganache quente por cima.</p>
+        <ul class="badges"><li class="badge picante">Picante</li></ul>
+      </article>
+
+      <article class="item">
+        <div class="item-top"><h3>Pudim de Rapadura</h3><p class="preco"><span>R$</span> 16</p></div>
+        <p>Pudim cremoso sem furinhos, calda escura de rapadura queimada e uma pitada de sal pra equilibrar o doce.</p>
+        <ul class="badges"></ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- QR -->
+  <section class="qr" id="qr" aria-labelledby="t-qr">
+    <h2 id="t-qr">Aponte a câmera</h2>
+    <p>Leve o cardápio com você: aponte a câmera do celular e abra a versão sempre atualizada, com os preços do dia.</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://raymundojmsn.github.io/demos/cardapio/" alt="QR Code do cardapio">
+    <p class="url">raymundojmsn.github.io/demos/cardapio</p>
+  </section>
+
+</main>
+
+<a class="fab" id="whats"
+   href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20Brasa%20Burger!%20Quero%20fazer%20um%20pedido%3A%20"
+   target="_blank" rel="noopener" aria-label="Fazer pedido pelo WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="currentColor">
+    <path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.6Zm6-7.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.6h-.6c-.2 0-.6.1-.9.4-1.3 1.4-1.2 3.3.1 5.2 1.4 2 3.2 4 6 5.2 2.6 1 3.2.9 4 .8.7-.1 1.9-.8 2.1-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/>
+  </svg>
+  Pedir no WhatsApp
+</a>
+
+<footer>
+  <div class="wrap">
+    <div class="finfo">
+      <div>
+        <h3>Endereço</h3>
+        <p>Rua das Brasas, 187 — Ponto Central<br>Feira de Santana / BA · CEP 44002-100</p>
+      </div>
+      <div>
+        <h3>Contato</h3>
+        <p><a href="tel:+5575999999999">(75) 99999-9999</a><br>pedidos@brasaburger.com.br</p>
+      </div>
+      <div>
+        <h3>Horário</h3>
+        <p>Segunda a domingo<br>das 18h às 23h59 · cozinha até 23h30</p>
+      </div>
+    </div>
+    <p class="credito">Modelo demonstrativo — Desenvolvido por Ray — <a href="mailto:raimundojmdsn@gmail.com">raimundojmdsn@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // status aberto/fechado: 18h00 - 23h59
+  var el = document.getElementById('status');
+  var txt = document.getElementById('status-texto');
+  var h = new Date().getHours();
+  var aberto = h >= 18;
+  el.className = 'status ' + (aberto ? 'aberto' : 'fechado');
+  txt.textContent = aberto ? 'Aberto agora' : 'Fechado · abre 18h';
+
+  // tabs: scroll suave + destaque conforme scroll
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var secoes = tabs.map(function(t){ return document.querySelector(t.getAttribute('href')); });
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(e){
+      e.preventDefault();
+      secoes[i].scrollIntoView({behavior: reduz ? 'auto' : 'smooth', block:'start'});
+      history.replaceState(null, '', t.getAttribute('href'));
+    });
+  });
+
+  function ativa(i){
+    tabs.forEach(function(t, j){
+      if (j === i) { t.setAttribute('aria-current','true'); }
+      else { t.removeAttribute('aria-current'); }
+    });
+  }
+  ativa(0);
+
+  if ('IntersectionObserver' in window){
+    var visiveis = {};
+    var obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(en){ visiveis[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
+      var melhor = 0, top = -1;
+      secoes.forEach(function(s, i){
+        var v = visiveis[s.id] || 0;
+        if (v > melhor){ melhor = v; top = i; }
+      });
+      if (top >= 0) ativa(top);
+    }, {rootMargin:'-80px 0px -55% 0px', threshold:[0,.2,.5,1]});
+    secoes.forEach(function(s){ obs.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

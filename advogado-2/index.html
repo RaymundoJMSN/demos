@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prisma Jurídico — Advocacia digital para startups, LGPD e contratos</title>
+<meta name="description" content="Prisma Jurídico: escritório de advocacia digital focado em LGPD, contratos para startups, direito do consumidor online e propriedade intelectual.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF7;
+    --ink:#000000;
+    --yellow:#FFD400;
+    --line:4px;
+    --shadow:8px 8px 0 var(--ink);
+    --shadow-sm:5px 5px 0 var(--ink);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:82px;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:16px;line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:"Archivo",sans-serif;font-weight:900;line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
+  a{color:inherit}
+  img,svg{display:block;max-width:100%}
+  :focus-visible{outline:4px solid #0057FF;outline-offset:3px}
+  .wrap{width:min(1180px,100% - 2rem);margin-inline:auto}
+  .mono-label{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+
+  /* ---- NAV ---- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:80;background:var(--bg);border-bottom:var(--line) solid var(--ink)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:78px}
+  .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+  .brand .mark{width:34px;height:34px;border:3px solid var(--ink);background:var(--yellow);display:grid;place-items:center}
+  .brand .mark svg{width:20px;height:20px}
+  .brand strong{font-family:"Archivo",sans-serif;font-weight:900;font-size:1.05rem;letter-spacing:-.02em;text-transform:uppercase}
+  .nav-links{display:none;gap:1.4rem;align-items:center}
+  .nav-links a{font-family:"IBM Plex Mono",monospace;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:.35rem .15rem;border-bottom:3px solid transparent}
+  .nav-links a:hover{border-bottom-color:var(--ink);background:var(--yellow)}
+  .btn{display:inline-block;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:.9rem 1.4rem;border:var(--line) solid var(--ink);background:var(--yellow);box-shadow:var(--shadow-sm);transition:transform .12s ease,box-shadow .12s ease}
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+  .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.ghost{background:var(--bg)}
+  .btn.invert{background:var(--ink);color:var(--bg);box-shadow:5px 5px 0 var(--yellow)}
+  .btn.invert:hover{box-shadow:8px 8px 0 var(--yellow)}
+  .nav .btn{display:none}
+  .burger{width:52px;height:52px;border:3px solid var(--ink);background:var(--yellow);display:grid;place-items:center;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
+  .burger span{display:block;width:24px;height:3px;background:var(--ink);margin:3px 0;transition:.2s}
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  #mobile-menu{display:none;border-top:var(--line) solid var(--ink);background:var(--yellow)}
+  #mobile-menu.open{display:block}
+  #mobile-menu a{display:block;padding:1rem;border-bottom:3px solid var(--ink);text-decoration:none;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.85rem}
+  #mobile-menu a:last-child{border-bottom:0}
+
+  main{padding-top:78px}
+
+  /* ---- HERO ---- */
+  .hero{padding:3.5rem 0 3rem;border-bottom:var(--line) solid var(--ink)}
+  .hero .tagline{display:inline-block;background:var(--ink);color:var(--bg);padding:.45rem .8rem;margin-bottom:1.6rem}
+  .hero h1{font-size:clamp(3.1rem,15.5vw,10.5rem)}
+  .hero h1 .hl{background:var(--yellow);box-shadow:0 0 0 6px var(--yellow);border-bottom:8px solid var(--ink)}
+  .hero p.lead{font-size:1.05rem;max-width:44ch;margin:2.2rem 0 2rem;border-left:var(--line) solid var(--ink);padding-left:1rem}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:1rem}
+  .hero-facts{display:grid;grid-template-columns:1fr;gap:0;margin-top:3rem;border:var(--line) solid var(--ink);box-shadow:var(--shadow)}
+  .hero-facts div{padding:1.2rem;border-bottom:3px solid var(--ink)}
+  .hero-facts div:last-child{border-bottom:0}
+  .hero-facts b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-size:2rem;line-height:1}
+  .hero-facts span{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+
+  /* ---- MARQUEE ---- */
+  .marquee{background:var(--yellow);border-bottom:var(--line) solid var(--ink);overflow:hidden;padding:.9rem 0}
+  .marquee .track{display:flex;width:max-content;animation:slide 26s linear infinite}
+  .marquee span{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(1.5rem,4.5vw,2.6rem);text-transform:uppercase;letter-spacing:-.02em;padding-right:1.4rem;white-space:nowrap}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee.rev .track{animation-direction:reverse}
+
+  /* ---- SECTIONS ---- */
+  section{border-bottom:var(--line) solid var(--ink);padding:4.5rem 0}
+  .sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.9rem;margin-bottom:2.5rem}
+  .sec-head .num{background:var(--ink);color:var(--yellow);padding:.3rem .6rem;font-size:.75rem;font-weight:600;letter-spacing:.15em}
+  .sec-head h2{font-size:clamp(2.2rem,8vw,4.4rem)}
+  .sec-sub{max-width:56ch;margin-top:-1.4rem;margin-bottom:2.6rem;font-size:.98rem}
+
+  /* SOBRE */
+  .about{display:grid;gap:2.2rem}
+  .card-person{border:var(--line) solid var(--ink);box-shadow:var(--shadow);background:#fff}
+  .avatar{background:var(--yellow);border-bottom:var(--line) solid var(--ink);padding:1.6rem;display:flex;justify-content:center}
+  .avatar svg{width:170px;height:170px}
+  .card-person .body{padding:1.4rem}
+  .card-person h3{font-size:1.6rem;margin-bottom:.35rem}
+  .card-person .oab{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--bg);display:inline-block;padding:.28rem .55rem;margin-bottom:1rem}
+  .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem}
+  .tag{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;border:3px solid var(--ink);padding:.3rem .55rem}
+  .about-text p+p{margin-top:1rem}
+  .about-text .quote{border:var(--line) solid var(--ink);background:var(--yellow);padding:1.3rem;margin-top:1.6rem;font-family:"Archivo",sans-serif;font-weight:800;font-size:1.15rem;line-height:1.25;text-transform:uppercase;box-shadow:var(--shadow-sm)}
+
+  /* AREAS */
+  .areas{display:grid;gap:1.6rem}
+  .area{border:var(--line) solid var(--ink);background:#fff;padding:1.5rem;box-shadow:5px 5px 0 var(--ink);transition:box-shadow .15s ease,transform .15s ease,background .15s ease}
+  .area:hover,.area:focus-within{box-shadow:12px 12px 0 var(--yellow),12px 12px 0 3px var(--ink);transform:translate(-3px,-3px)}
+  .area .n{font-size:.8rem;font-weight:600;letter-spacing:.1em;margin-bottom:1.1rem;display:block}
+  .area h3{font-size:1.45rem;margin-bottom:.7rem}
+  .area p{font-size:.93rem}
+  .area ul{list-style:none;margin-top:1rem;font-size:.82rem}
+  .area li{padding-left:1.1rem;position:relative;margin-top:.35rem}
+  .area li::before{content:"→";position:absolute;left:0}
+
+  /* COMO FUNCIONA */
+  #assinatura{background:var(--ink);color:var(--bg)}
+  #assinatura .sec-head .num{background:var(--yellow);color:var(--ink)}
+  #assinatura .sec-head h2 em{font-style:normal;color:var(--yellow)}
+  .steps{display:grid;gap:1.6rem;counter-reset:s}
+  .step{border:var(--line) solid var(--yellow);padding:1.5rem;position:relative}
+  .step .n{font-family:"Archivo",sans-serif;font-weight:900;font-size:3.2rem;line-height:1;color:var(--yellow)}
+  .step h3{font-size:1.3rem;margin:.6rem 0 .6rem}
+  .step p{font-size:.92rem;opacity:.92}
+  .note{margin-top:2rem;border:3px dashed var(--bg);padding:1rem;font-size:.8rem;letter-spacing:.04em}
+
+  /* DEPOIMENTOS */
+  .quotes{display:grid;gap:1.6rem}
+  .quote-card{border:var(--line) solid var(--ink);background:#fff;padding:1.5rem;box-shadow:var(--shadow-sm);transition:box-shadow .15s ease,transform .15s ease;display:flex;flex-direction:column;gap:1rem}
+  .quote-card:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--ink)}
+  .quote-card blockquote{font-size:1rem;line-height:1.55}
+  .quote-card blockquote::before{content:"“";font-family:"Archivo",sans-serif;font-weight:900;font-size:3rem;line-height:.6;display:block;color:var(--yellow);-webkit-text-stroke:2px var(--ink)}
+  .who{display:flex;align-items:center;gap:.8rem;margin-top:auto;border-top:3px solid var(--ink);padding-top:.9rem}
+  .ini{width:48px;height:48px;flex:0 0 48px;border:3px solid var(--ink);background:var(--yellow);display:grid;place-items:center;font-family:"Archivo",sans-serif;font-weight:900;font-size:1rem}
+  .who b{display:block;font-size:.85rem;letter-spacing:.06em}
+  .who span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+
+  /* FAQ */
+  .faq details{border:var(--line) solid var(--ink);background:#fff;margin-bottom:1rem;box-shadow:var(--shadow-sm)}
+  .faq summary{cursor:pointer;list-style:none;padding:1.1rem 1.2rem;font-family:"Archivo",sans-serif;font-weight:800;font-size:1.02rem;text-transform:uppercase;letter-spacing:-.01em;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-size:1.6rem;line-height:1;flex:0 0 auto}
+  .faq details[open] summary{background:var(--yellow);border-bottom:3px solid var(--ink)}
+  .faq details[open] summary::after{content:"–"}
+  .faq .ans{padding:1.1rem 1.2rem;font-size:.93rem}
+
+  /* CTA FINAL */
+  #contato{background:var(--yellow)}
+  .cta-box{border:var(--line) solid var(--ink);background:var(--bg);padding:2rem 1.5rem;box-shadow:12px 12px 0 var(--ink)}
+  .cta-box h2{font-size:clamp(2.2rem,9vw,4.6rem);margin-bottom:1.2rem}
+  .cta-box p{max-width:50ch;margin-bottom:1.8rem}
+  .cta-actions{display:flex;flex-wrap:wrap;gap:1rem}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:var(--bg);padding:3rem 0 2rem;font-size:.85rem}
+  .foot-grid{display:grid;gap:2rem;margin-bottom:2.4rem}
+  footer h4{font-family:"Archivo",sans-serif;font-weight:900;text-transform:uppercase;font-size:.9rem;letter-spacing:.1em;color:var(--yellow);margin-bottom:.8rem}
+  footer a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+  footer a:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
+  footer ul{list-style:none}
+  footer li{margin-bottom:.4rem}
+  .foot-bottom{border-top:3px solid var(--yellow);padding-top:1.4rem;display:grid;gap:.6rem;font-size:.74rem;letter-spacing:.06em}
+  .foot-bottom .oab{color:var(--yellow)}
+
+  /* WHATSAPP */
+  .wa{position:fixed;right:16px;bottom:16px;z-index:90;width:62px;height:62px;border:var(--line) solid var(--ink);background:var(--yellow);display:grid;place-items:center;box-shadow:5px 5px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
+  .wa:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+  .wa:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+  .wa svg{width:30px;height:30px}
+
+  @media (min-width:780px){
+    .nav-links{display:flex}
+    .nav .btn{display:inline-block}
+    .burger{display:none}
+    #mobile-menu{display:none !important}
+    .hero{padding:6rem 0 4.5rem}
+    .hero-facts{grid-template-columns:repeat(3,1fr)}
+    .hero-facts div{border-bottom:0;border-right:3px solid var(--ink)}
+    .hero-facts div:last-child{border-right:0}
+    .about{grid-template-columns:340px 1fr;align-items:start;gap:3rem}
+    .areas{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:repeat(3,1fr)}
+    .quotes{grid-template-columns:repeat(3,1fr)}
+    .foot-grid{grid-template-columns:2fr 1fr 1fr}
+    .foot-bottom{grid-template-columns:1fr auto;align-items:center}
+    .cta-box{padding:3.5rem 3rem}
+    section{padding:6rem 0}
+  }
+  @media (min-width:1080px){
+    .areas{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .marquee .track{animation:none}
+    *{transition:none !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#topo" aria-label="Prisma Jurídico — início">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path d="M12 2 22 20H2L12 2Z"/></svg>
+      </span>
+      <strong>Prisma<br>Jurídico</strong>
+    </a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#areas">Áreas</a>
+      <a href="#assinatura">Assinatura</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn" href="#contato">Falar com o time</a>
+    <button class="burger" id="burger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="#sobre">Sobre</a>
+    <a href="#areas">Áreas de atuação</a>
+    <a href="#assinatura">Como funciona</a>
+    <a href="#clientes">Clientes</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contato">Falar com o time</a>
+  </div>
+</header>
+
+<main id="topo">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <p class="tagline mono-label">Advocacia digital · Feira de Santana / BA · Atendimento remoto</p>
+      <h1 id="hero-title">Direito<br>que <span class="hl">acompanha</span><br>o produto.</h1>
+      <p class="lead">Assessoria jurídica para quem constrói na internet: LGPD, contratos de software, relação com consumidor digital e proteção de marca — sem juridiquês e no ritmo de quem faz deploy toda semana.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#contato">Agendar diagnóstico</a>
+        <a class="btn ghost" href="#areas">Ver áreas de atuação</a>
+      </div>
+      <div class="hero-facts">
+        <div><b>05</b><span class="mono-label">Frentes de atuação digital</span></div>
+        <div><b>2019</b><span class="mono-label">Ano de fundação do escritório</span></div>
+        <div><b>100%</b><span class="mono-label">Processos e reuniões remotos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>LGPD ✳ CONTRATOS ✳ STARTUPS ✳ CONSUMIDOR ✳ MARCAS ✳ SaaS ✳&nbsp;</span>
+      <span>LGPD ✳ CONTRATOS ✳ STARTUPS ✳ CONSUMIDOR ✳ MARCAS ✳ SaaS ✳&nbsp;</span>
+    </div>
+  </div>
+
+  <section id="sobre" aria-labelledby="sobre-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">01 /</span>
+        <h2 id="sobre-title">Quem<br>assina</h2>
+      </div>
+      <div class="about">
+        <article class="card-person">
+          <div class="avatar">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Retrato ilustrado de Helena Vasconcelos Braga">
+              <rect x="4" y="4" width="112" height="112" fill="#FFD400" stroke="#000" stroke-width="4"/>
+              <circle cx="60" cy="47" r="24" fill="#FBFAF7" stroke="#000" stroke-width="4"/>
+              <path d="M36 44c0-16 10-24 24-24s24 8 24 24c0-6-10-9-24-9s-24 3-24 9Z" fill="#000"/>
+              <circle cx="51" cy="47" r="3.2" fill="#000"/>
+              <circle cx="69" cy="47" r="3.2" fill="#000"/>
+              <path d="M52 58c4 4 12 4 16 0" stroke="#000" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M22 116c0-22 17-34 38-34s38 12 38 34" fill="#FBFAF7" stroke="#000" stroke-width="4"/>
+              <path d="M60 82 48 116h24L60 82Z" fill="#000"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>Helena Vasconcelos Braga</h3>
+            <span class="oab">OAB/BA 148.902</span>
+            <p>Advogada, sócia fundadora do Prisma Jurídico. Pós-graduada em Direito Digital e Proteção de Dados. Encarregada de dados (DPO) certificada.</p>
+            <div class="tags">
+              <span class="tag">LGPD</span>
+              <span class="tag">SaaS</span>
+              <span class="tag">Contratos</span>
+              <span class="tag">Marcas</span>
+            </div>
+          </div>
+        </article>
+        <div class="about-text">
+          <p>O Prisma nasceu de uma constatação simples: contrato de software não cabe em modelo de papel timbrado. Startups mudam de plano, de preço e de arquitetura em semanas — e o jurídico precisa acompanhar esse ritmo, não travá-lo.</p>
+          <p>Trabalhamos junto do time. Entramos na conversa de produto quando o recurso ainda está no Figma, revisamos os termos antes do lançamento, mapeamos que dado pessoal está sendo coletado e por quê, e escrevemos documentos que o próprio time consegue ler sem tradução.</p>
+          <p>Somos um escritório enxuto e remoto por escolha. Isso significa reuniões objetivas, canal direto por mensagem e prazos combinados com clareza. Nossa atuação é preventiva e consultiva: reduzir a chance de conflito custa menos do que administrar um.</p>
+          <div class="quote">"Jurídico bom é o que você lê uma vez, entende, e assina sem medo."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee rev" aria-hidden="true">
+    <div class="track">
+      <span>TERMOS DE USO ✳ POLÍTICA DE PRIVACIDADE ✳ VESTING ✳ INPI ✳ CONTRATO SaaS ✳&nbsp;</span>
+      <span>TERMOS DE USO ✳ POLÍTICA DE PRIVACIDADE ✳ VESTING ✳ INPI ✳ CONTRATO SaaS ✳&nbsp;</span>
+    </div>
+  </div>
+
+  <section id="areas" aria-labelledby="areas-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">02 /</span>
+        <h2 id="areas-title">Áreas de<br>atuação</h2>
+      </div>
+      <p class="sec-sub">Cinco frentes que cobrem o ciclo de vida de um produto digital — da primeira linha de código ao registro da marca.</p>
+      <div class="areas">
+        <article class="area">
+          <span class="n">01 /</span>
+          <h3>LGPD e privacidade</h3>
+          <p>Diagnóstico de tratamento de dados, adequação prática e documentação viva — feita para ser mantida, não engavetada.</p>
+          <ul>
+            <li>Mapeamento de dados e ROPA</li>
+            <li>Política de privacidade e cookies</li>
+            <li>Plano de resposta a incidentes</li>
+            <li>Apoio ao papel de encarregado (DPO)</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="n">02 /</span>
+          <h3>Contratos para startups</h3>
+          <p>Os documentos que sustentam a operação e a mesa societária, redigidos em linguagem que o time entende.</p>
+          <ul>
+            <li>Contrato SaaS, SLA e ordem de serviço</li>
+            <li>Termos de uso e contrato com usuário</li>
+            <li>NDA, vesting e acordo de sócios</li>
+            <li>Prestação de serviço e PJ</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="n">03 /</span>
+          <h3>Consumidor digital</h3>
+          <p>Como sua empresa se relaciona com quem compra online: regras de cobrança, cancelamento, suporte e publicidade.</p>
+          <ul>
+            <li>Revisão de fluxo de compra e checkout</li>
+            <li>Política de troca, reembolso e assinatura</li>
+            <li>Adequação de comunicação e publicidade</li>
+            <li>Atendimento a notificações de órgãos</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="n">04 /</span>
+          <h3>Marcas e propriedade intelectual</h3>
+          <p>Proteção do nome, do código e do conteúdo que a empresa produz — antes que alguém chegue primeiro.</p>
+          <ul>
+            <li>Busca de anterioridade e registro no INPI</li>
+            <li>Acompanhamento e defesa de oposições</li>
+            <li>Cessão de direitos autorais de software</li>
+            <li>Licenciamento e uso de terceiros</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="n">05 /</span>
+          <h3>Consultoria por assinatura</h3>
+          <p>Jurídico contínuo, com escopo combinado por escrito e canal direto — sem abrir chamado a cada dúvida pequena.</p>
+          <ul>
+            <li>Canal de mensagens com prazo de resposta</li>
+            <li>Reunião mensal de acompanhamento</li>
+            <li>Revisão recorrente de documentos</li>
+            <li>Alertas de mudanças normativas</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="assinatura" aria-labelledby="assinatura-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">03 /</span>
+        <h2 id="assinatura-title">Como funciona<br>a <em>assinatura</em></h2>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <span class="n">01</span>
+          <h3>Diagnóstico</h3>
+          <p>Uma conversa de 45 minutos para entender o produto, o modelo de receita e o que já existe de documento. Sai daí um mapa do que é urgente, do que é importante e do que pode esperar.</p>
+        </article>
+        <article class="step">
+          <span class="n">02</span>
+          <h3>Escopo e proposta</h3>
+          <p>Você recebe por escrito o que será feito, em que ordem, com quais prazos e qual o formato de honorários — dentro dos parâmetros da tabela da OAB. Nada começa sem aceite.</p>
+        </article>
+        <article class="step">
+          <span class="n">03</span>
+          <h3>Rotina jurídica</h3>
+          <p>Canal direto para dúvidas do dia a dia, revisão contínua de documentos e uma reunião mensal de acompanhamento. O jurídico deixa de ser emergência e vira rotina.</p>
+        </article>
+      </div>
+      <p class="note">Nota: esta página tem caráter meramente informativo, em conformidade com o Código de Ética e Disciplina da OAB e com o Provimento nº 205/2021. Não há oferta de serviços, captação de clientela, divulgação de honorários nem promessa de resultado. Cada caso é analisado individualmente.</p>
+    </div>
+  </section>
+
+  <section id="clientes" aria-labelledby="clientes-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">04 /</span>
+        <h2 id="clientes-title">Quem<br>trabalha conosco</h2>
+      </div>
+      <p class="sec-sub">Depoimentos de fundadores atendidos pelo escritório. Personagens fictícios, criados para esta demonstração.</p>
+      <div class="quotes">
+        <figure class="quote-card">
+          <blockquote>Chegamos com termos de uso copiados de um concorrente e uma rodada seed no horizonte. Em seis semanas tínhamos contrato SaaS, política de privacidade e o mapa de dados que o investidor pediu na due diligence.</blockquote>
+          <figcaption class="who">
+            <span class="ini" aria-hidden="true">MC</span>
+            <span><b>Mariana Coelho</b><span>CEO · Ravena Analytics</span></span>
+          </figcaption>
+        </figure>
+        <figure class="quote-card">
+          <blockquote>O que mudou foi o tempo de resposta. Antes eu esperava três dias por um parecer que travava o lançamento. Hoje mando a dúvida pelo canal de manhã e consigo decidir no mesmo dia.</blockquote>
+          <figcaption class="who">
+            <span class="ini" aria-hidden="true">TA</span>
+            <span><b>Thiago Aragão</b><span>Cofundador · Bloco Verde</span></span>
+          </figcaption>
+        </figure>
+        <figure class="quote-card">
+          <blockquote>A Helena senta com o time de produto, não só com o financeiro. Ela apontou coleta de dado desnecessária no cadastro antes do lançamento — o tipo de coisa que só se percebe olhando a tela junto.</blockquote>
+          <figcaption class="who">
+            <span class="ini" aria-hidden="true">JN</span>
+            <span><b>Juliana Nakamura</b><span>Fundadora · Ateliê Órbita</span></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">05 /</span>
+        <h2 id="faq-title">Perguntas<br>frequentes</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Minha empresa é pequena. Preciso mesmo me adequar à LGPD?</summary>
+          <div class="ans">A LGPD se aplica a qualquer atividade que trate dados pessoais, independentemente do porte. O que muda é a proporção da adequação: uma operação enxuta costuma precisar de um mapeamento simples, política de privacidade honesta e um plano básico de resposta a incidentes — não de um programa corporativo inteiro.</div>
+        </details>
+        <details>
+          <summary>Vocês atendem fora da Bahia?</summary>
+          <div class="ans">Sim. A inscrição é na OAB/BA e a atuação consultiva é nacional, com reuniões remotas. Em demandas que exijam atuação presencial em outro estado, trabalhamos com advogados correspondentes, sempre informado previamente ao cliente.</div>
+        </details>
+        <details>
+          <summary>Qual o valor da consultoria por assinatura?</summary>
+          <div class="ans">Honorários não são divulgados publicamente por vedação do Código de Ética da OAB. O valor é definido caso a caso, conforme complexidade e volume, e apresentado em proposta escrita após o diagnóstico inicial, observada a tabela de honorários da OAB/BA.</div>
+        </details>
+        <details>
+          <summary>Vocês garantem que eu não serei processado?</summary>
+          <div class="ans">Não. Nenhum advogado pode garantir resultado — e desconfie de quem garantir. O que a atuação preventiva faz é reduzir riscos conhecidos, documentar decisões e deixar a empresa em posição melhor caso um conflito apareça.</div>
+        </details>
+        <details>
+          <summary>Já tenho contratos prontos. Dá para só revisar?</summary>
+          <div class="ans">Dá, e é comum. Fazemos revisão pontual com parecer indicando o que está adequado, o que precisa de ajuste e o que representa risco relevante. Se depois disso fizer sentido um acompanhamento contínuo, conversamos.</div>
+        </details>
+        <details>
+          <summary>Como começa a conversa?</summary>
+          <div class="ans">Pelo WhatsApp ou e-mail. Você conta em poucas linhas o que a empresa faz e qual a dúvida; retornamos em até um dia útil para agendar o diagnóstico inicial, que é uma conversa exploratória sem compromisso de contratação.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" aria-labelledby="contato-title">
+    <div class="wrap">
+      <div class="cta-box">
+        <p class="tagline mono-label" style="background:#000;color:#FBFAF7;display:inline-block;padding:.45rem .8rem;margin-bottom:1.4rem">06 / Vamos conversar</p>
+        <h2 id="contato-title">Traz o<br>seu contexto.</h2>
+        <p>Conte o que sua empresa faz e onde o jurídico está apertando. A primeira conversa serve para entender o cenário e dizer com honestidade se somos o escritório certo para você.</p>
+        <div class="cta-actions">
+          <a class="btn invert" href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Prisma%20Jur%C3%ADdico%20e%20gostaria%20de%20agendar%20um%20diagn%C3%B3stico." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <a class="btn ghost" href="mailto:contato@prismajuridico.adv.br">contato@prismajuridico.adv.br</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Prisma Jurídico</h4>
+        <p>Sociedade individual de advocacia com atuação consultiva em direito digital, proteção de dados e propriedade intelectual.</p>
+        <p style="margin-top:.8rem">Av. das Palmeiras Altas, 1420, sala 907<br>Feira de Santana / BA — CEP 44050-000</p>
+      </div>
+      <div>
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#areas">Áreas de atuação</a></li>
+          <li><a href="#assinatura">Como funciona</a></li>
+          <li><a href="#clientes">Clientes</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="mailto:contato@prismajuridico.adv.br">contato@prismajuridico.adv.br</a></li>
+          <li><a href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Prisma%20Jur%C3%ADdico." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li>Seg. a sex., 9h às 18h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="oab">Helena Vasconcelos Braga — OAB/BA 148.902 · Prisma Jurídico Sociedade Individual de Advocacia — OAB/BA 7.311</p>
+      <p>Modelo demonstrativo — Desenvolvido por Ray — raimundojmdsn@gmail.com</p>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20Prisma%20Jur%C3%ADdico%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener" aria-label="Falar com o Prisma Jurídico no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#000" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.37c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.9 2.4 1.02 2.56c.12.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+</a>
+
+<script>
+  (function () {
+    var burger = document.getElementById('burger');
+    var menu = document.getElementById('mobile-menu');
+    burger.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

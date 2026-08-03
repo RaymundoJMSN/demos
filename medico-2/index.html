@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Marina Costa | Pediatra em Feira de Santana - Consultas com hora marcada</title>
+<meta name="description" content="Pediatra com atendimento acolhedor: puericultura, consultas de rotina, vacinação orientada, teleconsulta e acompanhamento do desenvolvimento. Unimed, Amil e particular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --creme:#FFF6EC;
+  --creme-2:#FFEFDF;
+  --coral:#FF6F61;
+  --coral-esc:#E14E40;
+  --teal:#2EC4B6;
+  --teal-esc:#1B8C82;
+  --sol:#FFC94A;
+  --tinta:#3B3038;
+  --tinta-suave:#6B5C63;
+  --branco:#FFFDFA;
+  --r-g:38px;
+  --r-m:24px;
+  --sombra:0 14px 34px rgba(59,48,56,.10);
+  --sombra-forte:0 22px 46px rgba(225,78,64,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+  margin:0;background:var(--creme);color:var(--tinta);
+  font-family:'Nunito',sans-serif;font-size:17px;line-height:1.7;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive;line-height:1.12;margin:0;font-weight:800;letter-spacing:-.01em}
+p{margin:0 0 1rem}
+a{color:inherit}
+img,svg{max-width:100%}
+.wrap{width:min(1140px,92vw);margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px dashed var(--coral);outline-offset:4px;border-radius:6px}
+
+/* ---------- blobs de fundo ---------- */
+.blobs{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:48% 52% 60% 40%/50% 44% 56% 50%;filter:blur(2px);opacity:.5;animation:morph 22s ease-in-out infinite}
+.b1{width:46vw;height:46vw;background:#FFD9D3;top:-14vw;right:-12vw}
+.b2{width:38vw;height:38vw;background:#C8F0EB;top:52vh;left:-16vw;animation-delay:-7s}
+.b3{width:30vw;height:30vw;background:#FFE9B8;top:135vh;right:-8vw;animation-delay:-13s}
+.b4{width:34vw;height:34vw;background:#FFDCC4;top:230vh;left:-12vw;animation-delay:-4s}
+@keyframes morph{
+  0%,100%{border-radius:48% 52% 60% 40%/50% 44% 56% 50%;transform:translate3d(0,0,0) rotate(0)}
+  33%{border-radius:62% 38% 36% 64%/44% 62% 38% 56%;transform:translate3d(2%,-3%,0) rotate(8deg)}
+  66%{border-radius:38% 62% 55% 45%/60% 36% 64% 40%;transform:translate3d(-2%,3%,0) rotate(-6deg)}
+}
+
+/* ---------- doodles ---------- */
+.doodle{position:absolute;pointer-events:none;opacity:.85;animation:flutua 7s ease-in-out infinite}
+@keyframes flutua{0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}50%{transform:translateY(-14px) rotate(calc(var(--rot,0deg) + 6deg))}}
+
+/* ---------- nav ---------- */
+header.topo{position:fixed;top:0;left:0;right:0;z-index:60;transition:.3s}
+header.topo.scrolled .barra{background:rgba(255,246,236,.92);backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(59,48,56,.09)}
+.barra{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1.1rem;margin-top:.8rem;border-radius:100px;transition:.3s}
+.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:'Baloo 2',cursive;font-weight:800;font-size:1.12rem;letter-spacing:-.02em}
+.marca .sel{width:40px;height:40px;flex:none;border-radius:50%;background:var(--coral);display:grid;place-items:center;color:#fff;font-size:1.05rem;box-shadow:0 6px 14px rgba(255,111,97,.4)}
+.marca small{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-esc);line-height:1}
+nav ul{display:flex;gap:.2rem;list-style:none;margin:0;padding:0;align-items:center}
+nav a{text-decoration:none;font-weight:700;font-size:.94rem;padding:.5rem .85rem;border-radius:100px;transition:.2s;display:block}
+nav a:hover{background:#fff;color:var(--coral-esc);transform:translateY(-2px)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border:0;cursor:pointer;text-decoration:none;
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:1.02rem;padding:.78rem 1.5rem;border-radius:100px;
+  background:var(--coral);color:#fff;box-shadow:0 10px 22px rgba(255,111,97,.35);transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 30px rgba(255,111,97,.45)}
+.btn.teal{background:var(--teal);box-shadow:0 10px 22px rgba(46,196,182,.35)}
+.btn.teal:hover{box-shadow:0 16px 30px rgba(46,196,182,.45)}
+.btn.vazio{background:#fff;color:var(--tinta);box-shadow:var(--sombra)}
+.hamb{display:none;width:46px;height:46px;border-radius:50%;border:0;background:#fff;box-shadow:var(--sombra);cursor:pointer;place-items:center}
+.hamb span{display:block;width:20px;height:2.5px;background:var(--tinta);border-radius:3px;margin:3.5px auto;transition:.25s}
+.hamb[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamb[aria-expanded="true"] span:nth-child(2){opacity:0}
+.hamb[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+@media(max-width:940px){
+  .hamb{display:grid}
+  nav{position:absolute;top:calc(100% + .5rem);left:0;right:0;background:var(--branco);border-radius:var(--r-m);
+    box-shadow:var(--sombra);padding:.7rem;display:none}
+  nav.aberto{display:block;animation:cai .3s ease}
+  nav ul{flex-direction:column;align-items:stretch;gap:.15rem}
+  nav a{padding:.8rem 1rem}
+  .nav-cta{display:none}
+}
+@keyframes cai{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+
+/* ---------- reveal ---------- */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.rev.on{opacity:1;transform:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:9.5rem 0 4.5rem}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:3rem;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border-radius:100px;padding:.45rem 1rem .45rem .5rem;
+  font-weight:700;font-size:.85rem;box-shadow:var(--sombra);margin-bottom:1.4rem}
+.pill b{background:var(--teal);color:#fff;border-radius:100px;padding:.15rem .7rem;font-size:.78rem;letter-spacing:.04em}
+h1{font-size:clamp(2.7rem,6.6vw,4.6rem)}
+h1 .risca{position:relative;color:var(--coral);white-space:nowrap}
+h1 .risca svg{position:absolute;left:0;right:0;bottom:-.16em;width:100%;height:.3em}
+.lead{font-size:1.16rem;color:var(--tinta-suave);max-width:34ch;margin-top:1.3rem}
+.acoes{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.mini-provas{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:2.6rem}
+.mini-provas div{font-size:.9rem;color:var(--tinta-suave);font-weight:600}
+.mini-provas strong{display:block;font-family:'Baloo 2',cursive;font-size:1.7rem;color:var(--teal-esc);line-height:1}
+
+.retrato{position:relative}
+.cartao-retrato{background:var(--branco);border-radius:var(--r-g);padding:2rem;box-shadow:var(--sombra);text-align:center;position:relative;z-index:2}
+.avatar{width:190px;height:190px;margin:0 auto 1.1rem;border-radius:50%;background:linear-gradient(150deg,#FFE1DC,#C8F0EB);display:grid;place-items:center;position:relative;overflow:hidden}
+.avatar .iniciais{font-family:'Baloo 2',cursive;font-size:4.2rem;color:var(--coral-esc);font-weight:800;letter-spacing:-.04em}
+.cartao-retrato h2{font-size:1.6rem}
+.crm{font-weight:700;color:var(--teal-esc);font-size:.9rem;letter-spacing:.06em;text-transform:uppercase}
+.selo{position:absolute;background:#fff;border-radius:20px;padding:.6rem .95rem;box-shadow:var(--sombra);font-weight:700;font-size:.85rem;display:flex;align-items:center;gap:.5rem;z-index:3;animation:flutua 6s ease-in-out infinite}
+.selo.s1{top:-14px;left:-18px}
+.selo.s2{bottom:26px;right:-22px;animation-delay:-3s}
+
+/* ---------- seções ---------- */
+section{position:relative;padding:5rem 0}
+.chapeu{font-weight:800;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:.5rem}
+h2.titulo{font-size:clamp(2rem,4.6vw,3.1rem);max-width:20ch}
+.sub{color:var(--tinta-suave);max-width:56ch;margin-top:.9rem}
+
+.card{background:var(--branco);border-radius:var(--r-g);padding:2rem;box-shadow:var(--sombra);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.card:hover{transform:translateY(-9px) rotate(-.7deg);box-shadow:0 26px 50px rgba(59,48,56,.14)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;align-items:center}
+
+.ico{width:62px;height:62px;border-radius:22px;display:grid;place-items:center;margin-bottom:1.1rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.card:hover .ico{transform:rotate(-10deg) scale(1.08)}
+.ico.c{background:#FFE1DC}.ico.t{background:#D3F3EF}.ico.s{background:#FFEFC7}
+.card h3{font-size:1.35rem;margin-bottom:.5rem}
+.card p{color:var(--tinta-suave);font-size:.98rem;margin:0}
+
+/* sobre */
+.sobre-bloco{background:var(--branco);border-radius:var(--r-g);padding:clamp(1.8rem,4vw,3.2rem);box-shadow:var(--sombra)}
+.lista-check{list-style:none;padding:0;margin:1.4rem 0 0;display:grid;gap:.8rem}
+.lista-check li{display:flex;gap:.75rem;align-items:flex-start;font-weight:600}
+.lista-check .tick{flex:none;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:.8rem;margin-top:2px}
+
+/* diferenciais */
+.dif{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.6rem}
+.dif .card{padding:1.6rem;text-align:center}
+.dif .num{font-family:'Baloo 2',cursive;font-size:2.1rem;color:var(--coral);line-height:1}
+
+/* depoimentos */
+.dep{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem}
+.dep .card{display:flex;flex-direction:column}
+.estrelas{color:var(--sol);letter-spacing:.15em;font-size:1.1rem}
+.dep blockquote{margin:.9rem 0 1.4rem;font-size:1.03rem;font-style:italic;color:var(--tinta)}
+.autor{display:flex;align-items:center;gap:.75rem;margin-top:auto}
+.autor .bola{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:'Baloo 2',cursive;font-weight:700;color:#fff;flex:none}
+.autor small{display:block;color:var(--tinta-suave);font-weight:600}
+
+/* praticas */
+.praticas{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2.6rem}
+.horarios{list-style:none;padding:0;margin:1rem 0 0}
+.horarios li{display:flex;justify-content:space-between;gap:1rem;padding:.62rem 0;border-bottom:1px dashed #EBD9C9;font-weight:600}
+.horarios li:last-child{border:0}
+.horarios span{color:var(--tinta-suave);font-weight:700}
+.convenios{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+.convenios li{list-style:none;background:var(--creme-2);border-radius:100px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem}
+.mapa{border-radius:var(--r-m);overflow:hidden;margin-top:1.2rem;background:#EAF6F4;height:170px;position:relative}
+
+/* cta final */
+.cta-final{background:var(--coral);color:#fff;border-radius:var(--r-g);padding:clamp(2.2rem,5vw,4rem);text-align:center;position:relative;overflow:hidden}
+.cta-final h2{font-size:clamp(2rem,5vw,3.2rem);max-width:100%;margin-inline:auto}
+.cta-final p{color:rgba(255,255,255,.92);max-width:48ch;margin:1rem auto 2rem}
+.cta-final .btn{background:#fff;color:var(--coral-esc);box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.cta-final .btn.teal{background:var(--teal-esc);color:#fff}
+.cta-final::after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.10);right:-110px;bottom:-150px}
+
+footer{padding:3rem 0 6rem;text-align:center;color:var(--tinta-suave);font-size:.92rem}
+footer .marca{justify-content:center;margin-bottom:1rem}
+footer a{color:var(--teal-esc);font-weight:700}
+
+/* whatsapp */
+.zap{position:fixed;right:18px;bottom:18px;z-index:80;width:62px;height:62px;border-radius:50%;background:#25D366;
+  display:grid;place-items:center;box-shadow:0 12px 28px rgba(37,211,102,.45);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.zap:hover{transform:scale(1.1) rotate(6deg)}
+.zap::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;opacity:.5;animation:pulso 2.4s ease-out infinite;z-index:-1}
+@keyframes pulso{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.75);opacity:0}}
+
+@media(max-width:940px){
+  .hero{padding:7.5rem 0 3rem}
+  .hero-grid,.grid-2,.praticas{grid-template-columns:1fr;gap:2.4rem}
+  .grid-3,.dep{grid-template-columns:1fr}
+  .dif{grid-template-columns:1fr 1fr}
+  .lead{max-width:none}
+  .selo.s2{right:0}
+}
+@media(max-width:520px){
+  body{font-size:16px}
+  section{padding:3.6rem 0}
+  .dif{grid-template-columns:1fr}
+  .acoes .btn{width:100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto}
+  .rev{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="blobs" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+</div>
+
+<header class="topo" id="topo">
+  <div class="wrap" style="position:relative">
+    <div class="barra">
+      <a class="marca" href="#topo" aria-label="Dra. Marina Costa, início">
+        <span class="sel" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.7-9.3-9.2C1.2 8 3.4 4.6 6.9 4.6c2 0 3.6 1.1 4.4 2.4l.7 1 .7-1c.8-1.3 2.4-2.4 4.4-2.4 3.5 0 5.7 3.4 4.2 7.2C19.5 16.3 12 21 12 21z"/></svg>
+        </span>
+        <span>Dra. Marina Costa<small>Pediatria</small></span>
+      </a>
+      <nav id="menu" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#depoimentos">Famílias</a></li>
+          <li><a href="#praticas">Consultório</a></li>
+        </ul>
+      </nav>
+      <a class="btn nav-cta" href="#agendar">Agendar consulta</a>
+      <button class="hamb" id="hamb" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <!-- doodles -->
+  <svg class="doodle" style="--rot:-8deg;top:16%;left:2%;width:44px" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5l2.6 6h6.3l-5.1 3.9 2 6.3L12 15l-5.8 3.7 2-6.3-5.1-3.9h6.3z" fill="#FFC94A"/></svg>
+  <svg class="doodle" style="--rot:6deg;top:70%;left:6%;width:56px;animation-delay:-2s" viewBox="0 0 40 26" fill="none" aria-hidden="true"><path d="M10 24a7 7 0 010-14 9 9 0 0117.2-2A6.5 6.5 0 1130 24z" fill="#C8F0EB"/></svg>
+  <svg class="doodle" style="--rot:14deg;top:26%;right:4%;width:40px;animation-delay:-4s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.7-9.3-9.2C1.2 8 3.4 4.6 6.9 4.6c2 0 3.6 1.1 4.4 2.4l.7 1 .7-1c.8-1.3 2.4-2.4 4.4-2.4 3.5 0 5.7 3.4 4.2 7.2C19.5 16.3 12 21 12 21z" fill="#FF6F61" opacity=".75"/></svg>
+  <svg class="doodle" style="--rot:-22deg;bottom:8%;right:12%;width:58px;animation-delay:-5s" viewBox="0 0 48 22" aria-hidden="true"><rect x="1" y="1" width="46" height="20" rx="10" fill="#FFD9A8" stroke="#F0B979" stroke-width="2"/><rect x="15" y="4" width="18" height="14" rx="4" fill="#FFF1DC"/><circle cx="20" cy="8" r="1.4" fill="#E8B87F"/><circle cx="28" cy="8" r="1.4" fill="#E8B87F"/><circle cx="20" cy="14" r="1.4" fill="#E8B87F"/><circle cx="28" cy="14" r="1.4" fill="#E8B87F"/></svg>
+
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill rev"><b>Agenda aberta</b> Vagas para esta semana</span>
+      <h1 class="rev">Cuidado de perto para quem <span class="risca">cresce depressa<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8C40 3 90 2 198 6" stroke="#FFC94A" stroke-width="6" fill="none" stroke-linecap="round"/></svg></span>.</h1>
+      <p class="lead rev">Do primeiro choro à primeira mochila de escola: consultas sem pressa, orientação clara para o dia a dia e um WhatsApp que responde de verdade entre uma consulta e outra.</p>
+      <div class="acoes rev">
+        <a class="btn" href="#agendar">Agendar consulta</a>
+        <a class="btn vazio" href="#servicos">Ver serviços</a>
+      </div>
+      <div class="mini-provas rev">
+        <div><strong>12 anos</strong>de pediatria</div>
+        <div><strong>+2.400</strong>crianças acompanhadas</div>
+        <div><strong>40 min</strong>de consulta, no mínimo</div>
+      </div>
+    </div>
+
+    <div class="retrato rev">
+      <div class="selo s1">🍼 Puericultura</div>
+      <div class="selo s2">💬 Teleconsulta</div>
+      <div class="cartao-retrato">
+        <div class="avatar" aria-hidden="true"><span class="iniciais">MC</span></div>
+        <h2>Dra. Marina Costa</h2>
+        <p class="crm">CRM-BA 00000 &middot; RQE 0000</p>
+        <p style="color:var(--tinta-suave);font-size:.97rem;margin:.6rem 0 0">Pediatra geral com foco em puericultura e desenvolvimento infantil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="wrap">
+    <div class="sobre-bloco rev">
+      <div class="grid-2">
+        <div>
+          <p class="chapeu">Quem cuida</p>
+          <h2 class="titulo">Uma pediatra que explica, escuta e devolve a calma</h2>
+          <p class="sub">Formada em Medicina pela Universidade Estadual de Feira de Santana, com residência em Pediatria e título de especialista pela Sociedade Brasileira de Pediatria. Desde 2013 atendo crianças e adolescentes de 0 a 15 anos, e continuo achando que metade da consulta é ouvir a mãe e o pai.</p>
+          <p class="sub">Meu compromisso é simples: você sai do consultório sabendo exatamente o que fazer, por quê, e o que observar em casa. Sem jargão, sem pressa, sem aquele "é normal" solto no ar.</p>
+        </div>
+        <div>
+          <ul class="lista-check">
+            <li><span class="tick" aria-hidden="true">✓</span><span>Consultas de <strong>40 a 60 minutos</strong> — tempo para tirar todas as dúvidas.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span>Orientação por WhatsApp entre consultas, em horário comercial.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span>Apoio ao aleitamento materno e à introdução alimentar.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span>Consultório preparado para receber criança: brinquedo, livro e paciência.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span>Relatórios e receitas digitais, enviados no mesmo dia.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="wrap">
+    <p class="chapeu rev">O que a gente cuida</p>
+    <h2 class="titulo rev">Acompanhamento completo, do recém-nascido ao adolescente</h2>
+    <p class="sub rev">Cada atendimento inclui exame físico completo, avaliação de crescimento, revisão da caderneta e um plano escrito para levar para casa.</p>
+
+    <div class="grid-3">
+      <article class="card rev">
+        <div class="ico c" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E14E40" stroke-width="2" stroke-linecap="round"><path d="M6 20v-6a6 6 0 1112 0v6"/><circle cx="12" cy="6" r="3"/><path d="M4 20h16"/></svg></div>
+        <h3>Puericultura</h3>
+        <p>Consultas seriadas do nascimento aos 2 anos: peso, altura, sono, mamada, cólica e cada marco novo acompanhado de perto.</p>
+      </article>
+      <article class="card rev">
+        <div class="ico t" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1B8C82" stroke-width="2" stroke-linecap="round"><path d="M3 12h4l2 5 4-11 2 6h6"/></svg></div>
+        <h3>Consultas de rotina</h3>
+        <p>Check-ups periódicos, dúvidas do dia a dia e atendimento para febre, tosse, alergias e as queixas mais comuns da infância.</p>
+      </article>
+      <article class="card rev">
+        <div class="ico s" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C58A12" stroke-width="2" stroke-linecap="round"><path d="M17 3l4 4M19 5l-9 9-4 1 1-4 9-9z"/><path d="M8 15l1 4 4-1"/></svg></div>
+        <h3>Vacinação orientada</h3>
+        <p>Revisão da caderneta, calendário personalizado, orientação sobre vacinas do SUS e da rede privada — e o que esperar depois.</p>
+      </article>
+      <article class="card rev">
+        <div class="ico t" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1B8C82" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="15" height="12" rx="3"/><path d="M17 9l5-3v10l-5-3"/></svg></div>
+        <h3>Teleconsulta</h3>
+        <p>Retornos, resultados de exames e orientações que não exigem exame físico, por vídeo, sem tirar a criança de casa.</p>
+      </article>
+      <article class="card rev">
+        <div class="ico c" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E14E40" stroke-width="2" stroke-linecap="round"><path d="M4 20V9M10 20V5M16 20v-8M22 20V3"/></svg></div>
+        <h3>Desenvolvimento</h3>
+        <p>Avaliação de linguagem, motricidade, comportamento e aprendizagem, com encaminhamento certo quando algo precisa de atenção.</p>
+      </article>
+      <article class="card rev" style="background:linear-gradient(160deg,#D3F3EF,#FFEFC7)">
+        <div class="ico" style="background:#fff" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E14E40" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
+        <h3>Não achou o que precisa?</h3>
+        <p style="color:var(--tinta)">Manda uma mensagem contando o caso. Se não for comigo, indico o colega certo — sem custo nenhum.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="wrap">
+    <p class="chapeu rev">Por que as famílias ficam</p>
+    <h2 class="titulo rev">Um jeito de atender pensado para pais cansados</h2>
+    <div class="dif">
+      <div class="card rev"><p class="num">01</p><h3>Hora marcada de verdade</h3><p>Agenda com folga entre pacientes. A sala de espera não é fila.</p></div>
+      <div class="card rev"><p class="num">02</p><h3>Plano por escrito</h3><p>Você sai com um resumo do que foi conversado e o que fazer em casa.</p></div>
+      <div class="card rev"><p class="num">03</p><h3>Canal aberto</h3><p>Dúvida curta depois da consulta? Responde por WhatsApp, sem nova cobrança.</p></div>
+      <div class="card rev"><p class="num">04</p><h3>Ambiente amigo</h3><p>Consultório colorido, brinquedos limpos e exame feito no colo quando precisa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="wrap">
+    <p class="chapeu rev">Famílias atendidas</p>
+    <h2 class="titulo rev">O que mães e pais contam</h2>
+    <div class="dep">
+      <article class="card rev">
+        <p class="estrelas" aria-label="Avaliação 5 de 5">★★★★★</p>
+        <blockquote>"Cheguei na primeira consulta chorando de exaustão com a amamentação. Saí com um plano de três passos e o telefone dela. Em uma semana o Théo estava mamando direito."</blockquote>
+        <div class="autor"><span class="bola" style="background:var(--coral)" aria-hidden="true">CR</span><div><strong>Carla Ribeiro</strong><small>mãe do Théo, 4 meses</small></div></div>
+      </article>
+      <article class="card rev">
+        <p class="estrelas" aria-label="Avaliação 5 de 5">★★★★★</p>
+        <blockquote>"Ela explica para a criança, não só para o adulto. Minha filha de 6 anos entra no consultório sozinha e sai contando o que ela aprendeu sobre o próprio corpo."</blockquote>
+        <div class="autor"><span class="bola" style="background:var(--teal)" aria-hidden="true">DA</span><div><strong>Diego Almeida</strong><small>pai da Alice, 6 anos</small></div></div>
+      </article>
+      <article class="card rev">
+        <p class="estrelas" aria-label="Avaliação 5 de 5">★★★★★</p>
+        <blockquote>"A teleconsulta salvou nosso mês. Resultado de exame revisto em vinte minutos, sem tirar o bebê de casa no frio. E ainda ajustou a vacina que estava atrasada."</blockquote>
+        <div class="autor"><span class="bola" style="background:#C58A12" aria-hidden="true">PM</span><div><strong>Priscila Matos</strong><small>mãe do Bento, 1 ano</small></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PRÁTICAS -->
+<section id="praticas">
+  <div class="wrap">
+    <p class="chapeu rev">Informações práticas</p>
+    <h2 class="titulo rev">Onde, quando e como atender</h2>
+    <div class="praticas">
+      <div class="card rev">
+        <h3>Consultório</h3>
+        <p style="margin-top:.6rem">Av. das Acácias, 480 — sala 302<br>Edifício Vila Serena · Santa Mônica<br>Feira de Santana / BA · CEP 44000-000</p>
+        <p style="margin:0"><strong>Telefone:</strong> (75) 99999-9999</p>
+        <p><strong>E-mail:</strong> contato@dramarinacosta.com.br</p>
+        <div class="mapa" role="img" aria-label="Mapa ilustrativo da localização do consultório">
+          <svg viewBox="0 0 400 170" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="170" fill="#EAF6F4"/>
+            <path d="M-10 120 L410 70" stroke="#fff" stroke-width="16"/>
+            <path d="M120 -10 L160 180" stroke="#fff" stroke-width="12"/>
+            <path d="M290 -10 L260 180" stroke="#fff" stroke-width="9"/>
+            <rect x="20" y="18" width="70" height="46" rx="8" fill="#D6EDE9"/>
+            <rect x="200" y="110" width="80" height="50" rx="8" fill="#D6EDE9"/>
+            <rect x="310" y="12" width="70" height="44" rx="8" fill="#D6EDE9"/>
+            <circle cx="196" cy="88" r="26" fill="#FF6F61" opacity=".18"/>
+            <path d="M196 68a13 13 0 00-13 13c0 9.5 13 22 13 22s13-12.5 13-22a13 13 0 00-13-13z" fill="#FF6F61"/>
+            <circle cx="196" cy="81" r="4.6" fill="#fff"/>
+          </svg>
+        </div>
+      </div>
+      <div class="card rev">
+        <h3>Horários de atendimento</h3>
+        <ul class="horarios">
+          <li>Segunda a quinta <span>08h — 12h · 14h — 18h</span></li>
+          <li>Sexta-feira <span>08h — 13h</span></li>
+          <li>Sábado (teleconsulta) <span>09h — 12h</span></li>
+          <li>Domingo e feriados <span>Fechado</span></li>
+        </ul>
+        <h3 style="margin-top:1.8rem;font-size:1.15rem">Convênios aceitos</h3>
+        <ul class="convenios">
+          <li>Unimed</li><li>Amil</li><li>Particular</li>
+        </ul>
+        <p style="margin-top:1rem;font-size:.92rem;color:var(--tinta-suave)">Atendimento particular com recibo para reembolso. Consulte seu plano sobre cobertura de teleconsulta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="agendar">
+  <div class="wrap">
+    <div class="cta-final rev">
+      <h2>Vamos marcar a consulta do seu filho?</h2>
+      <p>Responder uma mensagem leva menos tempo do que aquela dúvida rodando na sua cabeça desde ontem. Chame no WhatsApp e a gente encontra o melhor horário.</p>
+      <div class="acoes" style="justify-content:center">
+        <a class="btn" href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20Dra.%20Marina!%20Gostaria%20de%20agendar%20uma%20consulta%20pedi%C3%A1trica." target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
+        <a class="btn teal" href="tel:+5575999999999">Ligar para o consultório</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="marca" href="#topo">
+      <span class="sel" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.7-9.3-9.2C1.2 8 3.4 4.6 6.9 4.6c2 0 3.6 1.1 4.4 2.4l.7 1 .7-1c.8-1.3 2.4-2.4 4.4-2.4 3.5 0 5.7 3.4 4.2 7.2C19.5 16.3 12 21 12 21z"/></svg>
+      </span>
+      <span>Dra. Marina Costa<small>CRM-BA 00000</small></span>
+    </a>
+    <p>Modelo demonstrativo &middot; Desenvolvido por Ray &middot; <a href="mailto:raimundojmdsn@gmail.com">raimundojmdsn@gmail.com</a></p>
+    <p style="font-size:.82rem">Conteúdo, endereço e registros são fictícios, usados apenas para demonstração de design.</p>
+  </div>
+</footer>
+
+<a class="zap" href="https://wa.me/5575999999999?text=Ol%C3%A1%2C%20Dra.%20Marina!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" aria-label="Falar com o consultório pelo WhatsApp">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.2s-.8 1-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3zM12 2A10 10 0 002.5 16.2L2 22l5.9-1.5A10 10 0 1012 2z"/></svg>
+</a>
+
+<script>
+(function(){
+  var hamb=document.getElementById('hamb'),menu=document.getElementById('menu'),topo=document.getElementById('topo');
+
+  hamb.addEventListener('click',function(){
+    var aberto=menu.classList.toggle('aberto');
+    hamb.setAttribute('aria-expanded',aberto?'true':'false');
+    hamb.setAttribute('aria-label',aberto?'Fechar menu de navegação':'Abrir menu de navegação');
+  });
+  menu.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){menu.classList.remove('aberto');hamb.setAttribute('aria-expanded','false');}
+  });
+
+  addEventListener('scroll',function(){
+    topo.classList.toggle('scrolled',scrollY>20);
+  },{passive:true});
+
+  // staggered reveal
+  var itens=document.querySelectorAll('.rev');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entradas){
+      entradas.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var irmaos=Array.prototype.slice.call(en.target.parentNode.querySelectorAll(':scope > .rev'));
+        en.target.style.transitionDelay=(Math.max(0,irmaos.indexOf(en.target))*90)+'ms';
+        en.target.classList.add('on');
+        io.unobserve(en.target);
+      });
+    },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+    itens.forEach(function(el){io.observe(el);});
+  }else{
+    itens.forEach(function(el){el.classList.add('on');});
+  }
+})();
+</script>
+</body>
+</html>
