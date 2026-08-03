@@ -330,6 +330,12 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:56px 0 4
 }
 .float:hover{transform:translateY(-3px) scale(1.02);background:var(--ember-2)}
 .float span{display:none}
+/* no celular o flutuante ficava por cima do lado direito dos botoes "Quero este":
+   encolhe e recua pro canto pra nao roubar o toque do CTA do card */
+@media (max-width:899px){
+  .float{right:10px;bottom:10px;padding:11px;box-shadow:0 10px 26px -12px rgba(255,122,47,.8),0 3px 10px rgba(0,0,0,.55)}
+  .float svg{width:22px;height:22px}
+}
 
 /* ============ entrada (failsafe) ============ */
 @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
@@ -769,7 +775,7 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:56px 0 4
         </details>
         <details>
           <summary>Como funciona o pagamento?</summary>
-          <div class="a">Metade quando você aprova a prévia e metade na entrega, com o site já no ar. Aceito Pix ou cartão (dá pra parcelar no cartão). Nada de assinatura obrigatória: a mensalidade de R$ 89 é só se você quiser que eu cuide da hospedagem e do suporte.</div>
+          <div class="a">Metade quando você aprova a prévia e metade na entrega, com o site já no ar. Pagamento por Pix. Nada de assinatura obrigatória: a mensalidade de R$ 89 é só se você quiser que eu cuide da hospedagem e do suporte.</div>
         </details>
       </div>
     </div>
