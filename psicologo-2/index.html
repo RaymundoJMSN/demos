@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E">
 <title>Ponto de Escuta — Terapia online para quem tem pouco tempo</title>
 <meta name="description" content="Consultório de psicologia 100% online. Sessões de 50 minutos por vídeo, com horários que cabem na sua rotina. Modelo demonstrativo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,6 +67,9 @@ section{padding:5.5rem 0;position:relative}
 .menu a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--azul);transition:right .28s}
 .menu a:hover{color:var(--tinta)}
 .menu a:hover::after{right:0}
+/* o seletor .menu a vence .btn e pintava o CTA de escuro sobre azul escuro */
+.menu a.btn,.menu a.btn:hover{color:var(--papel)}
+.menu a.btn::after{display:none}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
   font-family:var(--sans);font-size:.92rem;font-weight:500;letter-spacing:.01em;
@@ -773,5 +777,6 @@ footer nav a:hover{color:var(--areia)}
   addEventListener('load', function () { setTimeout(revelar, 400); });
 })();
 </script>
+<a href="https://portifolio.raynathus.com.br/" style="position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:999px;background:rgba(12,11,10,.88);color:#fff;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.4);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)" aria-label="Voltar para o portfólio com todos os modelos">← Outros modelos</a>
 </body>
 </html>
