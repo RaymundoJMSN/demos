@@ -83,20 +83,13 @@ grep -c -E 'lang="pt-BR"|name="viewport"|wa\.me/5575999999999|Modelo demonstrati
 
 (≥5 ocorrências = convenções básicas ok; painel e hub não precisam do wa.me flutuante.)
 
-- [x] medico-1 — feito e verificado (Fable, ~70k tokens)
-- [x] medico-2 — feito (Opus)
-- [x] dentista-1 — feito (Opus)
-- [ ] dentista-2
-- [ ] advogado-1
-- [ ] advogado-2
-- [ ] psicologo-1
-- [ ] psicologo-2
-- [ ] cardapio
-- [ ] catalogo
-- [ ] painel
-- [ ] hub (raiz — por último, linka os outros 11)
+**TUDO CONCLUÍDO E PUBLICADO** em 2026-08-03. As 12 páginas estão no ar (HTTP 200 verificado) em `https://raymundojmsn.github.io/demos/`, repo `RaymundoJMSN/demos`, Pages ativo (branch main, raiz).
 
-Depois de todas: Task 13 (deploy) abaixo. Pages já confirmado: usuário gh = `RaymundoJMSN`, auth ok.
+- [x] medico-1, medico-2, dentista-1, dentista-2, advogado-1, advogado-2
+- [x] psicologo-1, psicologo-2, cardapio, catalogo, painel, hub (raiz)
+- [x] Deploy: repo criado, push, Pages built, 12/12 respondendo 200
+
+Para republicar após editar qualquer página: `git add -A && git commit -m "..." && git push` (Pages rebuilda sozinho em ~1 min).
 
 ## Fora de escopo (YAGNI)
 
