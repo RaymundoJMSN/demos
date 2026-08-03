@@ -299,6 +299,10 @@ section{position:relative;scroll-margin-top:74px}
 }
 .faq details[open] summary::after{transform:rotate(90deg);background:linear-gradient(var(--ember),var(--ember)) center/13px 1.6px no-repeat}
 .faq .a{padding:0 40px 24px 0;color:var(--muted);font-size:.99rem}
+/* resposta desce suave ao abrir (fechamento de <details> nao anima sem JS, YAGNI) */
+.faq details[open] .a{animation:faq-desce .38s var(--ease) both}
+@keyframes faq-desce{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.faq details[open] .a{animation:none}}
 
 /* ============ cta final + rodapé ============ */
 .final{position:relative;overflow:hidden;text-align:center;padding:100px 0}
