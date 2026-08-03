@@ -731,5 +731,16 @@ footer.site a:hover{color:var(--gold)}
 })();
 </script>
 
+<script>
+/* failsafe: garante conteudo visivel mesmo sem IntersectionObserver (iframe, aba em segundo plano, JS lento) */
+(function () {
+  var revelar = function () {
+    document.querySelectorAll('.reveal:not(.in)').forEach(function (e) { e.classList.add('in'); });
+  };
+  if (window.self !== window.top) revelar();          /* dentro de iframe: mostra na hora */
+  setTimeout(revelar, 1200);                           /* rede lenta ou observer que nao disparou */
+  addEventListener('load', function () { setTimeout(revelar, 400); });
+})();
+</script>
 </body>
 </html>

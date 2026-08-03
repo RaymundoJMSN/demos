@@ -476,5 +476,16 @@ footer.pe{padding:44px 0 118px;border-top:1px solid var(--linha);font-size:.9rem
   els.forEach(function(el){io.observe(el);});
 })();
 </script>
+<script>
+/* failsafe: garante conteudo visivel mesmo sem IntersectionObserver (iframe, aba em segundo plano, JS lento) */
+(function () {
+  var revelar = function () {
+    document.querySelectorAll('.rv:not(.in)').forEach(function (e) { e.classList.add('in'); });
+  };
+  if (window.self !== window.top) revelar();          /* dentro de iframe: mostra na hora */
+  setTimeout(revelar, 1200);                           /* rede lenta ou observer que nao disparou */
+  addEventListener('load', function () { setTimeout(revelar, 400); });
+})();
+</script>
 </body>
 </html>
