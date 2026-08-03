@@ -895,6 +895,17 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:56px 0 4
     alvos.forEach(function(el){ io.observe(el); });
   }
   setTimeout(revelarTudo, 1200);
+
+  /* ---- failsafe do hero: se a animacao de entrada nao rodar (iframe, aba em
+     segundo plano, navegador antigo), o conteudo nunca pode ficar invisivel ---- */
+  setTimeout(function(){
+    var topo = document.querySelector(".hero .a2") || document.querySelector(".hero h1");
+    if (topo && getComputedStyle(topo).opacity === "0") {
+      var s = document.createElement("style");
+      s.textContent = ".a1,.a2,.a3,.a4,.a5,.a6{animation:none!important;opacity:1!important;transform:none!important}";
+      document.head.appendChild(s);
+    }
+  }, 1500);
 })();
 </script>
 </body>
