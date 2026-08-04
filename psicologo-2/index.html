@@ -100,6 +100,9 @@ section{padding:5.5rem 0;position:relative}
   border-bottom:1px solid var(--linha);color:var(--tinta);
 }
 .drawer .btn{margin:1.2rem 1.5rem 1.6rem;width:calc(100% - 3rem)}
+/* mesma armadilha do .menu a acima: .drawer a e mais especifico que .btn e
+   escurecia o texto do CTA, deixando quase-preto sobre azul (2.6:1) */
+.drawer a.btn{color:var(--papel)}
 
 /* ---------- hero ---------- */
 .hero{padding:8.5rem 0 4rem;overflow:hidden}

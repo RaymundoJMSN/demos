@@ -37,7 +37,7 @@ img,svg{display:block;max-width:100%}
 header.nav{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--linha)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;font-size:1.22rem;letter-spacing:-.03em;text-decoration:none}
-.logo small{font-weight:300;color:var(--azul)}
+.logo small{font-weight:300;color:var(--azul-esc)}
 .nav-links{display:none}
 .nav-links a{text-decoration:none;font-size:.95rem;color:var(--tinta-mid);padding:6px 0;position:relative}
 .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--azul);transition:right .28s ease}
@@ -64,6 +64,8 @@ header.nav{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(255,25
 .drawer.open{display:block}
 .drawer a{display:block;text-decoration:none;font-family:var(--disp);font-size:1.15rem;padding:12px 0;border-bottom:1px solid var(--linha);color:var(--tinta)}
 .drawer .btn{margin-top:16px;width:100%;justify-content:center}
+/* .drawer a e mais especifico que .btn-p e escurecia o texto do CTA (2.95:1) */
+.drawer a.btn-p{color:#fff}
 
 /* hero */
 main{padding-top:68px}
@@ -71,7 +73,7 @@ main{padding-top:68px}
 .tag{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
   color:var(--azul-esc);background:#EAF7FE;border:1px solid #CDEBFB;padding:7px 15px;border-radius:999px}
 .hero h1{font-size:clamp(2.6rem,10vw,5.6rem);font-weight:700;margin:22px 0 0}
-.hero h1 em{font-style:normal;font-weight:300;color:var(--azul)}
+.hero h1 em{font-style:normal;font-weight:300;color:var(--azul-esc)}
 .hero p.lead{font-size:1.12rem;color:var(--tinta-mid);max-width:52ch;margin-top:22px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .hero-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px;background:var(--linha);border:1px solid var(--linha);border-radius:18px;overflow:hidden}
@@ -86,9 +88,11 @@ main{padding-top:68px}
 
 section{padding:82px 0;position:relative}
 .sec-alt{background:var(--nevoa);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
-.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--menta-esc);margin-bottom:14px}
+/* --menta-esc (#3FBFA6) dava 2.2:1 no texto pequeno; #177A6A e a mesma familia
+   de cor com 4.9:1 sobre o branco e sobre a nevoa */
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#177A6A;margin-bottom:14px}
 h2.tit{font-size:clamp(2rem,6.5vw,3.4rem);font-weight:600;max-width:16ch}
-h2.tit em{font-style:normal;color:var(--azul)}
+h2.tit em{font-style:normal;color:var(--azul-esc)}
 .sub{color:var(--tinta-mid);margin-top:18px;max-width:58ch}
 
 /* sobre */
@@ -133,7 +137,7 @@ h2.tit em{font-style:normal;color:var(--azul)}
 .depo .aspas{font-family:var(--disp);font-size:3.4rem;line-height:.7;color:var(--menta);display:block;margin-bottom:10px}
 .depo p{font-size:1.03rem}
 .depo footer{margin-top:18px;font-size:.88rem;color:var(--tinta-mid);font-weight:700;letter-spacing:.04em}
-.estrelas{color:var(--azul);letter-spacing:3px;font-size:.9rem;margin-top:14px}
+.estrelas{color:var(--azul-esc);letter-spacing:3px;font-size:.9rem;margin-top:14px}
 
 /* info */
 .info-grid{display:grid;gap:30px;margin-top:44px}
@@ -349,19 +353,19 @@ footer.pe{padding:44px 0 118px;border-top:1px solid var(--linha);font-size:.9rem
         <article class="dent rv">
           <div class="avatar" style="background:linear-gradient(140deg,#0EA5E9,#0369A1)" aria-hidden="true">MA</div>
           <h3>Dra. Mariana Alcântara</h3>
-          <p class="cro">CRO-BA 0000 · Ortodontia</p>
+          <p class="cro">CRO-BA 0001 · Ortodontia</p>
           <p>Responsável técnica da clínica. Cuida do planejamento ortodôntico de adultos e adolescentes, com foco em alinhadores e casos de mordida cruzada.</p>
         </article>
         <article class="dent rv">
           <div class="avatar" style="background:linear-gradient(140deg,#3FBFA6,#9EE7D8)" aria-hidden="true">RN</div>
           <h3>Dr. Rafael Nogueira</h3>
-          <p class="cro">CRO-BA 0000 · Implantodontia</p>
+          <p class="cro">CRO-BA 0002 · Implantodontia</p>
           <p>Cirurgias guiadas, enxertos e próteses sobre implante. É quem explica o passo a passo até o paciente perder o medo da palavra cirurgia.</p>
         </article>
         <article class="dent rv">
           <div class="avatar" style="background:linear-gradient(140deg,#0B1B26,#3C5563)" aria-hidden="true">CB</div>
           <h3>Dra. Camila Bittencourt</h3>
-          <p class="cro">CRO-BA 0000 · Odontopediatria</p>
+          <p class="cro">CRO-BA 0003 · Odontopediatria</p>
           <p>Atende crianças a partir do primeiro dentinho. Trabalha com abordagem lúdica e orientação de rotina de escovação junto com a família.</p>
         </article>
       </div>

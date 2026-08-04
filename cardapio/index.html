@@ -148,7 +148,9 @@ section[id]{scroll-margin-top:78px}
   padding:18px 18px 16px;
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
 }
-.item:hover{transform:translateY(-3px);border-color:rgba(255,201,64,.4);box-shadow:0 14px 34px rgba(0,0,0,.45)}
+/* sem levantar/sombrear: o card nao e clicavel, e subir no hover fazia todo
+   mundo tentar clicar no item. So a borda destaca, como ajuda de leitura. */
+.item:hover{border-color:rgba(255,201,64,.4)}
 .item-top{display:flex;align-items:baseline;gap:12px}
 .item h3{font-size:1.55rem;flex:1;color:var(--creme)}
 .preco{

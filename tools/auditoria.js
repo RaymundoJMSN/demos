@@ -61,10 +61,17 @@
       var bi = cs.backgroundImage;
       if (bi && bi !== 'none') {
         if (bi.indexOf('gradient') >= 0) {
-          var g = rgb(bi);
-          if (g) return g;
+          // Só vale a parada de cor que realmente cobre o que está atrás. Textura
+          // decorativa (rgba(...,.05)) não é fundo — continua subindo, senão o
+          // texto acaba comparado com ele mesmo e dá 1.00:1.
+          var paradas = bi.match(/rgba?\([^)]+\)/g) || [];
+          for (var i = 0; i < paradas.length; i++) {
+            var g = rgb(paradas[i]);
+            if (g && g.a > 0.85) return g;
+          }
+        } else {
+          return null; // imagem de fundo: não dá pra medir, melhor não chutar
         }
-        return null; // imagem de fundo: não dá pra medir, melhor não chutar
       }
       n = n.parentElement;
     }
@@ -85,8 +92,10 @@
       try { regras = folha.cssRules; } catch (e) { return; }
       Array.prototype.forEach.call(regras || [], function (r) {
         if (!r.selectorText || r.selectorText.indexOf(':hover') < 0) return;
+        // Só levantar/sombrear promete clique. Mudar só o fundo é auxílio de
+        // leitura (linha de tabela, item de lista) e não é falsa promessa.
         var s = r.style;
-        if (!(s.transform || s.boxShadow || s.borderColor || s.backgroundColor || s.cursor)) return;
+        if (!(s.transform || s.boxShadow || s.cursor)) return;
         r.selectorText.split(',').forEach(function (sel) {
           if (sel.indexOf(':hover') < 0) return;
           var base = sel.replace(/:hover/g, '').trim();
@@ -96,14 +105,20 @@
           Array.prototype.forEach.call(els, function (el) {
             if (interativo(el)) return;
             if (el.querySelector('a,button,input,select,textarea,[role=button],[onclick]')) return;
+            // ícone dentro de botão herda o :hover do pai — não é falsa promessa
+            if (el.closest('a,button,[role=button],[onclick],summary,label,details')) return;
             suspeitos.add(el);
           });
         });
       });
     });
+    // Grau importa: cursor:pointer é promessa explícita (o ponteiro vira mãozinha)
+    // e cai em cursorMentiroso como 'alto'. Só o levantar no hover é ambíguo —
+    // pode ser enfeite proposital. Reporta como 'medio' pra decisão humana.
     suspeitos.forEach(function (el) {
-      add('alto', 'falsa-affordance',
-        'Reage ao hover (parece clicável) mas não tem link, handler nem filho clicável: "' + texto(el) + '"', el);
+      if (getComputedStyle(el).cursor === 'pointer') return; // cursorMentiroso pega
+      add('medio', 'falsa-affordance',
+        'Sobe/muda no hover como card clicável, mas não tem ação: "' + texto(el) + '"', el);
     });
   }
 
@@ -112,26 +127,39 @@
     Array.prototype.forEach.call(document.querySelectorAll('body *'), function (el) {
       if (interativo(el)) return;
       if (getComputedStyle(el).cursor !== 'pointer') return;
-      if (el.closest('a,button,[role=button],[onclick]')) return;
+      if (el.closest('a,button,[role=button],[onclick],summary,label,details')) return;
       add('alto', 'falsa-affordance', 'cursor:pointer sem ação: "' + texto(el) + '"', el);
     });
+  }
+
+  // Hash de conteúdo, não comprimento: trocar o filtro ativo move os mesmos
+  // atributos (hidden, aria-pressed) de um card pro outro — string diferente,
+  // comprimento idêntico. Comparar tamanho dava botão vivo como morto.
+  function impressao() {
+    var s = document.body.innerHTML, h = 5381;
+    for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+    return h + '|' + location.href + '|' + window.scrollY + '|' + s.length;
   }
 
   // Botão que não muda nada ao ser clicado.
   function botaoMorto(add) {
     var alvos = document.querySelectorAll('button,[role=button],.btn:not(a),[data-pro],[onclick]');
-    var mortos = [];
+    var mortos = [], vivosPorClasse = {};
     Array.prototype.forEach.call(alvos, function (el) {
       if (el.disabled || !el.offsetParent) return;
-      var antes = document.body.innerHTML.length + '|' + location.href + '|' +
-        window.scrollY + '|' + document.querySelectorAll('*').length;
+      var antes = impressao();
       try { el.click(); } catch (e) { return; }
-      var depois = document.body.innerHTML.length + '|' + location.href + '|' +
-        window.scrollY + '|' + document.querySelectorAll('*').length;
-      if (antes === depois) mortos.push(el);
+      var classe = el.className || el.tagName;
+      if (impressao() === antes) mortos.push({ el: el, classe: classe });
+      else vivosPorClasse[classe] = true;
     });
-    mortos.forEach(function (el) {
-      add('alto', 'botao-morto', 'Clique não produziu efeito nenhum: "' + texto(el) + '"', el);
+    mortos.forEach(function (m) {
+      // Se outros controles iguais responderam, este provavelmente só já estava
+      // no estado que ativa (ex.: clicar em "Todos" com "Todos" já selecionado).
+      var irmaoVivo = vivosPorClasse[m.classe];
+      add(irmaoVivo ? 'baixo' : 'alto', 'botao-morto',
+        'Clique não produziu efeito' + (irmaoVivo ? ' (outros ".' + m.classe + '" responderam — provavelmente já estava ativo)' : ' nenhum') +
+        ': "' + texto(m.el) + '"', m.el);
     });
   }
 
@@ -195,7 +223,9 @@
       }
 
       // 2. máscara: placeholder promete formato, valor sai cru?
-      var prometeFormato = /[()\/.-]/.test(el.placeholder || '');
+      // Exige dígito + separador + dígito. Só procurar pontuação fazia
+      // "Buscar por nome..." parecer promessa de máscara por causa das reticências.
+      var prometeFormato = /\d[\s()\/.-]+\d/.test(el.placeholder || '');
       if (numerico || prometeFormato) {
         digitar(el, '71988887777');
         var v2 = (document.getElementById(el.id) || el).value;
@@ -281,13 +311,38 @@
   }
 
   // Animação de entrada presa = página em branco no iframe do portfólio.
+  // Só conta o que está DENTRO da viewport: bloco abaixo da dobra com opacity 0
+  // é reveal normal esperando o scroll, não defeito.
   function revealPreso(add) {
-    var presos = 0;
+    var alt = window.innerHeight, presos = 0, exemplo = null;
     Array.prototype.forEach.call(document.querySelectorAll('body *'), function (el) {
-      var cs = getComputedStyle(el);
-      if (parseFloat(cs.opacity) < 0.05 && el.getBoundingClientRect().height > 40) presos++;
+      var r = el.getBoundingClientRect();
+      if (r.height < 40 || r.bottom < 0 || r.top > alt) return;
+      if (parseFloat(getComputedStyle(el).opacity) < 0.05) { presos++; exemplo = exemplo || el; }
     });
-    if (presos > 3) add('alto', 'reveal', presos + ' blocos grandes com opacity≈0 — animação de entrada pode estar presa', document.body);
+    if (presos > 2) {
+      add('alto', 'reveal', presos + ' blocos visíveis na tela com opacity≈0 — animação de entrada presa', exemplo);
+    }
+  }
+
+  // O portfólio mostra os demos em <iframe>. Se o failsafe do reveal falhar,
+  // a miniatura fica branca — bug que já aconteceu e ninguém vê pelo HTML.
+  function iframesEmBranco(add) {
+    Array.prototype.forEach.call(document.querySelectorAll('iframe'), function (f) {
+      var d;
+      try { d = f.contentDocument; } catch (e) { return; }
+      // body vazio = o ambiente não carregou o iframe (preview local não carrega
+      // file:// aninhado). Não dá pra concluir nada; conferir na página publicada.
+      if (!d || !d.body || d.body.children.length === 0) return;
+      var visivel = 0;
+      Array.prototype.forEach.call(d.body.querySelectorAll('*'), function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.height > 30 && parseFloat(d.defaultView.getComputedStyle(el).opacity) > 0.05) visivel++;
+      });
+      if (visivel < 5) {
+        add('alto', 'iframe', 'Miniatura praticamente em branco (' + visivel + ' blocos visíveis): ' + (f.src || '').slice(-40), f);
+      }
+    });
   }
 
   function layout(add) {
@@ -363,6 +418,7 @@
     contraste(add);
     ctaNav(add);
     revealPreso(add);
+    iframesEmBranco(add);
     layout(add);
     toque(add);
     campos(add);

@@ -386,6 +386,28 @@ function toast(msg){
 }
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
+/* ---------- máscara ---------- */
+const soDigitos=s=>String(s).replace(/\D/g,'');
+function mascaraTel(v){
+  const d=soDigitos(v).slice(0,11);
+  if(d.length<=2) return d?'('+d:'';
+  if(d.length<=6) return '('+d.slice(0,2)+') '+d.slice(2);
+  if(d.length<=10) return '('+d.slice(0,2)+') '+d.slice(2,6)+'-'+d.slice(6);
+  return '('+d.slice(0,2)+') '+d.slice(2,7)+'-'+d.slice(7);
+}
+/* Reposiciona o cursor contando DÍGITOS, não caracteres: a máscara insere
+   parênteses e hífen, então guardar o índice bruto jogaria o cursor pra longe
+   toda vez que um separador entrasse antes dele. */
+function comMascara(el,fn){
+  el.addEventListener('input',()=>{
+    const digitosAntes=soDigitos(el.value.slice(0,el.selectionStart)).length;
+    el.value=fn(el.value);
+    let pos=0,vistos=0;
+    while(pos<el.value.length && vistos<digitosAntes){ if(/\d/.test(el.value[pos])) vistos++; pos++; }
+    el.setSelectionRange(pos,pos);
+  });
+}
+
 /* ---------- login ---------- */
 function pintarLogin(){
   $('#proGrid').innerHTML=PROS.map(p=>
@@ -489,27 +511,32 @@ function renderAgenda(){
 }
 
 /* ---------- PACIENTES ---------- */
-function renderPacientes(){
+/* Só a lista é repintada a cada tecla. Quando o render redesenhava a página
+   inteira, o <input> era destruído e recriado a cada letra, o cursor voltava
+   pra posição 0 e o texto saía ao contrário. */
+function pintarListaPacientes(){
   const q=busca.trim().toLowerCase();
   const lista=db.pacientes.filter(p=>p.nome.toLowerCase().includes(q));
-  const corpo = lista.length ? '<div class="table-scroll"><table><thead><tr>'+
+  $('#listaPac').innerHTML = lista.length ? '<div class="table-scroll"><table><thead><tr>'+
       '<th>Paciente</th><th>Telefone</th><th>Última consulta</th><th>Convênio</th></tr></thead><tbody>'+
       lista.map(p=>'<tr><td><div class="pname"><span class="avatar">'+iniciais(p.nome)+'</span>'+esc(p.nome)+'</div></td>'+
         '<td class="num">'+esc(p.tel)+'</td><td class="num">'+isoParaBR(p.ultima)+'</td>'+
         '<td><span class="tag'+(p.conv==='Particular'?'':' on')+'">'+esc(p.conv)+'</span></td></tr>').join('')+
       '</tbody></table></div>'
     : vazio('Nenhum paciente encontrado', q? 'Não há paciente com “'+esc(busca)+'”. Tente outro nome.' : 'Cadastre o primeiro paciente para começar a agendar.');
+}
 
+function renderPacientes(){
   $('#content').innerHTML=
   '<div class="page-head"><div><h2>Pacientes</h2><p class="num">'+db.pacientes.length+' cadastrados</p></div>'+
   '<div class="week-bar" style="flex:1;justify-content:flex-end">'+
     '<div class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>'+
     '<input id="q" type="search" placeholder="Buscar por nome..." aria-label="Buscar paciente por nome" value="'+esc(busca)+'"></div>'+
     '<button class="btn btn-primary" id="novoP"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Novo paciente</button>'+
-  '</div></div><div class="card">'+corpo+'</div>';
+  '</div></div><div class="card" id="listaPac"></div>';
+  pintarListaPacientes();
 
-  const q_=$('#q');
-  q_.oninput=()=>{busca=q_.value;renderPacientes();const nq=$('#q');nq.focus();nq.setSelectionRange(nq.value.length,nq.value.length);};
+  $('#q').oninput=e=>{busca=e.target.value;pintarListaPacientes();};
   $('#novoP').onclick=modalPaciente;
 }
 function vazio(t,d,btn){
@@ -643,17 +670,21 @@ function modalPaciente(){
   abrirModal(head('Novo paciente')+
   '<div class="body"><div class="err" id="mErr"></div>'+
     '<div class="field"><label for="nNome">Nome completo</label><input id="nNome" type="text" placeholder="Ex.: Joana Ribeiro" autocomplete="off"></div>'+
-    '<div class="field"><label for="nTel">Telefone</label><input id="nTel" type="tel" placeholder="(71) 90000-0000" autocomplete="off"></div>'+
+    '<div class="field"><label for="nTel">Telefone</label><input id="nTel" type="tel" inputmode="tel" maxlength="15" placeholder="(71) 90000-0000" autocomplete="off"></div>'+
     '<div class="field"><label for="nConv">Convênio</label><select id="nConv">'+
       ['Particular','Unimed Vale','SaúdeMais','Bem Viver'].map(x=>'<option>'+x+'</option>').join('')+'</select></div>'+
   '</div><footer><button class="btn btn-ghost" data-close>Voltar</button>'+
     '<button class="btn btn-primary" id="mOk">Cadastrar</button></footer>',
   root=>{
+    comMascara(root.querySelector('#nTel'),mascaraTel);
     root.querySelector('#mOk').onclick=()=>{
       const nome=root.querySelector('#nNome').value.trim();
       const tel=root.querySelector('#nTel').value.trim();
       if(nome.length<3){ root.querySelector('#mErr').textContent='Informe o nome completo do paciente.'; return; }
-      if(tel.length<8){ root.querySelector('#mErr').textContent='Informe um telefone válido.'; return; }
+      /* Contar dígitos, não caracteres: com `tel.length<8` o campo aceitava
+         "abcdefgh" e cadastrava o paciente. */
+      const digitos=soDigitos(tel);
+      if(digitos.length<10||digitos.length>11){ root.querySelector('#mErr').textContent='Informe um telefone com DDD, ex.: (71) 90000-0000.'; return; }
       db.pacientes.push({id:'p'+Date.now(),nome,tel,conv:root.querySelector('#nConv').value,
         ultima:'',criado:iso(new Date())});
       salvar(); fechar(); busca=''; renderPacientes(); toast('Paciente cadastrado.');

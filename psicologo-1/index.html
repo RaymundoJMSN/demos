@@ -101,6 +101,8 @@ section{padding:74px 0;position:relative}
   font-size:1rem;font-weight:500;
 }
 .drawer .btn{margin-top:18px;text-align:center;border-bottom:none}
+/* .drawer a e mais especifico que .btn-p e escurecia o texto do CTA (2.5:1) */
+.drawer a.btn-p{color:#fff}
 
 /* hero */
 .hero{padding-top:118px;padding-bottom:40px;position:relative;overflow:hidden}
@@ -174,7 +176,9 @@ section{padding:74px 0;position:relative}
   display:grid;place-items:center;justify-self:center;position:relative;
   box-shadow:0 30px 60px -40px var(--salvia-esc);
 }
-.blob .ini{font-family:var(--serif);font-size:4.2rem;color:#fff;letter-spacing:.04em;opacity:.95}
+/* branco sobre o degrade de salvia clara dava 1.6:1 (praticamente invisivel);
+   a tinta escura da 7.7:1 na parte mais clara do degrade */
+.blob .ini{font-family:var(--serif);font-size:4.2rem;color:var(--tinta);letter-spacing:.04em;opacity:.95}
 .blob::after{
   content:"";position:absolute;inset:-14px;border:1.5px dashed var(--salvia);
   border-radius:var(--r-org);opacity:.5;
