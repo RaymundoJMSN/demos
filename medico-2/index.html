@@ -75,14 +75,15 @@ nav a:hover{background:#fff;color:var(--coral-esc);transform:translateY(-2px)}
 .btn.teal{background:var(--teal-esc);box-shadow:0 10px 22px rgba(46,196,182,.35)}
 .btn.teal:hover{box-shadow:0 16px 30px rgba(46,196,182,.45)}
 .btn.vazio{background:#fff;color:var(--tinta);box-shadow:var(--sombra)}
-.hamb{display:none;width:46px;height:46px;border-radius:50%;border:0;background:#fff;box-shadow:var(--sombra);cursor:pointer;place-items:center}
-.hamb span{display:block;width:20px;height:2.5px;background:var(--tinta);border-radius:3px;margin:3.5px auto;transition:.25s}
+/* flex + gap: com grid as 3 linhas esticavam pra altura toda do botao e o X nao fechava */
+.hamb{display:none;width:46px;height:46px;border-radius:50%;border:0;background:#fff;box-shadow:var(--sombra);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:3.5px}
+.hamb span{display:block;width:20px;height:2.5px;background:var(--tinta);border-radius:3px;transition:.25s}
 .hamb[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .hamb[aria-expanded="true"] span:nth-child(2){opacity:0}
 .hamb[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
 @media(max-width:940px){
-  .hamb{display:grid}
+  .hamb{display:flex}
   nav{position:absolute;top:calc(100% + .5rem);left:0;right:0;background:var(--branco);border-radius:var(--r-m);
     box-shadow:var(--sombra);padding:.7rem;display:none}
   nav.aberto{display:block;animation:cai .3s ease}

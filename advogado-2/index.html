@@ -50,8 +50,9 @@
   .btn.invert{background:var(--ink);color:var(--bg);box-shadow:5px 5px 0 var(--yellow)}
   .btn.invert:hover{box-shadow:8px 8px 0 var(--yellow)}
   .nav .btn{display:none}
-  .burger{width:52px;height:52px;border:3px solid var(--ink);background:var(--yellow);display:grid;place-items:center;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
-  .burger span{display:block;width:24px;height:3px;background:var(--ink);margin:3px 0;transition:.2s}
+  /* flex + gap: com grid as 3 linhas esticavam pra altura toda do botao e o X nao fechava */
+  .burger{width:52px;height:52px;border:3px solid var(--ink);background:var(--yellow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
+  .burger span{display:block;width:24px;height:3px;background:var(--ink);transition:.2s}
   .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
   .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
   .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}

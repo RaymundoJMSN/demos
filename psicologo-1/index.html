@@ -85,7 +85,10 @@ section{padding:74px 0;position:relative}
 .nav .btn{display:none}
 .burger{
   margin-left:auto;width:44px;height:44px;border:1px solid var(--linha);background:transparent;
-  border-radius:50%;display:grid;place-items:center;gap:4px;cursor:pointer;padding:0;
+  /* flex, nao grid: com grid as 3 linhas esticavam pra altura toda do botao (15px de
+     distancia) e o translateY(5.7px) do X nao fechava — virava duas barras tortas */
+  border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;cursor:pointer;padding:0;
 }
 .burger span{display:block;width:18px;height:1.7px;background:var(--tinta);transition:.28s;border-radius:2px}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5.7px) rotate(45deg)}
@@ -107,7 +110,10 @@ section{padding:74px 0;position:relative}
 /* hero */
 .hero{padding-top:118px;padding-bottom:40px;position:relative;overflow:hidden}
 .hero .leaf-bg{position:absolute;top:-40px;right:-90px;width:340px;opacity:.5;pointer-events:none}
-.hero-grid{display:grid;gap:44px;position:relative;z-index:1}
+/* minmax(0,1fr): coluna auto deixava a figura do respiro esticar a track alem da tela —
+   o overflow:hidden do hero cortava o h1 e jogava o circulo pra direita no celular */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:44px;position:relative;z-index:1}
+.hero-grid>*{min-width:0}
 .hero h1 em{font-style:italic;color:var(--terracota-esc)}
 .lead{font-size:1.12rem;max-width:44ch}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}

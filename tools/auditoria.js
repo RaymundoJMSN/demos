@@ -361,6 +361,20 @@
         }
       });
     }
+    // Texto cortado por ancestral com overflow:hidden: não gera rolagem, então a checagem
+    // acima passa batido. Bug real (psicologo-1 e derivados): a figura do hero esticava a
+    // coluna do grid além da tela e o overflow:hidden da section decepava o h1 no celular.
+    Array.prototype.forEach.call(document.querySelectorAll('h1,h2,h3,p,li,dd,dt,summary'), function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.width < 60 || r.height === 0) return;
+      if (getComputedStyle(el).position === 'fixed') return;
+      var temTextoProprio = Array.prototype.some.call(el.childNodes, function (n) {
+        return n.nodeType === 3 && n.textContent.trim();
+      });
+      if (!temTextoProprio) return;
+      var sai = Math.max(r.right - de.clientWidth, -r.left);
+      if (sai > 2) add('alto', 'cortado', 'Texto sai ' + Math.round(sai) + 'px da tela: "' + texto(el) + '"', el);
+    });
   }
 
   function toque(add) {
