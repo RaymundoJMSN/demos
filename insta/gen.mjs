@@ -76,7 +76,7 @@ frames.push(['sistema-painel', page(`<div class="pad">
 frames.push(['card-apresentacao', page(`<div class="pad">
   ${top('RAY · PROGRAMADOR', 'Feira de Santana → BR')}
   <div class="center">
-    <h1 class="serif h-hero">Transformo ideia<br>em coisa <span class="em">funcionando</span>.</h1>
+    <h1 class="serif h-hero">Transformo ideia<br>em <span class="em">realidade</span>.</h1>
     <div class="chips"><span class="chip hot">Sites em 48h</span><span class="chip">Sistemas web</span><span class="chip">Apps Android</span><span class="chip">Automações</span><span class="chip">Ferramentas de RPG</span></div>
   </div>
   ${foot}
