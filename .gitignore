@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 insta/shots/
 insta/frames/
+CLAUDE.md
+docs/CONTEXTO.md
+.claude/
