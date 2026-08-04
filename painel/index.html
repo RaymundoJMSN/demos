@@ -509,7 +509,7 @@ function renderPacientes(){
   '</div></div><div class="card">'+corpo+'</div>';
 
   const q_=$('#q');
-  q_.oninput=()=>{busca=q_.value;renderPacientes();$('#q').focus();};
+  q_.oninput=()=>{busca=q_.value;renderPacientes();const nq=$('#q');nq.focus();nq.setSelectionRange(nq.value.length,nq.value.length);};
   $('#novoP').onclick=modalPaciente;
 }
 function vazio(t,d,btn){
