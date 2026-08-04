@@ -1,6 +1,13 @@
 /* Auditoria de página — cola no console ou injeta via Browser MCP.
    Define window.__auditar(); chamar retorna o relatório em JSON.
-   Roda in-page porque precisa de estilo computado, clique real e caret real. */
+   Roda in-page porque precisa de estilo computado, clique real e caret real.
+
+   Injeção numa página file:// pelo Browser MCP (fetch de file:// é bloqueado, <script src> não):
+     (function(){var s=document.createElement('script');
+      s.src='file:///C:/Users/rayna/Soltos/demos-profissionais/tools/auditoria.js';
+      document.head.appendChild(s);
+      return new Promise(function(r){s.onload=function(){r(JSON.stringify(window.__auditar()))}})})()
+   Recarregou a página? Injeta de novo — o script não sobrevive ao reload. */
 (function () {
   'use strict';
 
