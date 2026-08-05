@@ -11,7 +11,9 @@
 (function () {
   'use strict';
 
-  var NUM_HINT = /(tel|fone|celular|whats|cpf|cnpj|cep|data|nascimento|valor|preco|preço|numero|número|cart|rg|idade|quantidade|qtd)/i;
+  // (?<![a-zà-ÿ]) = a pista tem que comecar palavra. Sem isso "cidade" casava com
+  // "idade" e um campo de bairro/cidade era acusado de aceitar letra (falso positivo).
+  var NUM_HINT = /(?<![a-zà-ÿ])(tel|fone|celular|whats|cpf|cnpj|cep|data|nascimento|valor|preco|preço|numero|número|cart|rg|idade|quantidade|qtd)/i;
   var EXTERNO = /^(https?:|mailto:|tel:|whatsapp:)/i;
 
   function seletor(el) {
